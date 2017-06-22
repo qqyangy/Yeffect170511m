@@ -23,8 +23,8 @@
 		img = img || "img";
 		X = X || "";
 		geshi = geshi || "png";
-		boderWidth=boderWidth||1;
-		boderHeight=boderHeight||1;
+		boderWidth=boderWidth||300;
+		boderHeight=boderHeight||300;
 		var borderWbH=boderWidth/boderHeight;
 		var $window=$(window);
 		var divobj = $("<div style='width:0px; height:0px;position:relative; overflow:hidden;'>");
@@ -85,7 +85,7 @@
 									var newImg = $(thisHtml);
 									newImg.addClass("show");
 									newImg.find(img).attr("src", data);
-									creatIMGbox(data);
+									creatIMGbox(data,newImg.find(img));
 									newImg.find(X).click(function() {
 										var thispart = $(this).parent();
 										thispart.addClass("remove");
@@ -232,10 +232,10 @@
 			})
 		}
 		var linkL,linkR;
-		function creatIMGbox(img){
+		function creatIMGbox(img,domimg){
 			if(!ImgboxE){
 				ImgboxE=$("<div>");
-				ImgboxE.css({width:"100%",height:"100%",position:"fixed",left:"0px",top:"0px",overflow:"hidden",zIndex:"9999"});
+				ImgboxE.css({width:"100%",height:"100%",position:"fixed",backgrund:"#000",left:"0px",top:"0px",overflow:"hidden",zIndex:"9999"});
 				borderarc=$("<div>");
 				var $windowW=$window.width();
 				var $windowH=$window.height();
@@ -280,6 +280,23 @@
 					ImgboxE.hide();
 					linkL.hide();
 					linkR.hide();
+				});
+				linkR.click(function(){
+					getImgDataB({
+						src:img,
+						imgw:boxinnerImg.width(),
+						imgh:boxinnerImg.height(),
+						imgl:parseInt(boxinnerImg.css("left")),
+						imgt:parseInt(boxinnerImg.css("top")),
+						w:borderW,
+						h:borderH,
+						l:bmarginLeft,
+						t:bmarginTop,
+						domimg:domimg
+					});
+					ImgboxE.hide();
+					linkL.hide();
+					linkR.hide();
 				})
 				_body.append(linkL);
 				_body.append(linkR);
@@ -294,22 +311,22 @@
 		}
 
 		/*/////导出设置尺寸的图片////////////*/
-		function getImgDataB(img) {
+		function getImgDataB(dato) {
 			var image = new Image();
-			boderWidth/boderHeight
+			var bilix=boderWidth/dato.w;
 			image.onload = function() {
-				var degree = 0,drawWidth, drawHeight, width, height;
-				drawWidth = this.naturalWidth;
-				drawHeight = this.naturalHeight;
+				var drawWidth = dato.imgw*bilix;
+				var drawHeight = dato.imgh*bilix;
+				var topz=(dato.imgt-dato.t)*bilix;
+				var leftz=(dato.imgl-dato.l)*bilix;
 				var canvas = document.createElement("canvas");
-				canvas.width = width = boderWidth;
-				canvas.height = height = boderHeight;
+				canvas.width=boderWidth;
+				canvas.height= boderHeight;
 				var context = canvas.getContext("2d");
-				context.rotate(degree * Math.PI / 180);
-				context.drawImage(this, 0, 0, drawWidth, drawHeight);
-				next(canvas.toDataURL("image/" + geshi, .8))
+				context.drawImage(this, leftz, topz, drawWidth, drawHeight);
+				dato.domimg.attr("src",canvas.toDataURL("image/" + geshi, .8));
 			};
-			image.src = img;
+			image.src = dato.src;
 		}
 
 
