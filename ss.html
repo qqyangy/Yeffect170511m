@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="js/jquery-1.9.1.min.js"></script>a.b
+    <script src="js/Yeffect16_1214.min.js"></script>
+</head>
+<body>
+<style>
+    .html{font-size: 20px;}
+    .html li{ }
+</style>
+
+<script>
+    function e6t(template,data,fn,splitString){
+        var re=/\$\{(.)[^\$\{\}]*\}/g,htmlString="",templatedb="",setintTime,elment,newdata=data;
+        splitString=splitString||"${}";
+        data=data||window;
+        fn=fn||function(){};
+        if(typeof template=="object"){
+            elment=template;
+            templatedb=template.innerHTML;
+            template=templatedb;
+            newdata={};
+            for(var o in data){
+                newdata[o]=data[o];
+                (function(o){
+                    Object.defineProperty(data,o,{
+                        set:function(val){
+                            newdata[o]=val;
+                            clearTimeout(setintTime);
+                            setintTime=setTimeout(function(){updataHtml(newdata)},50)
+                        }
+                    });
+                })(o)
+            }
+        }
+        function updataHtml(data){
+            htmlString="";
+            splitAry=template.replace(re,"${}").split("${}");
+            var matchAry=template.match(re);
+            function getkey(s){
+                return s.substring(2,s.length-1);
+            }
+            splitAry.forEach(function(e,i){
+                if(i>0){
+                    var _getkey=eval("this."+getkey(matchAry[i-1]));
+                    htmlString+=_getkey==undefined?"":_getkey;
+                }
+                htmlString+=e;
+            }.bind(data));
+            fn();
+            if(templatedb!=""){
+                elment.innerHTML=htmlString;
+            }
+        }
+        updataHtml(newdata);
+        return htmlString;
+    }
+</script>
+
+<style>
+    .abc{background: #f00; width: 100px;}
+</style>
+
+<div class="abc">变换文本</div>
+
+
+<style class="abcd">
+    .abc{width: ${ab}px;height: ${ab}px; border-radius: ${ab}px;}
+</style>
+
+<script>
+
+    var weidtha=100;
+    var styledt={ab:100};
+    e6t($(".abcd")[0],styledt);
+    setInterval(function(){
+        weidtha+=(1000-weidtha)/5;
+       // console.log(weidtha)
+        styledt.ab=weidtha;
+    },50)
+</script>
+
+
+<div class="query">
+    <div class="html">
+        <ul><li><span>${tname}</span></li><li><span>${tid}</span></li></ul>
+       <ol><li><font>${a}</font>${dt.odt.a}</li></ol>
+    </div>
+</div>
+
+
+
+<ul class="classname"></ul>
+
+<script>
+    var datobj={
+        tname:"这是name属性这块",
+        tid:"这是tid属性这块",
+        dt:{
+            el:"<b>加粗的文本</b>",
+            odt:{
+                a:120
+            }
+        },
+        styeAy:["数组文本","数组文本2"],
+        a:""
+    }
+
+    var allstA='<li><span>${tname}</span></li><li><span>${tid}</span></li>';
+        allstA+='<li><span>${dt.el}</span></li><li><span>${styeAy[0]}</span></li>';
+        allstA+='<li><span>${a}</span></li><li><span>${styeAy[1]}</span></li>';
+
+    $(".classname").html(e6t(allstA,datobj))
+
+    e6t($(".query")[0],datobj);
+
+    setTimeout(function(){
+        datobj.tname="ssss";
+        datobj.a=10;
+    },5000)
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<div>
+
+</div>
+</body>
+</html>

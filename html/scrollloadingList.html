@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8,9,10,11,12" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/Yeffect16_1214.min.js"></script>
+<title>伪列表异步加载</title>
+</head>
+<body>
+<style>
+ul,li{margin:0px; padding:0px; list-style:none;}
+.loadingUl li{height:160px; background:#e9e9e9; line-height:160px; font-size:40px; margin-bottom:10px;}
+.loadingUl li img{display:block; float:left; margin-right:20px;}
+.loadMask{position:fixed; width:100%; text-align:center;height:92px; padding-top:5px; background:#efefef; left:0px; bottom:0px; font-size:30px; display:none;}
+</style>
+<ul class="loadingUl">
+	<li><img src="../images/nreimg_01.jpg">列表项内容一</li>
+    <li><img src="../images/nreimg_02.jpg">列表项内容二</li>
+    <li><img src="../images/nreimg_03.jpg">列表项内容三</li>
+    <li><img src="../images/nreimg_04.jpg">列表项内容四</li>
+    <li><img src="../images/nreimg_05.jpg">列表项内容五</li>
+    <li><img src="../images/nreimg_01.jpg">列表项内容六</li>
+    <li><img src="../images/nreimg_02.jpg">列表项内容七</li>
+    <li><img src="../images/nreimg_03.jpg">列表项内容八</li>
+    <li><img src="../images/nreimg_04.jpg">列表项内容久</li>
+    <li><img src="../images/nreimg_05.jpg">列表项内容十</li>
+    <li><img src="../images/nreimg_01.jpg">列表项内容十一</li>
+</ul>
+<div class="loadMask"><img src="../images/正在加载中.gif"></div>
+<script>
+var ajaxhtml="<li><img src='../images/nreimg_02.jpg'>列表项内容十二</li><li><img src='../images/nreimg_03.jpg'>列表项内容十三</li><li><img src='../images/nreimg_04.jpg'>列表项内容十四</li><li><img src='../images/nreimg_05.jpg'>列表项内容十五</li><li><img src='../images/nreimg_01.jpg'>列表项内容十六</li><li><img src='../images/nreimg_02.jpg'>列表项内容十七</li><li><img src='../images/nreimg_03.jpg'>列表项内容十八</li><li><img src='../images/nreimg_04.jpg'>列表项内容十九</li><li><img src='../images/nreimg_05.jpg'>列表项内容二十</li><li><img src='../images/nreimg_01.jpg'>列表项内容二十一</li><li><img src='../images/nreimg_02.jpg'>列表项内容二十二</li><li><img src='../images/nreimg_03.jpg'>列表项内容二十三</li><li><img src='../images/nreimg_04.jpg'>列表项内容二十四</li><li><img src='../images/nreimg_05.jpg'>列表项内容二十五</li>";
+
+var loadingUl=$(".loadingUl");
+var loadMask=$(".loadMask");
+var isload=true;
+Yeffect.adddragupEvent(function(){
+	if(!isload) return;
+	isload=false;
+	loadMask.show();
+	setTimeout(function(){
+		loadMask.hide();
+		loadingUl.append(ajaxhtml);
+		isload=true;
+	},1000)
+},200)
+</script>
+
+</body>
+</html>

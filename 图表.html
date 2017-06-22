@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>智慧蛋鸡</title>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/Yeffect16_1214.min.js"></script>
+<style>
+	.g_main{margin-bottom:0;}
+</style>
+</head>
+<body>
+
+
+
+<!-------------------------------柱状图----------------------->
+
+<style>
+.柱状图{width:500px; height:300px; border:1px solid #eee; background:#f9f9f9; margin-bottom:30px;}
+
+</style>
+
+<div class="柱状图"></div>
+
+
+<script>
+var dataA=[10,35,60,78,50,37,56,72]; ////////这列是数据////////
+
+var styleA={}; ////容器属性///
+	styleA.width="500px";
+	styleA.height="300px";
+	styleA.position="relative";
+var styleT={};
+	styleT.left=[54,100,150,200,270,350,430,490]; ////每一列x方面的位置//////
+	styleT.color="#ee8383";
+	styleT.width=9;
+	styleT.Mdata=100;
+	styleT.animtr="easeInOutCubic";
+	styleT.animtime=1000;
+	
+createHistogram($(".柱状图"),dataA,styleA,styleT); //////功能调用并传入属性/////////
+
+////////功能函数//////
+function createHistogram(content,data,style,stylet){
+	var obj=content;
+	var newdiv=$("<div>");
+	newdiv.css(style);
+	var bilihT=parseInt(style.height)/stylet.Mdata;
+	var setIntervss;
+	var curhis=0;
+	for(var i=0;i<dataA.length;i++){
+		var T=$("<div>");
+		T.css({position:"absolute",bottom:0,left:stylet.left[i],width:stylet.width,marginLeft:-stylet.width/2,background:stylet.color,height:0});
+		T.animate({height:dataA[i]*bilihT},stylet.animtime/2*Math.random()+stylet.animtime/2,stylet.animtr,function(){
+			curhis++;
+			if(curhis==dataA.length){
+				clearInterval(setIntervss);
+			}
+		});
+		var Sp=$("<span>")
+		Sp.text(0)
+		Sp.css({display:"block",fontSize:stylet.width*1.7,color:"#999",top:-stylet.width*2.5,position:"relative",width:stylet.width*5,left:-2*stylet.width,textAlign:"center"})
+		T.append(Sp);
+		newdiv.append(T);
+		T.css("overflow","visible");
+	}
+	obj.append(newdiv);
+	setIntervss=setInterval(setIntervsssel,30);
+	function setIntervsssel(){
+		newdiv.find("div").each(function(index, element) {
+			var thisObj=$(this);
+            var thisHt=thisObj.height();
+			thisObj.find("span").text(Math.round(thisHt/bilihT));
+        });
+	}
+
+}
+
+</script>
+
+
+<!------------------------折线图----------------------->
+<style>
+.折线图{width:500px; height:300px; border:1px solid #eee; background:#f9f9f9;}
+a{position:relative; position:absolute; bottom:0px; overflow:visible}
+
+</style>
+
+<div class="折线图"></div>
+
+
+<script>
+var obj1={lineW:2,color:"#ee8383",R:5,
+	      data:[10,20,50,30,70,30,90,39]};
+var obj2={lineW:2,color:"#d2d2d2",R:5,
+		  data:[40,89,35,70,27,63,55,50]};
+var dataB=[obj1]; //////两条线的数据////////
+
+var styleB={width:500,height:300}; ////容器属性///
+
+var styleX={};
+	styleX.left=[50,100,150,200,270,350,430,500,600,700]; ////每一列x方面的位置//////
+	styleX.Mdata=200;
+	styleX.animtr="easeInOutCubic";
+	styleX.animtime=5000;
+
+createLineGraph($(".折线图"),dataB,styleB,styleX); //////功能调用并传入属性/////////
+
+var dataB1=[obj2,obj1]; //////两条线的数据////////
+createLineGraph($(".折线图"),dataB1,styleB,styleX); //////功能调用并传入属性/////////
+
+////////功能函数//////
+function createLineGraph(content,data,style,stylet){
+	var obj=content;
+	var svgns = "http://www.w3.org/2000/svg";
+	var bilishs=parseInt(style.height)/stylet.Mdata;
+	var svg=document.createElementNS(svgns,"svg");
+	svg.setAttribute("width",style.width);
+	svg.setAttribute("height",style.height);
+	for(var i=0;i<data.length;i++){
+		var g=document.createElementNS(svgns,"g");
+		var linedat="";
+		var lineYs="";
+		for(var j=0;j<data[i].data.length;j++){
+			var dt=data[i].data[j];
+			var circle=document.createElementNS(svgns,"circle");
+			var x=stylet.left[j];
+			var y=(stylet.Mdata-dt)*bilishs;
+			var xs=0;
+			var ys=100;
+			circle.setAttribute("cx",x);
+			circle.setAttribute("cy",y);
+			circle.setAttribute("fill",data[i].color);
+			circle.setAttribute("stroke-width",0);
+			circle.setAttribute("r",data[i].R);
+			if(linedat!=""){
+				linedat+=" ";
+				lineYs+=" ";
+			}
+			linedat+=x+","+y;
+			lineYs+=x+","+ys;
+			g.appendChild(circle);
+		}
+		var polyline=document.createElementNS(svgns,"polyline");
+		polyline.setAttribute("stroke",data[i].color);
+		polyline.setAttribute("stroke-width",data[i].lineW);
+		polyline.setAttribute("points",linedat);
+		polyline.setAttribute("fill","none");
+		//$(polyline).animation({"points",linedat},300)
+		g.appendChild(polyline);
+		svg.appendChild(g)
+	}
+
+	$(svg).width(0).animate({width:style.width},stylet.animtime,stylet.animtr);
+	obj.eq(0)[0].appendChild(svg);
+}
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

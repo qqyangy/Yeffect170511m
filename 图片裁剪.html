@@ -1,0 +1,401 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>智慧蛋鸡</title>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/Yeffect16_1214.min.js"></script>
+<style>
+	.g_main{margin-bottom:0;}
+
+
+
+</style>
+</head>
+<body>
+<script>
+
+	function ImageClipping(obj, img, X, fn, maxC, alerta, maxLeng, geshi, isTouxing,boderWidth,boderHeight) {
+		img = img || "img";
+		X = X || "";
+		geshi = geshi || "png";
+		boderWidth=boderWidth||1;
+		boderHeight=boderHeight||1;
+		var borderWbH=boderWidth/boderHeight;
+		var $window=$(window);
+		var divobj = $("<div style='width:0px; height:0px;position:relative; overflow:hidden;'>");
+		var OBjctent = $(obj).eq(0);
+		var bodyObj = $("body");
+		var InputObj = OBjctent.find("input:file");
+		var maxC = maxC || 5e3;
+		var fn = fn ||
+				function() {};
+		var IMglength = 0;
+		var imgcur = 0;
+		var alerta = alerta || "你选择的不是图片！";
+		var maxLeng = maxLeng || 100;
+		var curLeng = [];
+		var Io = 0;
+		isTouxing = isTouxing || false;
+		if (isTouxing) {
+			maxLeng = 1
+		}
+		divobj.append(InputObj);
+		var thisHtml = OBjctent[0].outerHTML;
+		OBjctent.append(InputObj);
+		bodyObj.append(divobj);
+		InputObj.change(function(e) {
+			var thisfil = $(this)[0].files;
+			var inyy = true;
+			var IOa = 0;
+			for (var i = 0; i < thisfil.length; i++) {
+				if (thisfil[i].type.indexOf("image") > -1) {
+					var orientation;
+					EXIF.getData(thisfil[i],
+							function() {
+								orientation = EXIF.getTag(this, "Orientation")
+							});
+					var Imgreader = new FileReader();
+					IMglength++;
+					if (IMglength >= maxLeng && !isTouxing) {
+						OBjctent.hide()
+					}
+					if (IMglength > maxLeng && !isTouxing) {
+						IMglength = maxLeng;
+						return
+					}
+					Imgreader.readAsDataURL(thisfil[i]);
+					Imgreader.onload = function(e) {
+						console.log(IMglength);
+						var datasrl = e.target.result;
+						getImgData(datasrl, orientation,
+								function(data) {
+									Io++;
+									IOa++;
+									if (isTouxing) {
+										console.log(data);
+										OBjctent.find(img).attr("src", data);
+										fn();
+										return
+									}
+									var newImg = $(thisHtml);
+									newImg.addClass("show");
+									newImg.find(img).attr("src", data);
+									creatIMGbox(data);
+									newImg.find(X).click(function() {
+										var thispart = $(this).parent();
+										thispart.addClass("remove");
+										thispart.remove();
+										curLeng = removeAry(curLeng);
+										OBjctent.show();
+										IMglength--;
+										fn()
+									});
+									OBjctent.before(newImg);
+									curLeng.push(newImg);
+									if (IOa > thisfil.length - 1 || Io >= maxLeng) {
+										fn()
+									}
+								});
+						Imgreader = null
+					};
+					inyy = false
+				}
+			}
+			if (inyy) {
+				alert(alerta)
+			}
+		});
+		var ImgboxE=false;
+		var _body=$("body");
+		var borderarc;
+		var boxinnerImg;
+		var startPage={};
+		var istouchend=true;
+		function setUPdataIMG() {
+			if(istouchend) return;
+			var maxXa=0,minXa=-10,maxYa=0,minYa=-10,maxXb=0,minXb=-10,maxYb=0,minYb=-10;
+			var staIMG={};
+			for(var _o in startPage){
+				var o=startPage[_o];
+				staIMG.x=o.imgx;
+				staIMG.y=o.imgy;
+				staIMG.w=o.imgw;
+				staIMG.h=o.imgh;
+				if(minXa<-5){
+					minXa=o.sx;
+					minYa=o.sy;
+					minXb=o.mx;
+					minYb=o.my;
+				}
+				maxXa=Math.max(maxXa,o.sx);minXa=Math.min(minXa,o.sx);
+				maxYa=Math.max(maxYa,o.sy);minYa=Math.min(minYa,o.sy);
+
+				maxXb=Math.max(maxXb,o.mx);minXb=Math.min(minXb,o.mx);
+				maxYb=Math.max(maxYb,o.my);minYb=Math.min(minYb,o.my);
+			}
+			var bili=staIMG.w/staIMG.h;
+			var maxX=maxXb-maxXa,maxY=maxYb-maxYa;
+			var minX=minXb-minXa,minY=minYb-minYa;
+			var imgLeft=staIMG.x+minX;
+			var imgTop=staIMG.y+minY;
+			/****左上角限制*****/
+			var boderW=borderarc.width(),boderH=borderarc.height(),borderT=parseInt(borderarc.css("top")),borderL=parseInt(borderarc.css("left"));
+			if(imgLeft>borderL) imgLeft=borderL;
+			if(imgTop>borderT) imgTop=borderT;
+			/****左上角限制END*****/
+
+			var imgWidth=staIMG.w+maxX-minX;
+			var imgHeight=staIMG.h+maxY-minY;
+
+			if(Math.abs(maxX)>Math.abs(maxY)){
+				imgHeight=imgWidth/bili;
+			}else{
+				imgWidth=imgHeight*bili;
+			}
+			/*****右下角限制**********/
+			if(imgWidth<boderW){
+				imgWidth=boderW;
+				imgHeight=imgWidth/bili;
+			}
+			if(imgHeight<boderH){
+				imgHeight=boderH;
+				imgWidth=imgHeight*bili;
+			}
+
+			if(imgLeft<boderW-imgWidth+borderL){
+				imgLeft=boderW-imgWidth+borderL;
+			};
+			if(imgTop<boderH-imgHeight+borderT){
+				imgTop=boderH-imgHeight+borderT;
+			};
+
+
+
+			//borderarc.text(JSON.stringify({maxX:maxX,minX:minX,maxY:maxY,minY:minY,imgHeight:imgHeight})).css({color:"#fff","word-break":"break-all","word-wrap":"break-word",fontSize:"15px"});
+			//borderarc.text(JSON.stringify({left:imgLeft,top:imgTop,width:imgWidth,height:imgHeight}));
+			//borderarc.text(JSON.stringify({left:imgLeft,top:imgTop,width:imgWidth,height:imgHeight})).css({color:"#fff","word-break":"break-all","word-wrap":"break-word",fontSize:"15px"});
+
+			boxinnerImg.css({left:imgLeft,top:imgTop,width:imgWidth,height:imgHeight});
+
+		}
+		function touchEvent(box,border,img){
+			box[0].addEventListener("touchstart",function(e){
+				istouchend=false;
+				var touches=e.touches;
+				for(var _o in touches){
+					var o=touches[_o];
+					if(o.identifier){
+						startPage[o.identifier]={
+							sx:o.screenX,
+							sy:o.screenY,
+							imgw:img.width(),
+							imgh:img.height(),
+							imgx:parseInt(img.css("left")),
+							imgy:parseInt(img.css("top"))
+						}
+					}
+				}
+				//borderarc.text(JSON.stringify(touches)).css({color:"#fff","word-break":"break-all","word-wrap":"break-word",fontSize:"15px"})
+				e.preventDefault();
+			})
+			box[0].addEventListener("touchmove",function(e){
+				var touches=e.touches;
+				var _pagr=[];
+				for(var _o in touches){
+					var o=touches[_o];
+					if(o.identifier){
+						_pagr.push(o.identifier+"");
+						var starideo=startPage[o.identifier];
+						starideo.mx=o.screenX;
+						starideo.my=o.screenY;
+					}
+				}
+				var startPagekeys=Object.keys(startPage);
+				var removeindex="";
+				startPagekeys.forEach(function(t){
+					if(_pagr.indexOf(t+"")<0){
+						delete startPage[t];
+					}
+				})
+				setUPdataIMG();
+				borderarc.text(JSON.stringify(startPage)).css({color:"#fff","word-break":"break-all","word-wrap":"break-word",fontSize:"15px"});
+				e.preventDefault();
+				return false;
+			});
+			box[0].addEventListener("touchend",function(){
+				istouchend=true;
+			})
+		}
+		var linkL,linkR;
+		function creatIMGbox(img){
+			if(!ImgboxE){
+				ImgboxE=$("<div>");
+				ImgboxE.css({width:"100%",height:"100%",position:"fixed",left:"0px",top:"0px",overflow:"hidden",zIndex:"9999"});
+				borderarc=$("<div>");
+				var $windowW=$window.width();
+				var $windowH=$window.height();
+				var borderW=0,borderH=0,imageW=0,imageH=0,bmarginLeft=0,bmarginTop=0;
+				if($windowW/$windowH>borderWbH){
+					borderH=$windowH;
+					borderW=borderH*borderWbH;
+					bmarginLeft=($windowW-borderW)/2;
+					bmarginTop=0;
+				}else{
+					borderW=$windowW;
+					borderH=borderW/borderWbH;
+					bmarginTop=($windowH-borderH)/2;
+					bmarginLeft=0;
+				}
+				borderarc.css({position:"absolute",width:borderW,height:borderH,border:"2000px solid rgba(0,0,0,0.7)","box-shadow":"inset 0 0 0 1px rgba(255,255,255,0.7)",marginLeft:"-2000px",marginTop:"-2000px",left:bmarginLeft,top:bmarginTop,zIndex:"10"});
+				ImgboxE.append(borderarc);
+				boxinnerImg=$("<img>");
+
+				boxinnerImg.attr("src",img);
+				ImgboxE.append(boxinnerImg);
+				boxinnerImg.load(function(){
+					boxinnerImg.removeAttr("style");
+					var imgB=boxinnerImg.width()/boxinnerImg.height();
+					var setW=0,setH=0,setL=0,setT=0;
+					if($windowW/$windowH>imgB){
+						setW=$windowW;
+						setH=setW/imgB;
+						setT=($windowH-setH)/2;
+					}else{
+						setH=$windowH;
+						setW=setH*imgB;
+						setL=($windowW-setW)/2;
+					}
+					boxinnerImg.css({position:"absolute",left:setL,top:setT,width:setW,height:setH});
+				})
+				linkL=$("<a href='javascript:void(0)'>取消</a>");
+				linkR=$("<a href='javascript:void(0)'>确定</a>");
+				linkL.css({position:"absolute",width:"50px",height:"25x",lineHeight:"25px",textAlign:"center",background:"rgba(0,0,0,0.5)",fontSize:"12px",color:"#fff",bottom:"10px",left:"10px",borderRadius:"20px",textDecoration:"none",zIndex:"99999"});
+				linkR.css({position:"absolute",width:"50px",height:"25px",lineHeight:"25px",textAlign:"center",background:"rgba(0,0,0,0.5)",fontSize:"12px",color:"#fff",bottom:"10px",right:"10px",borderRadius:"20px",textDecoration:"none",zIndex:"99999"});
+				linkL.click(function(){
+					ImgboxE.hide();
+					linkL.hide();
+					linkR.hide();
+				})
+				_body.append(linkL);
+				_body.append(linkR);
+				_body.append(ImgboxE);
+				touchEvent(ImgboxE,borderarc,boxinnerImg);
+			}else{
+				ImgboxE.show();
+				linkL.show();
+				linkR.show();
+				boxinnerImg.attr("src",img);
+			}
+		}
+
+		/*/////导出设置尺寸的图片////////////*/
+		function getImgDataB(img) {
+			var image = new Image();
+			boderWidth/boderHeight
+			image.onload = function() {
+				var degree = 0,drawWidth, drawHeight, width, height;
+				drawWidth = this.naturalWidth;
+				drawHeight = this.naturalHeight;
+				var canvas = document.createElement("canvas");
+				canvas.width = width = boderWidth;
+				canvas.height = height = boderHeight;
+				var context = canvas.getContext("2d");
+				context.rotate(degree * Math.PI / 180);
+				context.drawImage(this, 0, 0, drawWidth, drawHeight);
+				next(canvas.toDataURL("image/" + geshi, .8))
+			};
+			image.src = img;
+		}
+
+
+		/*********等比例压缩图片***********/
+		function getImgData(img, dir, next) {
+			var image = new Image();
+			image.onload = function() {
+				var degree = 0,drawWidth, drawHeight, width, height;
+				drawWidth = this.naturalWidth;
+				drawHeight = this.naturalHeight;
+				var maxSide = Math.max(drawWidth, drawHeight);
+				if (maxSide > maxC) {
+					var minSide = Math.min(drawWidth, drawHeight);
+					minSide = minSide / maxSide * maxC;
+					maxSide = maxC;
+					if (drawWidth > drawHeight) {
+						drawWidth = maxSide;
+						drawHeight = minSide
+					} else {
+						drawWidth = minSide;
+						drawHeight = maxSide
+					}
+				}
+				var canvas = document.createElement("canvas");
+				canvas.width = width = drawWidth;
+				canvas.height = height = drawHeight;
+				var context = canvas.getContext("2d");
+				switch (dir) {
+					case 3:
+						degree = 180;
+						drawWidth = -width;
+						drawHeight = -height;
+						break;
+					case 6:
+						canvas.width = height;
+						canvas.height = width;
+						degree = 90;
+						drawWidth = width;
+						drawHeight = -height;
+						break;
+					case 8:
+						canvas.width = height;
+						canvas.height = width;
+						degree = 270;
+						drawWidth = -width;
+						drawHeight = height;
+						break
+				}
+				context.rotate(degree * Math.PI / 180);
+				context.drawImage(this, 0, 0, drawWidth, drawHeight);
+				next(canvas.toDataURL("image/" + geshi, .8))
+			};
+			image.src = img;
+
+		}
+		function removeAry(ayr) {
+			var newAy = [];
+			for (var i = 0; i < ayr.length; i++) {
+				if (!ayr[i].hasClass("remove")) {
+					newAy.push(ayr[i])
+				}
+			}
+			return newAy
+		}
+	}
+</script>
+
+<style>
+.fileApdDiv{height:120px; overflow:hidden; padding-top:5px;}
+.fileAppend{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}
+.fileAppend img{width:118px; height:118px;}
+.fileAppend input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}
+.fileAppend button{width:20px; height:20px; position:absolute; background:#f00; border:0px; border-radius:20px; color:#fff; cursor:pointer; top:-5px; right:-5px; z-index:10; display:none;}
+.fileAppend.show button{display:block;}
+</style>
+<div class="fileApdDiv">
+	<div class="fileAppend"><img class="img" src="images/index_23.png"><button class="X">X</button><input  type="file"></div>
+</div>
+
+<script>
+	ImageClipping(".fileAppend",".img",".X",function(){
+		console.log("更新完成!");
+	},500,"您选择的不是图片请重新选择!",10,"png",false,400,300);
+</script>
+
+
+
+</body>
+</html>

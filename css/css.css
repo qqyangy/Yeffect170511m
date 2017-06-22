@@ -1,0 +1,29 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html{font-size:60px;}
+body{margin:0px;font-family:"微软雅黑",Arial, Helvetica, sans-serif; font-size:0.2rem; overflow-x:hidden; min-width:200px;}
+input,textarea,select,option{font-family:"微软雅黑",Arial, Helvetica, sans-serif;}
+div{ text-align:left;}
+a{text-decoration:none;}
+.clear{clear:both;}
+.fl{float:left;}
+.fr{float:right;}
+img{border:0px;}
+:focus {OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px;}
+ul{margin:0px; padding:0px;}
+li{margin:0px; padding:0px; list-style:none;}
+a{text-decoration:none;}
+img{border:0px;}
+h1{margin:0px; padding:0px;}
+h2{margin:0px; padding:0px;}
+h3{margin:0px; padding:0px;}
+object,embed,a,input{bblr:expression_r(this.onFocus=this.blur());outline:none;}
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+div:after,p:after,ul:after,li:after{content:""; clear:both; display:block; height:0px; overflow:hidden;}
+@media only all and (max-width:385px){
+	html{font-size:55px;}	
+}
+@media only all and (max-width:350px){
+	html{font-size:50px;}	
+}
+

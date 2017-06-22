@@ -1,0 +1,3667 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8,9,10,11,12" />
+    <meta name="renderer" content="webkit" />
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/Yeffect16_1214.min.js"></script>
+    <title>Yeffect效果说明</title>
+</head>
+<body>
+<style>
+    body{line-height:25px; margin:0px;}
+    .titleContent b{display:block; font-size:15px; color:#8C0204; cursor:pointer;}
+    .titleContent b font{font-weight:normal; color:#00AC8F; margin-left:10px;}
+    .titleContent b font:hover{text-decoration:underline;}
+    .titleContent p{margin:0px; padding:0px; font-size:14px; color:#666; margin-bottom:20px;}
+    .bodyA{padding:20px; padding-left:175px;}
+    .tanchuMask{position:fixed; width:100%; height:100%; z-index:10; background:#000; opacity:0.5; display:none;}
+    .tanchuC{width:878px; height:638px; background:#fff; padding-bottom:2px; background:#fff; position:fixed; z-index:15; left:50%; top:50%; margin-left:-439px; margin-top:-319px; display:none;}
+    .titleContent i{font-style:normal; cursor:pointer; color:#18507F;}
+    .titleContent i:hover{text-decoration:underline;}
+    .tanchuC div{position:absolute; width:130px; height:20px; line-height:20px; text-align:center; font-size:12px; color:#333;}
+    .tanchuC .guanbisX{width:33px; height:33px; position:absolute; top:5px; right:5px; border-radius:33px; cursor:pointer; background:#fff; line-height:33px; text-align:center; top:0px; right:-35px;}
+    .linear{left:10px; top:0px;}
+    a{text-decoration:none;}
+    .clear{clear:both;}
+    .fl{float:left;}
+    .fr{float:right;}
+    img{border:0px;}
+    :focus {OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px;}
+    ul{margin:0px; padding:0px;}
+    li{margin:0px; padding:0px; list-style:none;}
+    a{text-decoration:none;}
+    img{border:0px;}
+    h1{margin:0px; padding:0px;}
+    h2{margin:0px; padding:0px;}
+    h3{margin:0px; padding:0px;}
+    object,embed,a,input{bblr:expression_r(this.onFocus=this.blur());outline:none;}
+    a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+
+    .easeInSine{left:10px; top:105px;}
+    .easeOutSine{left:153px; top:105px;}
+    .easeInOutSine{left:297px; top:105px;}
+    .easeInQuad{left:455px; top:105px;}
+    .easeOutQuad{left:598px; top:105px;}
+    .easeInOutQuad{left:741px; top:105px;}
+
+    .easeInCubic{left:10px; top:211px;}
+    .easeOutCubic{left:153px; top:211px;}
+    .easeInOutCubic{left:297px; top:211px;}
+    .easeInQuart{left:455px; top:211px;}
+    .easeOutQuart{left:598px; top:211px;}
+    .easeInOutQuart{left:741px; top:211px;}
+
+    .easeInQuint{left:10px; top:317px;}
+    .easeOutQuint{left:153px; top:317px;}
+    .easeInOutQuint{left:297px; top:317px;}
+    .easeInExpo{left:455px; top:317px;}
+    .easeOutExpo{left:598px; top:317px;}
+    .easeInOutExpo{left:741px; top:317px;}
+
+    .easeInCirc{left:10px; top:423px;}
+    .easeOutCirc{left:153px; top:423px;}
+    .easeInOutCirc{left:297px; top:423px;}
+    .easeInElastic{left:455px; top:423px;}
+    .easeOutElastic{left:598px; top:423px;}
+    .easeInOutElastic{left:741px; top:423px;}
+
+    .easeInBack{left:10px; top:529px;}
+    .easeOutBack{left:153px; top:529px;}
+    .easeInOutBack{left:297px; top:529px;}
+    .easeInBounce{left:455px; top:529px;}
+    .easeOutBounce{left:598px; top:529px;}
+    .easeInOutBounce{left:741px; top:529px;}
+
+    .detailContent{font-size:13px; line-height:27px; color:#770507; font-weight:bold; background:#f7f7f7; margin-bottom:20px; padding:10px 20px; border:1px solid #eee;}
+    .detailContent p{margin:0px; padding:0px; padding-left:10px; color:#333; line-height:25px; font-size:12px; margin-bottom:10px; font-weight:normal;}
+    .detailContent div.p{margin:0px; padding:0px; padding-left:10px; color:#333; line-height:25px; font-size:12px; margin-bottom:10px; font-weight:normal;}
+    .detailContent span{color:#C40206;}
+    .detailContent span.c1{color:#0C1F90;}
+    .detailContent span.c2{color:#671617;}
+    .detailContent span.hui{color:#999;}
+    .detailContent font{font-size:14px; display:block; background:#fff; padding:0px 5px; color:#000; border:1px solid #eee;}
+    .detailContent .linhet{line-height:18px;}
+    .shili{display:block; width:150px; text-align:center; background:#C9080B; border-radius:5px; color:#fff;}
+    .shili:hover{text-decoration:underline;}
+    .linkbtn{display:block; display:block; width:200px; text-align:center; background:#C7070B; border-radius:5px; color:#fff; margin-bottom:10px; margin-top:5px;}
+    .navdl{display:block; width:170px; height:100%; left:0px; top:0px; position:fixed; margin:0px; overflow:hidden; overflow-y:scroll;}
+    .navdl dt{display:block; height:25px; line-height:25px; font-size:12px; background:#0081B7; padding-left:5px; color:#fff; font-weight:bold;}
+    .navdl dd{display:block; height:25px; line-height:25px; border-bottom:1px solid #ddd; margin:0px; font-size:13px; padding-left:5px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; color:#333;}
+    .navdl dd.current{color:#7C0103; background:#f5f5f5;}
+</style>
+<script>
+    function tanchuanghide(){
+        var tanchuMask=document.getElementById("tanchuMask");
+        var tanchuC=document.getElementById("tanchuC");
+        tanchuMask.style.display="none";
+        tanchuC.style.display="none";
+    }
+    function TnacShow(){
+        var tanchuMask=document.getElementById("tanchuMask");
+        var tanchuC=document.getElementById("tanchuC");
+        tanchuMask.style.display="block";
+        tanchuC.style.display="block";
+    }
+</script>
+<div class="tanchuMask" id="tanchuMask" onClick="tanchuanghide()"></div>
+<div class="tanchuC" id="tanchuC">
+    <div class="guanbisX" onClick="tanchuanghide()">X</div>
+    <object id="flashgame" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="878" height="638">
+        <param name="movie" value="images/Twener.swf">
+        <param name="quality" value="high">
+        <param name="wmode" value="transparent">
+        <embed src="images/Twener.swf" width="878" height="638" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent"></embed>
+    </object>
+</div>
+
+
+<!--左侧导航-->
+<dl class="navdl">
+    <dt>tab选项卡</dt>
+    <dd class="current">clickTabs</dd>
+    <dd>hoverTabs</dd>
+    <dd>hoverTab</dd>
+    <dd>hoverTab2</dd>
+    <dd>clickTab</dd>
+    <dd>hoverTab2</dd>
+    <dt>产品主图切换效果</dt>
+    <dd>vProductPictures</dd>
+    <dd>hProductPictures</dd>
+    <dt>图片放大（放大镜）</dt>
+    <dd>magnifier</dd>
+    <dd>largerImg</dd>
+    <dt>无缝跑马灯滚动效果</dt>
+    <dd>marqueeEffect</dd>
+    <dt>仿alert弹窗效果</dt>
+    <dd>alertShow</dd>
+    <dd>mAlert</dd>
+    <dt>列表异步加载</dt>
+    <dd>asyncloadingList</dd>
+    <dd>adddragupEvent</dd>
+    <dt>折叠菜单</dt>
+    <dd>foldMenu</dd>
+    <dt>banner效果</dt>
+    <dd>fullAnimatbanner</dd>
+    <dd>fadeBanner</dd>
+    <dd>hBannerLoop</dd>
+    <dd>vBannerLoop</dd>
+    <dd>hBanner</dd>
+    <dd>vBanner</dd>
+    <dd>mobileBanner</dd>
+    <dt>横向时间轴控制</dt>
+    <dd>controlSlide</dd>
+    <dt>滚动条</dt>
+    <dd>scrollStyleV</dd>
+    <dd>scrollStyleH</dd>
+    <dd>addMobscroll</dd>
+    <dt>禁用(恢复)滚动条与手指滑动</dt>
+    <dd>endscroll,starscroll</dd>
+    <dt>图片与列表比例控制</dt>
+    <dd>imgGeomeScale</dd>
+    <dd>resizeHtW</dd>
+    <dd>resizeHtWstr</dd>
+    <dt>返回顶部</dt>
+    <dd>goTop</dd>
+    <dt>漂浮窗</dt>
+    <dd>pFloating</dd>
+    <dt>html5选择图片并预览</dt>
+    <dd>Html5FileReader</dd>
+    <dd>Html5FileReaders</dd>
+    <dd>uploadFileAppend</dd>
+    <dt>图集展示</dt>
+    <dd>imglist5</dd>
+    <dt>滚屏效果</dt>
+    <dd>pageScroll</dd>
+    <dt>表单验证</dt>
+    <dd>Validform</dd>
+    <dt>手指滑动事件</dt>
+    <dd>addTouchEevent</dd>
+    <dt>复选框全选与取消全选</dt>
+    <dd>allChecked</dd>
+    <dt>内容拖动</dt>
+    <dd>adddragDom</dd>
+    <dt>dom元素输入</dt>
+    <dd>elementInput</dd>
+    <dt>定时器</dt>
+    <dd>t15,t30,t50,t100,t200</dd>
+    <dt>软键盘弹出位置错乱</dt>
+    <dd>footFixedInput</dd>
+</dl>
+<script>
+    $(function(){
+        var titleContent=$(".titleContent");
+        var navdldd=$(".navdl dd");
+        navdldd.click(function(){
+            var indexTop=navdldd.index(this);
+            $("html,body").animate({scrollTop:titleContent.eq(indexTop).offset().top},100);
+        })
+
+        var thisScollTm;
+        var isEvent=true;
+        function scrollEvent(){
+            if(!isEvent) return;
+            isEvent=false;
+            clearInterval(thisScollTm);
+            thisScollTm=setTimeout(function(){
+                isEvent=true;
+            },10)
+            var thisscri=$(window).scrollTop();
+            var elelength=titleContent.length;
+            for(var i=elelength-1;i>-1;i--){
+                var thisoffet=titleContent.eq(i).offset().top;
+                if(thisscri>thisoffet-50){
+                    navdldd.removeClass("current").eq(i).addClass("current");
+                    break;
+                }
+            }
+        }
+        scrollEvent();
+        $(window).scroll(scrollEvent);
+
+    })
+</script>
+<!--左侧导航***-->
+
+<div class="bodyA">
+    js引入说明：<img src="images/script.png"><br><br>
+
+    <div class="titleContent">
+        <b>Tab选项卡（支持同页面多组）<font>Yeffect.clickTabs();</font></b>
+        <p>调用方式：Yeffect.clickTabs("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            在一个页面包含多组相同布局相同样式名称的tab选项卡效果时可调用一次调用添加所有效果（无需重命名）;
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.clickTabs(1,2,3);</font>
+            1. 鼠标点击的元素名称指向 如：<span>".tabNavs a"</span>;<br>
+            2. 鼠标点击时实现切换的内容元素名称指向 如：<span>".tabContents"</span>;<br>
+            3. 控制块的当前样式名称 默认<span>"current"</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 每组效果不能有共同的父容器（父容器名字可以相同）<br>
+            2. 第二个参数所指向的元素 用css设置为隐藏 例如：<span class="c1">.tabNavs{ <span class="c2"> display:none;</span> }</span>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div>
+                <div class="tabNavs"><a href="javascript:void(0)">选项一</a><a href="javascript:void(0)">选项二</a><a href="javascript:void(0)">选项三</a></div>
+                <div class="tabContents">
+                    内容一
+                </div>
+                <div class="tabContents">
+                    内容二
+                </div>
+                <div class="tabContents">
+                    内容三
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="tabNavs"><a href="javascript:void(0)">选项A</a><a href="javascript:void(0)">选项B</a><a href="javascript:void(0)">选项C</a></div>
+                <div class="tabContents">
+                    内容A
+                </div>
+                <div class="tabContents">
+                    内容B
+                </div>
+                <div class="tabContents">
+                    内容C
+                </div>
+            </div>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div&gt;<br>
+                　　&lt;div class="tabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项一&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项二&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项三&lt;/a&gt;&lt;/div&gt;<br>
+                　　&lt;div class="tabContents"&gt;<br>
+                　　　　内容一<br>
+                　　&lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　　 　内容二<br>
+                　　 &lt;/div&gt;<br>
+                　　&lt;div class="tabContents"&gt;<br>
+                　　　　内容三<br>
+                　　&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;br&gt;<br>
+                &lt;div&gt;<br>
+                　　 &lt;div class="tabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项A&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项B&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项C&lt;/a&gt;&lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　 　　内容A<br>
+                　　 &lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　 　　内容B<br>
+                　　&lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　　　内容C<br>
+                　　 &lt;/div&gt;<br>
+                &lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.tabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}<br>
+                　　.tabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}<br>
+                　　.tabNavs a.current{background:#fff; height:36px;}<br>
+                　　.tabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.clickTabs(".tabNavs a",".tabContents","current");;<br>
+                　　 <span class="hui">//////最后一个参数省略时会默认成"current"///////</span><br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .tabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}
+            .tabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}
+            .tabNavs a.current{background:#fff; height:36px;}
+            .tabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}
+        </style>
+        <script>
+            Yeffect.clickTabs(".tabNavs a",".tabContents","current");
+        </script>
+    </div>
+
+    <div class="titleContent"><b>悬停式Tab选项卡（支持同页面多组）<font>Yeffect.hoverTabs()</font></b>
+        <p>调用方式：Yeffect.hoverTabs("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            在一个页面包含多组相同布局相同样式名称的tab选项卡效果时可调用一次调用添加所有效果（无需重命名）;
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.hoverTabs(1,2,3);</font>
+            1. 鼠标滑入的元素名称指向 如：<span>".HtabNavs a"</span>;<br>
+            2. 鼠标滑入时实现切换的内容元素名称指向 如：<span>".HtabContents"</span>;<br>
+            3. 控制块的当前样式名称 默认<span>"current"</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 每组效果不能有共同的父容器（父容器名字可以相同）<br>
+            2. 第二个参数所指向的元素 用css设置为隐藏 例如：<span class="c1">.tabNavs{ <span class="c2"> display:none;</span> }</span>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div>
+                <div class="HtabNavs"><a href="javascript:void(0)">选项一</a><a href="javascript:void(0)">选项二</a><a href="javascript:void(0)">选项三</a></div>
+                <div class="HtabContents">
+                    内容一
+                </div>
+                <div class="HtabContents">
+                    内容二
+                </div>
+                <div class="HtabContents">
+                    内容三
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="HtabNavs"><a href="javascript:void(0)">选项A</a><a href="javascript:void(0)">选项B</a><a href="javascript:void(0)">选项C</a></div>
+                <div class="HtabContents">
+                    内容A
+                </div>
+                <div class="HtabContents">
+                    内容B
+                </div>
+                <div class="HtabContents">
+                    内容C
+                </div>
+            </div>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div&gt;<br>
+                　　&lt;div class="HtabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项一&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项二&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项三&lt;/a&gt;&lt;/div&gt;<br>
+                　　&lt;div class="HtabContents"&gt;<br>
+                　　　　内容一<br>
+                　　&lt;/div&gt;<br>
+                　　 &lt;div class="HtabContents"&gt;<br>
+                　　　 　内容二<br>
+                　　 &lt;/div&gt;<br>
+                　　&lt;div class="HtabContents"&gt;<br>
+                　　　　内容三<br>
+                　　&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;br&gt;<br>
+                &lt;div&gt;<br>
+                　　 &lt;div class="HtabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项A&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项B&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项C&lt;/a&gt;&lt;/div&gt;<br>
+                　　 &lt;div class="HtabContents"&gt;<br>
+                　　 　　内容A<br>
+                　　 &lt;/div&gt;<br>
+                　　 &lt;div class="HtabContents"&gt;<br>
+                　　 　　内容B<br>
+                　　&lt;/div&gt;<br>
+                　　 &lt;div class="HtabContents"&gt;<br>
+                　　　　内容C<br>
+                　　 &lt;/div&gt;<br>
+                &lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.HtabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}<br>
+                　　.HtabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}<br>
+                　　.HtabNavs a.current{background:#fff; height:36px;}<br>
+                　　.HtabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.hoverTabs(".HtabNavs a",".HtabContents","current");;<br>
+                　　 <span class="hui">//////最后一个参数省略时会默认成"current"///////</span><br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .HtabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}
+            .HtabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}
+            .HtabNavs a.current{background:#fff; height:36px;}
+            .HtabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}
+        </style>
+        <script>
+            Yeffect.hoverTabs(".HtabNavs a",".HtabContents","current");
+        </script>
+    </div>
+
+    <div class="titleContent"><b>悬停式Tab选项卡<font>Yeffect.hoverTab()</font></b>
+        <p>Yeffect.hoverTab("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");<br>
+            使用方式同 <span style="color:#00ac8f;">Yeffect.hoverTabs</span>一致; 唯一区别：该效果调用一次不支持同页面同名称的多个效果;
+        </p>
+    </div>
+
+    <div class="titleContent"><b>悬停式Tab选项卡（一处tab导航 两处tab内容切换区域）<font>Yeffect.hoverTab2()</font></b>
+        <p>Yeffect.hoverTab2("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向1","被控制的显示状态元素的名称指向2","当前样式的名称");</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.hoverTab2(1,2,3,4);</font>
+            1. 鼠标滑入的元素名称指向 如：<span>".HtabNavs2 a"</span>;<br>
+            2. 鼠标滑入时实现切换的内容元素名称指向 如：<span>".HtabContents2a"</span>;<br>
+            3. 鼠标滑入时实现切换的内容元素名称指向 如：<span>".HtabContents2b"</span>;<br>
+            4. 控制块的当前样式名称 默认<span>"current"</span>;<span class="c2">(选填)</span><br>
+        </p>
+        示例效果：
+        <div class="p">
+            <div class="HtabContents2a">A区域中的内容1</div>
+            <div class="HtabContents2a">A区域中的内容2</div>
+            <div class="HtabContents2a">A区域中的内容3</div>
+            <div class="HtabNavs2">
+                <a href="javascript:void(0)">tab导航1</a>
+                <a href="javascript:void(0)">tab导航2</a>
+                <a href="javascript:void(0)">tab导航3</a>
+            </div>
+            <div class="HtabContents2b">B区域中的内容1</div>
+            <div class="HtabContents2b">B区域中的内容2</div>
+            <div class="HtabContents2b">B区域中的内容3</div>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="HtabContents2a"&gt;A区域中的内容1&lt;/div&gt;<br>
+                &lt;div class="HtabContents2a"&gt;A区域中的内容2&lt;/div&gt;<br>
+                &lt;div class="HtabContents2a"&gt;A区域中的内容3&lt;/div&gt;<br>
+                &lt;div class="HtabNavs2"&gt;<br>
+                　　&lt;a href="javascript:void(0)"&gt;tab导航1&lt;/a&gt;<br>
+                　　&lt;a href="javascript:void(0)"&gt;tab导航2&lt;/a&gt;<br>
+                　　&lt;a href="javascript:void(0)"&gt;tab导航3&lt;/a&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;div class="HtabContents2b"&gt;B区域中的内容1&lt;/div&gt;<br>
+                &lt;div class="HtabContents2b"&gt;B区域中的内容2&lt;/div&gt;<br>
+                &lt;div class="HtabContents2b"&gt;B区域中的内容3&lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.HtabContents2a,.HtabContents2b{width:300px; height:50px; border:1px solid #ddd; font-size:20px; background:#fff; padding:5px;}<br>
+                　　.HtabNavs2{width:312px; height:30px; line-height:30px; border:1px solid #ddd; border-right:0px; margin:5px 0px; background:#eee;}<br>
+                　　.HtabNavs2 a{display:block; height:30px; width:103px; float:left; border-right:1px solid #ddd; text-align:center; color:#333;}<br>
+                　　.HtabNavs2 a.current{background:#fff;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.hoverTab2(".HtabNavs2 a",".HtabContents2a",".HtabContents2b","current");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .HtabContents2a,.HtabContents2b{width:300px; height:50px; border:1px solid #ddd; font-size:20px; background:#fff; padding:5px;}
+            .HtabNavs2{width:312px; height:30px; line-height:30px; border:1px solid #ddd; border-right:0px; margin:5px 0px; background:#eee;}
+            .HtabNavs2 a{display:block; height:30px; width:103px; float:left; border-right:1px solid #ddd; text-align:center; color:#333;}
+            .HtabNavs2 a.current{background:#fff;}
+        </style>
+        <script>
+            Yeffect.hoverTab2(".HtabNavs2 a",".HtabContents2a",".HtabContents2b","current");
+        </script>
+    </div>
+
+    <div class="titleContent"><b>Tab选项卡<font>Yeffect.clickTab();</font></b>
+        <p>调用方式：Yeffect.clickTab("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");<br>
+            使用方式同 <span style="color:#00ac8f;">Yeffect.clickTabs</span> 唯一区别：该效果调用一次不支持同页面通名称的多个效果;
+        </p>
+    </div>
+
+    <div class="titleContent"><b>Tab选项卡（一处tab导航 两处tab内容切换区域）<font>Yeffect.clickTab2()</font></b>
+        <p>调用方式：Yeffect.clickTab2("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向1","被控制的显示状态元素的名称指向2","当前样式的名称");<br>
+            使用方式同 <span style="color:#00ac8f;">Yeffect.hoverTab2</span> 唯一区别：促发的事件不同;
+        </p>
+    </div>
+
+
+    <div class="titleContent"><b>产品主图切换效果（纵向缩略图）<font>Yeffect.vProductPictures()</font></b>
+        <p>调用方式：Yeffect.vProductPictures("缩略图列表的父级容器名称指向","缩略图列表元素名称指向","缩略图能同时完整显示的数量","缩略图列表单项实际占用高度度减去height的值","大图的容器","缩略图的当前样式","向上箭头名称指向","向下箭头名称指向",<i onClick="TnacShow()">缓动函数名</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.vProductPictures(1,2,3,4,5,6,7,8,9);</font>
+            1. 缩略图列表的父级容器名称指向 如：<span>".Productul ul"</span>;<br>
+            2. 缩略图列表元素名称指向 如：<span>".Productul ul li"</span>;<br>
+            3. 缩略图能同时完整显示的数量;<br>
+            4. 缩略图列表单项实际占用宽度减去width的值(包括左右margin值上下padding值上下border上下值之和);<br>
+            5. 主图的容器名称指向; 如：<span>".ProductMain"</span>;<br>
+            6. 缩略图当前样式 默认<span>"current"</span>;<span class="c2">(选填)</span><br>
+            7. 向上箭头名称指向 默认<span>""</span>;<span class="c2">(选填)</span><br>
+            8. 向下箭头名称指向 默认<span>""</span>;<span class="c2">(选填)</span><br>
+            9. 缓动函数名 默认<span>"linear"</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 主图容器（第5个参数所指）内必须放入一张图片 src属性可以为空 也可以最缩略图第一张图片的src<br>
+            2. 缩略图容器（第1个参数所指）父容器 需有一个容器 且具备 <span>宽高、定位、超出隐藏</span> 例如：<span class="c1">.Productul { <span class="c2"> position:relative; overflow:hidden; width:62px; height:263px;</span> }</span><br>
+            3. 缩略图容器（第1个参数所指）的元素 需有一个容器 且具备 <span>宽度、定位、超出隐藏</span> 例如：<span class="c1">.Productul ul { <span class="c2"> width:62px; position:absolute; </span> }</span><br>
+            4. 缩略图列表项（第2个参数所指）的元素 需要<span> 具备相同的宽高 </span> 例如：<span class="c1">.Productul ul li { <span class="c2"> width:60px; height:60px; </span> }</span><br>
+            5. 主图容器（第5个参数所指）内的图片的元素 且具备 <span>宽度100%、高度100%</span> 例如：<span class="c1">.ProductMain img { <span class="c2"> width:100%; height:100%; </span> }</span><br>
+
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="ProductContent">
+                <div class="ProductMain"><img src="images/nreimg_01.jpg"></div>
+                <div class="Productul">
+                    <ul>
+                        <li><img src="images/nreimg_01.jpg"></li>
+                        <li><img src="images/nreimg_02.jpg"></li>
+                        <li><img src="images/nreimg_03.jpg"></li>
+                        <li><img src="images/nreimg_04.jpg"></li>
+                        <li><img src="images/nreimg_05.jpg"></li>
+                        <li><img src="images/nreimg_03.jpg"></li>
+                        <li><img src="images/nreimg_04.jpg"></li>
+                        <li><img src="images/nreimg_05.jpg"></li>
+                    </ul>
+                </div>
+                <div class="upArrow">∧</div>
+                <div class="downArrow">∨</div>
+            </div>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="ProductContent"&gt;<br>
+                　　&lt;div class="ProductMain"&gt;&lt;img src="images/nreimg_01.jpg"&gt;&lt;/div&gt;<br>
+                　　&lt;div class="Productul"&gt;<br>
+                　　　　&lt;ul&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_01.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_02.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_04.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_05.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_04.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_05.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;/ul&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;div class="upArrow"&gt;∧&lt;/div&gt;<br>
+                　　&lt;div class="downArrow"&gt;∨&lt;/div&gt;<br>
+                &lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.ProductContent{width:400px; height:322px; position:relative;}<br>
+                　　.Productul{position:relative; overflow:hidden; width:62px; height:263px; float:right; top:30px;}<br>
+                　　.Productul ul{width:62px; position:absolute; left:0px; top:0px;}<br>
+                　　.Productul ul li{width:60px; height:60px; border:1px solid #aaa; margin-bottom:5px; overflow:hidden; cursor:pointer; background:#000;}<br>
+                　　.Productul ul li img{width:60px; height:60px; opacity:0.7; transition:opacity 0.3s linear;-webkit-transition:opacity 0.3s linear;}<br>
+                　　.Productul ul li.current{border-color:#FDA10A;}<br>
+                　　.Productul ul li.current img{opacity:1;}<br>
+                　　.ProductMain{width:320px; height:320px; border:1px solid #aaa; float:left;}<br>
+                　　.ProductMain img{width:100%; height:100%;}<br>
+                　　.upArrow{width:60px; height:22px; border:1px solid #aaa; line-height:22px; position:absolute; top:0px; right:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}<br>
+                　　.upArrow:hover{background:#eee;}<br>
+                　　.downArrow{width:60px; height:22px; border:1px solid #aaa; line-height:22px; position:absolute; bottom:0px; right:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}<br>
+                　　.downArrow:hover{background:#eee;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.vProductPictures(".Productul ul",".Productul ul li",4,7,".ProductMain","current",".upArrow",".downArrow","easeInOutCubic");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .ProductContent{width:400px; height:322px; position:relative;}
+            .Productul{position:relative; overflow:hidden; width:62px; height:263px; float:right; top:30px;}
+            .Productul ul{width:62px; position:absolute; left:0px; top:0px;}
+            .Productul ul li{width:60px; height:60px; border:1px solid #aaa; margin-bottom:5px; overflow:hidden; cursor:pointer; background:#000;}
+            .Productul ul li img{width:60px; height:60px; opacity:0.7; transition:opacity 0.3s linear;-webkit-transition:opacity 0.3s linear;}
+            .Productul ul li.current{border-color:#FDA10A;}
+            .Productul ul li.current img{opacity:1;}
+            .ProductMain{width:320px; height:320px; border:1px solid #aaa; float:left;}
+            .ProductMain img{width:100%; height:100%;}
+            .upArrow{width:60px; height:22px; border:1px solid #aaa; line-height:22px; position:absolute; top:0px; right:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}
+            .upArrow:hover{background:#eee;}
+            .downArrow{width:60px; height:22px; border:1px solid #aaa; line-height:22px; position:absolute; bottom:0px; right:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}
+            .downArrow:hover{background:#eee;}
+        </style>
+        <script>
+            Yeffect.vProductPictures(".Productul ul",".Productul ul li",4,7,".ProductMain","current",".upArrow",".downArrow","easeInOutCubic");
+        </script>
+    </div>
+
+
+    <div class="titleContent"><b>产品主图切换效果（横向缩略图）<font>Yeffect.hProductPictures()</font></b>
+        <p>调用方式：Yeffect.hProductPictures("缩略图列表的父级容器名称指向","缩略图列表元素名称指向","缩略图能同时完整显示的数量","缩略图列表单项实际占用宽度减去width的值","大图的容器","缩略图的当前样式","向左箭头名称指向","向右箭头名称指向",<i onClick="TnacShow()">缓动函数名</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.hProductPictures(1,2,3,4,5,6,7,8,9);</font>
+            1. 缩略图列表的容器名称指向 如：<span>".hProductul ul"</span>;<br>
+            2. 缩略图列表元素名称指向 如：<span>".hProductul ul li"</span>;<br>
+            3. 缩略图能同时完整显示的数量;<br>
+            4. 缩略图列表单项实际占用宽度减去width的值(包括左右margin值左右padding值左右border左右值之和);<br>
+            5. 主图的容器名称指向; 如：<span>".hProductMain"</span>;<br>
+            6. 缩略图当前样式 默认<span>"current"</span>;<span class="c2">(选填)</span><br>
+            7. 向左箭头名称指向 默认<span>""</span>;<span class="c2">(选填)</span><br>
+            8. 向右箭头名称指向 默认<span>""</span>;<span class="c2">(选填)</span><br>
+            9. 缓动函数名 默认<span>"linear"</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 主图容器（第5个参数所指）内必须放入一张图片 src属性可以为空 也可以最缩略图第一张图片的src<br>
+            2. 缩略图容器（第1个参数所指）父容器 需有一个容器 且具备 <span>宽高、定位、超出隐藏</span> 例如：<span class="c1">.hProductul { <span class="c2"> position:relative; overflow:hidden; width:263px; height:62px;</span> }</span><br>
+            3. 缩略图容器（第1个参数所指）的元素 需有一个容器 且具备 <span>高度、定位、超出隐藏</span> 例如：<span class="c1">.hProductul ul { <span class="c2"> height:62px; position:absolute; </span> }</span><br>
+            4. 缩略图列表项（第2个参数所指）的元素 需要<span> 具备相同的宽高、左浮动 </span> 例如：<span class="c1">.hProductul ul li { <span class="c2"> width:60px; height:60px; float:left;</span> }</span><br>
+            5. 主图容器（第5个参数所指）内的图片的元素 且具备 <span>宽度100%、高度100%</span> 例如：<span class="c1">.hProductMain img { <span class="c2"> width:100%; height:100%; </span> }</span><br>
+
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="hProductContent">
+                <div class="hProductMain"><img src="images/nreimg_01.jpg"></div>
+                <div class="hProductul">
+                    <ul>
+                        <li><img src="images/nreimg_01.jpg"></li>
+                        <li><img src="images/nreimg_02.jpg"></li>
+                        <li><img src="images/nreimg_03.jpg"></li>
+                        <li><img src="images/nreimg_04.jpg"></li>
+                        <li><img src="images/nreimg_05.jpg"></li>
+                        <li><img src="images/nreimg_03.jpg"></li>
+                        <li><img src="images/nreimg_04.jpg"></li>
+                        <li><img src="images/nreimg_05.jpg"></li>
+                    </ul>
+                </div>
+                <div class="leftArrow">&lt;</div>
+                <div class="rightArrow">&gt;</div>
+            </div>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="hProductContent"&gt;<br>
+                　　&lt;div class="hProductMain"&gt;&lt;img src="images/nreimg_01.jpg"&gt;&lt;/div&gt;<br>
+                　　&lt;div class="hProductul"&gt;<br>
+                　　　　&lt;ul&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_01.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_02.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_04.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_05.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_04.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/nreimg_05.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;/ul&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;div class="leftArrow"&gt;&lt;&lt;/div&gt;<br>
+                　　&lt;div class="rightArrow"&gt;&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.hProductContent{width:322px; height:400px; position:relative;}<br>
+                　　.hProductul{position:relative; overflow:hidden; width:263px; height:62px; left:30px;}<br>
+                　　.hProductul ul{height:62px; position:absolute; left:0px; top:0px;}<br>
+                　　.hProductul ul li{width:60px; height:60px; border:1px solid #aaa; margin-right:5px; overflow:hidden; cursor:pointer; background:#000; float:left;}<br>
+                　　.hProductul ul li img{width:60px; height:60px; opacity:0.7; transition:opacity 0.3s linear;-webkit-transition:opacity 0.3s linear;}<br>
+                　　.hProductul ul li.current{border-color:#FDA10A;}<br>
+                　　.hProductul ul li.current img{opacity:1;}<br>
+                　　.hProductMain{width:320px; height:320px; margin-bottom:15px; border:1px solid #aaa;}<br>
+                　　.hProductMain img{width:100%; height:100%;}<br>
+                　　.leftArrow{width:22px; height:60px; border:1px solid #aaa; line-height:60px; position:absolute; bottom:0px; left:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}<br>
+                　　.leftArrow:hover{background:#eee;}<br>
+                　　.rightArrow{width:22px; height:60px; border:1px solid #aaa; line-height:60px; position:absolute; bottom:0px; right:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}<br>
+                　　.rightArrow:hover{background:#eee;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.hProductPictures(".hProductul ul",".hProductul ul li",4,7,".hProductMain","current",".leftArrow",".rightArrow","easeInOutCubic");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .hProductContent{width:322px; height:400px; position:relative;}
+            .hProductul{position:relative; overflow:hidden; width:263px; height:62px; left:30px;}
+            .hProductul ul{height:62px; position:absolute; left:0px; top:0px;}
+            .hProductul ul li{width:60px; height:60px; border:1px solid #aaa; margin-right:5px; overflow:hidden; cursor:pointer; background:#000; float:left;}
+            .hProductul ul li img{width:60px; height:60px; opacity:0.7; transition:opacity 0.3s linear;-webkit-transition:opacity 0.3s linear;}
+            .hProductul ul li.current{border-color:#FDA10A;}
+            .hProductul ul li.current img{opacity:1;}
+            .hProductMain{width:320px; height:320px; margin-bottom:15px; border:1px solid #aaa;}
+            .hProductMain img{width:100%; height:100%;}
+            .leftArrow{width:22px; height:60px; border:1px solid #aaa; line-height:60px; position:absolute; bottom:0px; left:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}
+            .leftArrow:hover{background:#eee;}
+            .rightArrow{width:22px; height:60px; border:1px solid #aaa; line-height:60px; position:absolute; bottom:0px; right:0px; text-align:center; font-size:12px; cursor:pointer; background:#ddd;}
+            .rightArrow:hover{background:#eee;}
+        </style>
+        <script>
+            Yeffect.hProductPictures(".hProductul ul",".hProductul ul li",4,7,".hProductMain","current",".leftArrow",".rightArrow","easeInOutCubic");
+        </script>
+    </div>
+
+
+    <div class="titleContent"><b>商品主图放大镜效果<font>Yeffect.magnifier()</font></b>
+        <p>Yeffect.magnifier("用于指示当前划入位置的半透明区域块名称指向","响应鼠标划入图的容器名称指向","大图容器名称指向");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.magnifier(1,2,3);</font>
+            1. 用于指示当前划入位置的半透明区域块名称指向 如：<span>".fierbox"</span>;<br>
+            2. 响应鼠标划入图的容器名称指向 如：<span>".fierContent"</span>;<br>
+            3. 大图容器名称指向 如：<span>".fierContentM"</span>;<br>
+        </p>
+        布局要求：
+        <p>
+            1. 半透明区域块元素（第1个参数所指）必须放在 响应鼠标容器（第2个参数所指）中 且宽度是（第2个参数所指元素）宽高的一半 且具备 <span>高度、宽度、定位、透明度、隐藏、背景色等属性</span> 例如：<span class="c1">.fierbox { <span class="c2"> width:150px; height:120px; position:absolute; opacity:0.5; background:#EC9D09; </span> }</span><br>
+            2. 响应鼠标划入图的容器（第2个参数所指） 必须具备 <span>定位、宽度、高度、超出隐藏</span> 例如：<span class="c1">.fierContent { <span class="c2"> width:300px; height:240px; position:relative; overflow:hidden; </span> }</span><br>
+            3. 响应鼠标划入图的容器（第2个参数所指）里面<span>需要放入一张图片且宽度高度均为100%</span> 例如：<span class="c1">.fierContent img { <span class="c2"> width:100%; height:100%; </span> }</span><br>
+            4. 大图容器（第3个参数所指） 必须具备 <span>宽高为（第2个参数所指）相等 且要有 定位、隐藏、超出隐藏等属性 </span> 例如：<span class="c1">.fierContentM { <span class="c2"> width:300px; height:240px; position:absolute; display:none; overflow:hidden; </span> }</span>
+        </p>
+
+        示例效果：（鼠标划入图片查看）
+        <div class="p">
+            <div class="magnifier">
+                <div class="fierContent"><img src="images/index32.jpg"><p class="fierbox"></p></div>
+                <div class="fierContentM"></div>
+            </div>
+        </div>
+        <style>
+            .fierbox{width:150px; height:120px; position:absolute; opacity:0.5; background:#EC9D09; display:none; margin:0px; padding:0px; cursor:move;}
+            .fierContent{width:300px; height:240px; position:relative; overflow:hidden;}
+            .fierContent img{width:100%; height:100%;}
+            .fierContentM{width:300px; height:240px; position:absolute; display:none; overflow:hidden; top:0px; right:0px;}
+            .magnifier{width:630px; height:240px; position:relative;}
+        </style>
+        <script>
+            Yeffect.magnifier(".fierbox",".fierContent",".fierContentM");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="magnifier"&gt;<br>
+                　　&lt;div class="fierContent"&gt;&lt;img src="images/index32.jpg"&gt;&lt;p class="fierbox"&gt;&lt;/p&gt;&lt;/div&gt;<br>
+                　　&lt;div class="fierContentM"&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.fierbox{width:150px; height:120px; position:absolute; opacity:0.5; background:#EC9D09; display:none; margin:0px; padding:0px; cursor:move;}<br>
+                　　.fierContent{width:300px; height:240px; position:relative; overflow:hidden;}<br>
+                　　.fierContent img{width:100%; height:100%;}<br>
+                　　.fierContentM{width:300px; height:240px; position:absolute; display:none; overflow:hidden; top:0px; right:0px;}<br>
+                　　.magnifier{width:630px; height:240px; position:relative;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.magnifier(".fierbox",".fierContent",".fierContentM");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>鼠标划入展示大图<font>Yeffect.largerImg()</font></b>
+        <p>Yeffect.largerImg("要滑入的图片名称指向","放大后的图片宽度","放大后的图片高度");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            鼠标悬浮到指定的图片上500毫秒不移动 则在改图的旁边显示 放大版的图片;
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.largerImg(1,2,3);</font>
+            1. 要滑入的图片名称指向 如：<span>".ListImgBox img"</span>;<br>
+            2. 放大后的图片宽度  默认 <span>500</span> ; <span class="c2">(选填)</span><br>
+            3. 放大后的图片高度  默认 <span>500</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 无要求<br>
+        </p>
+
+        示例效果：（鼠标划入图片查看）
+        <div class="p">
+            <div class="ListImgBox"><img src="images/nreimg_01.jpg"><img src="images/nreimg_02.jpg"><div><img src="images/nreimg_03.jpg"><img src="images/nreimg_04.jpg"></div><img src="images/nreimg_05.jpg"></div>
+        </div>
+        <style>
+            .ListImgBox img{width:140px; height:80px; margin-right:10px;}
+        </style>
+        <script>
+            Yeffect.largerImg(".ListImgBox img",350,200);
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="ListImgBox"&gt;&lt;img src="images/nreimg_01.jpg"&gt;&lt;img src="images/nreimg_02.jpg"&gt;&lt;div&gt;&lt;img src="images/nreimg_03.jpg"&gt;&lt;img src="images/nreimg_04.jpg"&gt;&lt;/div&gt;&lt;img src="images/nreimg_05.jpg"&gt;&lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.ListImgBox img{width:140px; height:80px; margin-right:10px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.largerImg(".ListImgBox img",350,200);<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent">
+        <b>无缝跑马灯滚动效果<font>Yeffect.marqueeEffect();</font></b>
+        <p>调用方式：Yeffect.marqueeEffect("移动的元素名称指向","容器内的单位元素名称指向","单位时间","单位像素","鼠标划入是否暂停");</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.marqueeEffect(1,2,3,4,5);</font>
+            1. 执行效果的外层容器名称指向 如：<span>".marq ul"</span>;<br>
+            2. 执行效果的单个元素的名称指向 如：<span>".marq ul li"</span>;<br>
+            3. 移动一次的单位时间 以毫秒为单位 数值越小速度越快 默认<span>30</span>;<span class="c2">(选填)</span><br>
+            4. 移动一次的单位距离 以px单位 数值越大速度越快 默认 <span>1</span>;<span class="c2">(选填)</span><br>
+            5. 鼠标悬停时是否暂停滚动 true或false 默认<span>true</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 第一个参数所指定元素的父容器 需要具有 <span>定位、宽高、超出隐藏</span> 等属性  例如: <span class="c1">.marq { <span class="c2">position:relative; width:300px; height:30px; overflow:hidden;</span> }</span><br>
+            2. 第一个参数所指定的元素要具有 <span>定位、高度</span> 属性 例如：<span class="c1">.marq ul { <span class="c2">position:absolute; height:30px;</span> }</span><br>
+            2. 第二个参数所指定的元素要具有 <span>左浮动</span> 属性 例如：<span class="c1">.marq ul li { <span class="c2">float:left;</span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="marq">
+                <ul>
+                    <li>marqueeEffect效果的示例</li>
+                    <li>+第二个元素内的文本</li>
+                    <li>+第三个元素的文本</li>
+                    <li>还可以有更多的元素</li>
+                </ul>
+            </div>
+        </div>
+        全部源码：
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="marq"&gt;<br>
+                　　&lt;ul&gt;<br>
+                　　　　 &lt;li&gt;marqueeEffect效果的示例&lt;/li&gt;<br>
+                　　　　&lt;li&gt;+第二个元素内的文本&lt;/li&gt;<br>
+                　　　　&lt;li&gt;+第三个元素的文本&lt;/li&gt;<br>
+                　　　　&lt;li&gt;还可以有更多的元素&lt;/li&gt;<br>
+                　　&lt;/ul&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.marq{position:relative; width:300px; height:30px; overflow:hidden; background:#fff; border:1px solid #eee;}<br>
+                　　 .marq ul{position:absolute; height:30px;}<br>
+                　　.marq ul li{float:left; height:30px; line-height:30px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.marqueeEffect(".marq ul",".marq ul li");<br>
+                　　 <span class="hui">//Yeffect.marqueeEffect(".marq ul",".marq ul li",30,1,true);//////特殊需求时可根据后面三个参数设置///////</span><br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .marq{position:relative; width:300px; height:30px; overflow:hidden; background:#fff; border:1px solid #eee;}
+            .marq ul{position:absolute; height:30px;}
+            .marq ul li{float:left; height:30px; line-height:30px;}
+        </style>
+        <script>
+            Yeffect.marqueeEffect(".marq ul",".marq ul li");
+        </script>
+    </div>
+
+
+    <div class="titleContent"><b>alert弹窗效果<font>Yeffect.alertShow()</font></b>
+        <p>调用方式：Yeffect.alertShow("提示文本信息","title信息","title背景颜色","是否是confirm","确定按钮的回调函数","确定按钮文本","取消按钮文本");</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.alertShow(1,2,3,4,5,6,7);</font>
+            1. 需要提示文本信息 如：<span>"这是一个测试文本"</span>;<br>
+            2. 提示窗的title文本信息 默认<span>"系统提示"</span>; <span class="c2">(选填)</span><br>
+            3. title条的背景颜色 默认<span>"#1abc9c"</span>; <span class="c2">(选填)</span><br>
+            4. 是否为confirm弹窗 默认<span>false</span>;<span class="c2">(选填)</span><br>
+            5. 点击确定按钮时的回调函数 默认<span>function(){}</span>; <span class="c2">(选填)</span><br>
+            6. 确定按钮文本内容 默认<span>"确定"</span>;<span class="c2">(选填)</span><br>
+            7. 取消按钮文本内容 默认<span>"取消"</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            无要求,需要用到的时候直接调用即可！
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a href="javascript:void(0)" class="alertClass">点击查看 普通alertShow</a>
+            <a href="javascript:void(0)" class="confirmClass">点击查看 confirm类型的alertShow</a>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;a href="javascript:void(0)" class="alertClass"&gt;点击查看 普通alertShow&lt;/a&gt;<br>
+                &lt;a href="javascript:void(0)" class="confirmClass"&gt;点击查看 confirm类型的alertShow&lt;/a&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.alertClass,.confirmClass{display:block; display:block; width:200px; text-align:center; background:#C7070B; border-radius:5px; color:#fff; margin-bottom:10px; margin-top:5px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 $(".alertClass").click(function(){<br>
+                　　 　　Yeffect.alertShow("显示了一个普通的alertShow提示窗"); <br>
+                　　 });<br>
+                　　 $(".confirmClass").click(function(){<br>
+                　　 　　Yeffect.alertShow("促发一个confirm的alertShow提示窗","confirm的title","#f00",true,function(){<br>
+                　　 　　　　alert("您点击了ok按钮");<br>
+                　　 　　},"ok","cancel"); <br>
+                　　 });<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .alertClass,.confirmClass{display:block; display:block; width:200px; text-align:center; background:#C7070B; border-radius:5px; color:#fff; margin-bottom:10px; margin-top:5px;}
+        </style>
+        <script>
+            $(".alertClass").click(function(){
+                Yeffect.alertShow("显示了一个普通的alertShow提示窗");
+            })
+            $(".confirmClass").click(function(){
+                Yeffect.alertShow("促发一个confirm的alertShow提示窗","confirm的title","#f00",true,function(){
+                    alert("您点击了ok按钮");
+                },"ok","cancel");
+            })
+        </script>
+    </div>
+
+    <div class="titleContent"><b>手机版alert方法<font>Yeffect.mAlert()</font></b>
+        <p>Yeffect.mAlert("弹出的文本内容","自动关闭时间","是否允许滑动");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.mAlert(1,2);</font>
+            1. 弹出的文本内容 默认 <span>""</span><br>
+            2. 自动关闭时间 单位毫秒 默认<span>3000</span> ; <span class="c2">(选填)</span><br>
+            3. 是否允许滑动 单位毫秒 默认<span>false</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            无;
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a href="javascript:void(0)" class="linkbtn malertshow">点击弹出一个手机版弹窗</a>
+        </div>
+        <style>
+        </style>
+        <script>
+            $(".malertshow").click(function(){
+                Yeffect.mAlert("这是弹出的一个测试弹窗");
+            })
+            /////返回一个函数,调用时可以手动关闭弹窗///////
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;a href="javascript:void(0)" class="linkbtn malertshow"&gt;点击弹出一个手机版弹窗&lt;/a&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 $(".malertshow").click(function(){<br>
+                　　 　　Yeffect.mAlert("这是弹出的一个测试弹窗");<br>
+                　　 })<br>
+                　　 /////返回一个函数,调用时可以手动关闭弹窗///////<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="titleContent"><b>伪列表异步加载（只能实现列表内图片的真实异步加载 和 实现列表的伪加载效果）<font>Yeffect.asyncloadingList()</font></b>
+        <p>调用方式：Yeffect.asyncloadingList("列表的容器对象","列表项","初始加载数","每次加载数","加载提示信息的元素","加载时间动效时间");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.asyncloadingList(1,2,3,4,5,6);</font>
+            1. 列表的容器名称指向 如：<span>".asynload"</span>;<br>
+            2. 列表项元素名称指向 如：<span>".asynload li"</span>;<br>
+            3. 列表初始显示的条数 默认 <span>20</span> ; <span class="c2">(选填)</span><br>
+            4. 每一次加载列表项的数量 默认 <span>20</span> ; <span class="c2">(选填)</span><br>
+            5. 加载过程中用于提示用户‘正在加载中’的元素名称指向 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            6. 伪加载过程的时间值 单位毫秒 默认 <span>1000</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 列表外层需要有一个容器<br>
+            2. 最好有一个家在时提示用户的dom元素<br>
+
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a class="shili" href="html/asyncloadingList.html" target="_blank">请点击查看示例效果</a>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;ul class="loadingUl"&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容一&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容二&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容三&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容四&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容五&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容六&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容七&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容八&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容久&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容十&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容十一&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容十二&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容十三&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容十四&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容十五&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容十六&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容十七&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容十八&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容十九&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容二十&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容二十一&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容二十二&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容二十三&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容二十四&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容二十五&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+                &lt;div class="loadMask"&gt;&lt;img src="../images/正在加载中.gif"&gt;&lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.loadingUl li{height:160px; background:#e9e9e9; line-height:160px; font-size:40px; margin-bottom:10px;}<br>
+                　　.loadingUl li img{display:block; float:left; margin-right:20px;}<br>
+                　　.loadMask{position:fixed; width:100%; text-align:center;height:92px; padding-top:5px; background:#efefef; left:0px; bottom:0px; font-size:30px; display:none;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.asyncloadingList(".loadingUl",".loadingUl li",6,5,".loadMask",1500);<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>滑动到页面底部事件（用于滑动到页面底部加载更多数据）<font>Yeffect.adddragupEvent()</font></b>
+        <p>调用方式：Yeffect.adddragupEvent("触发时的回调函数","距离底部多少像素促发");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.adddragupEvent(1,2);</font>
+            1. 触发时的回调函数（ajax的的相关代码通过此函数促发） 如：<span>function(){}</span>;<br>
+            2. 距离底部多少像素促发（如果设置了最后一次的设置会成为新的默认值） 默认：<span>50</span>;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 为防止多次促发可申明一个布尔变量促发加载时设为false,加载成功时设为true,是否进行新的加载通过该布尔变量决定;<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a class="shili" href="html/scrollloadingList.html" target="_blank">请点击查看示例效果</a>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;ul class="loadingUl"&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容一&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容二&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容三&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容四&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容五&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容六&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_02.jpg"&gt;列表项内容七&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_03.jpg"&gt;列表项内容八&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_04.jpg"&gt;列表项内容久&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_05.jpg"&gt;列表项内容十&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/nreimg_01.jpg"&gt;列表项内容十一&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+                &lt;div class="loadMask"&gt;&lt;img src="../images/正在加载中.gif"&gt;&lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.loadingUl li{height:160px; background:#e9e9e9; line-height:160px; font-size:40px; margin-bottom:10px;}<br>
+                　　.loadingUl li img{display:block; float:left; margin-right:20px;}<br>
+                　　.loadMask{position:fixed; width:100%; text-align:center;height:92px; padding-top:5px; background:#efefef; left:0px; bottom:0px; font-size:30px; display:none;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 var ajaxhtml="&lt;li&gt;&lt;img src='../images/nreimg_02.jpg'&gt;列表项内容十二&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_03.jpg'&gt;列表项内容十三&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_04.jpg'&gt;列表项内容十四&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_05.jpg'&gt;列表项内容十五&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_01.jpg'&gt;列表项内容十六&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_02.jpg'&gt;列表项内容十七&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_03.jpg'&gt;列表项内容十八&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_04.jpg'&gt;列表项内容十九&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_05.jpg'&gt;列表项内容二十&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_01.jpg'&gt;列表项内容二十一&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_02.jpg'&gt;列表项内容二十二&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_03.jpg'&gt;列表项内容二十三&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_04.jpg'&gt;列表项内容二十四&lt;/li&gt;&lt;li&gt;&lt;img src='../images/nreimg_05.jpg'&gt;列表项内容二十五&lt;/li&gt;";<br>
+                　　 var loadingUl=$(".loadingUl");<br>
+                　　 var loadMask=$(".loadMask");<br>
+                　　 var isload=true;<br>
+                　　 Yeffect.adddragupEvent(function(){<br>
+                　　 　　if(!isload) return;<br>
+                　　 　　isload=false;<br>
+                　　 　　loadMask.show();<br>
+                　　 　　setTimeout(function(){<br>
+                　　 　　　　loadMask.hide();<br>
+                　　 　　　　loadingUl.append(ajaxhtml);<br>
+                　　　　isload=true;<br>
+                　　 　　},1000);<br>
+                　　 },200)<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="titleContent"><b>折叠菜单<font>Yeffect.foldMenu()</font></b>
+        <p>调用方式：Yeffect.foldMenu("接受点击的dom元素名称指向","控制展开父级的样式名称","是否可同时展开多个","同时容纳点击项与展开内容的父容器名称");</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.foldMenu(1,2,3,4);</font>
+            1. 接受点击的dom元素名称指向 如：<span>".foldMenu li h2"</span>;<br>
+            2. 控制展开父级的样式名称 如：<span>"show"</span>;<br>
+            3. 是否可同时展开多个 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            4. 同时容纳点击项与展开内容的父容器名称 默认选中父级 <span></span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 内容部分默认隐藏 例如：<span class="c1">.foldMenu li .P { <span class="c2"> display:none; </span> }</span><br>
+            2. 接受点击事件的dom元素与展开内容的元素 有一个共同的父容器 例如：<span>".foldMenu li h2"与".foldMenu li .P"有共同的父容器"li"</span><br>
+            3. 展开父级样式 下面的 内容容器为隐藏 例如：<span class="c1">.foldMenu li.show .P { <span class="c2"> display:block; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <ul class="foldMenu">
+                <li>
+                    <h2>foldMenu标题A</h2>
+                    <div class="P">foldMenu内容a<br>foldMenu内容a</div>
+                </li>
+                <li>
+                    <h2>foldMenu标题B</h2>
+                    <div class="P">foldMenu内容b<br>foldMenu内容b</div>
+                </li>
+                <li>
+                    <h2>foldMenu标题C</h2>
+                    <div class="P">foldMenu内容c<br>foldMenu内容b</div>
+                </li>
+                <li>
+                    <h2>foldMenu标题D</h2>
+                    <div class="P">foldMenu内容d<br>foldMenu内容b</div>
+                </li>
+                <li>
+                    <h2>foldMenu标题E</h2>
+                    <div class="P">foldMenu内容e<br>foldMenu内容b</div>
+                </li>
+            </ul>
+        </div>
+        <style>
+            .foldMenu li{width:300px; border:1px solid #ddd; margin-bottom:5px;}
+            .foldMenu li h2{height:30px; line-height:30px; background:#7195C5; cursor:pointer; font-size:16px; color:#fff; padding:0px 10px;}
+            .foldMenu li .P{display:none; background:#fff; font-size:14px; line-height:20px; padding:5px 10px;}
+            .foldMenu li.show .P{display:block;}
+        </style>
+        <script>
+            Yeffect.foldMenu(".foldMenu li h2","show");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;ul class="foldMenu"&gt;<br>
+                　　&lt;li&gt;<br>
+                　　　　&lt;h2&gt;foldMenu标题A&lt;/h2&gt;<br>
+                　　　　&lt;div class="P"&gt;foldMenu内容a&lt;br&gt;foldMenu内容a&lt;/div&gt;<br>
+                　　&lt;/li&gt;<br>
+                　　&lt;li&gt;<br>
+                　　　　&lt;h2&gt;foldMenu标题B&lt;/h2&gt;<br>
+                　　　　&lt;div class="P"&gt;foldMenu内容b&lt;br&gt;foldMenu内容b&lt;/div&gt;<br>
+                　　&lt;/li&gt;<br>
+                　　&lt;li&gt;<br>
+                　　　　&lt;h2&gt;foldMenu标题C&lt;/h2&gt;<br>
+                　　　　&lt;div class="P"&gt;foldMenu内容c&lt;br&gt;foldMenu内容c&lt;/div&gt;<br>
+                　　&lt;/li&gt;<br>
+                　　&lt;li&gt;<br>
+                　　　　&lt;h2&gt;foldMenu标题D&lt;/h2&gt;<br>
+                　　　　&lt;div class="P"&gt;foldMenu内容d&lt;br&gt;foldMenu内容d&lt;/div&gt;<br>
+                　　&lt;/li&gt;<br>
+                　　&lt;li&gt;<br>
+                　　　　&lt;h2&gt;foldMenu标题E&lt;/h2&gt;<br>
+                　　　　&lt;div class="P"&gt;foldMenu内容e&lt;br&gt;foldMenu内容e&lt;/div&gt;<br>
+                　　&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.foldMenu li{width:300px; border:1px solid #ddd; margin-bottom:5px;}<br>
+                　　.foldMenu li h2{height:30px; line-height:30px; background:#7195C5; cursor:pointer; font-size:16px; color:#fff; padding:0px 10px;}<br>
+                　　.foldMenu li .P{display:none; background:#fff; font-size:14px; line-height:20px; padding:5px 10px;}<br>
+                　　.foldMenu li.show .P{display:block;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.foldMenu(".foldMenu li h2","show");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+
+
+    <div class="titleContent"><b>全屏左右滚动banner（适用作为通栏banner）<font>Yeffect.fullAnimatbanner()</font></b>
+        <p>Yeffect.fullAnimatbanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","缓动过程时间选填默认300","鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            可以通过百分比的方式设置宽度，宽度变化时效果正常;
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.fullAnimatbanner(1,2,3,4,5,6,7,8,9,10);</font>
+            1. banner集合容器元素名称指向 如：<span>".fullBanner ul"</span>;<br>
+            2. 单张banner元素名称指向 如：<span>".fullBanner ul li"</span>;<br>
+            3. 显示banner当前状态的小点名称指向 如：<span>".fullBanner p i"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            4. 左按钮名称指向 如：<span>".fullLeft"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            5. 右按钮名称指向 如：<span>".fullRight"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            6. 小点上的当前样式名称 默认 <span>"current"</span>  <span class="c2">(选填)</span><br>
+            7. 自动滚动一次的间隔时间 单位毫秒 默认 <span>5000</span>  <span class="c2">(选填)</span><br>
+            8. 缓动过程时间选填默认 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            9. 鼠标悬停banner上时是否暂停bnnaer的切换效果 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            10. banner切换所用的缓动函数名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. banner集合容器（第1个参数所指) 必须具备 <span>高度、宽度、定位、超出隐藏</span> 例如：<span class="c1">.fullBanner ul { <span class="c2"> position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; </span> }</span><br>
+            2. 列表容器元素（第2个参数所指） 必须具备 <span>定位、宽度100%、高度100%、超出隐藏、文本居中</span> 例如：<span class="c1">.fullBanner ul li { <span class="c2"> position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center; </span> }</span><br>
+            3. 列表项元素图片（第2个参数所指）内的图片 必须具备 <span>高度100% </span> 例如：<span class="c1">.fullBanner ul li img { <span class="c2"> height:100%; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="fullBanner">
+                <a class="fullLeft" href="javascript:void(0)"></a>
+                <a class="fullRight" href="javascript:void(0)"></a>
+                <ul>
+                    <li><a><img src="images/dianpuM_01.jpg"></a><b>第一张banner的标题可以不填的</b><p>第一张banner的内容也可以不填的</p></li>
+                    <li><a><img src="images/dianpuM_02.jpg"></a><b>第二张banner的标题可以不填的</b><p>第二张banner的内容也可以不填的</p></li>
+                    <li><a><img src="images/dianpuM_03.jpg"></a><b>第三张banner的标题可以不填的</b><p>第三张banner的内容也可以不填的</p></li>
+                </ul>
+                <p><i></i><i></i><i></i></p>
+            </div>
+        </div>
+        <style>
+            .fullBanner{width:30%; max-width:599px; height:200px; position:relative; margin-left:50px;}
+            .fullBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}
+            .fullBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center;}
+            .fullBanner ul li img{height:100%;}
+            .fullBanner ul li a{display:block; height:100%; position:absolute; width:3000px; left:50%; margin-left:-1500px;}
+            .fullBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:10;}
+            .fullBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}
+            .fullBanner>p i.current{background:#F1B503;}
+            .fullLeft{width:30px; height:50px; position:absolute; left:-50px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}
+            .fullRight{width:30px; height:50px; position:absolute; right:-50px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}
+            /*为banner图增加的一些特殊效果时所用样式,普通banner并不需要*/
+            .fullBanner ul li b{display:block; position:absolute; width:100%; left:0px; top:20px; text-align:center; font-size:20px; color:#000; font-weight:bold; transition:all cubic-bezier(0.3,0.7,0.7,0.9) 0.5s; -webkit-transition:all cubic-bezier(0.3,0.7,0.7,0.9) 0.5s; transform:translateY(100px);-webkit-transform:translateY(100px); opacity:0;}
+            .fullBanner ul li p{margin:0px; padding:0px; left:0px; width:100%;font-size:18px; color:#000; position:absolute; left:0px; bottom:20px; height:30px; font-weight:bold;transition:all cubic-bezier(0.3,0.7,0.9,1.2) 0.5s 0.5s;-webkit-transition:all cubic-bezier(0.3,0.7,0.9,1.2) 0.5s 0.5s; transform:translateX(-100px);-webkit-transform:translateX(-100px); opacity:0;}
+            .fullBanner ul li:nth-child(2n) p{ transform:translateX(100px);-webkit-transform:translateX(100px);}
+            .fullBanner ul li.current *{transform:translate(0px,0px) !important;-webkit-transform:translate(0px,0px) !important; opacity:1; text-shadow:0px 0px 10px rgba(255,255,255,100);}
+        </style>
+        <script>
+            Yeffect.fullAnimatbanner(".fullBanner ul",".fullBanner ul li",".fullBanner>p i",".fullLeft",".fullRight","current",5000,500,true,"easeInOutCubic");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="fullBanner"&gt;<br>
+                　　&lt;a class="fullLeft" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;a class="fullRight" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;ul&gt;<br>
+                　　　　&lt;li&gt;&lt;a&gt;&lt;img src="images/dianpuM_01.jpg"&gt;&lt;/a&gt;&lt;b&gt;第一张banner的标题可以不填的&lt;/b&gt;&lt;p&gt;第一张banner的内容也可以不填的&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;a&gt;&lt;img src="images/dianpuM_02.jpg"&gt;&lt;/a&gt;&lt;b&gt;第二张banner的标题可以不填的&lt;/b&gt;&lt;p&gt;第二张banner的内容也可以不填的&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;a&gt;&lt;img src="images/dianpuM_03.jpg"&gt;&lt;/a&gt;&lt;b&gt;第三张banner的标题可以不填的&lt;/b&gt;&lt;p&gt;第三张banner的内容也可以不填的&lt;/p&gt;&lt;/li&gt;<br>
+                　　&lt;/ul&gt;<br>
+                　　&lt;p&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.fullBanner{width:30%; max-width:599px; height:200px; position:relative; margin-left:50px;}<br>
+                　　.fullBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}<br>
+                　　.fullBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center;}<br>
+                　　.fullBanner ul li img{height:100%;}<br>
+                　　.fullBanner ul li a{display:block; height:100%; position:absolute; width:3000px; left:50%; margin-left:-1500px;}<br>
+                　　.fullBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:10;}<br>
+                　　.fullBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}<br>
+                　　.fullBanner>p i.current{background:#F1B503;}<br>
+                　　.fullLeft{width:30px; height:50px; position:absolute; left:-50px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.fullRight{width:30px; height:50px; position:absolute; right:-50px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　<span>/*为banner图增加的一些特殊效果时所用样式,普通banner并不需要,其他banner方法均支持此添加特效方式*/</span><br>
+                　　.fullBanner ul li b{display:block; position:absolute; width:100%; left:0px; top:20px; text-align:center; font-size:20px; color:#000; font-weight:bold; transition:all cubic-bezier(0.3,0.7,0.7,0.9) 0.5s; -webkit-transition:all cubic-bezier(0.3,0.7,0.7,0.9) 0.5s; transform:translateY(100px);-webkit-transform:translateY(100px); opacity:0;}<br>
+                　　.fullBanner ul li p{margin:0px; padding:0px; left:0px; width:100%;font-size:18px; color:#000; position:absolute; left:0px; bottom:20px; height:30px; font-weight:bold;transition:all cubic-bezier(0.3,0.7,0.9,1.2) 0.5s 0.5s;-webkit-transition:all cubic-bezier(0.3,0.7,0.9,1.2) 0.5s 0.5s; transform:translateX(-100px);-webkit-transform:translateX(-100px); opacity:0;}<br>
+                　　.fullBanner ul li:nth-child(2n) p{ transform:translateX(100px);-webkit-transform:translateX(100px);}<br>
+                　　.fullBanner ul li.current *{transform:translate(0px,0px) !important;-webkit-transform:translate(0px,0px) !important; opacity:1; text-shadow:0px 0px 10px rgba(255,255,255,100);}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.fullAnimatbanner(".fullBanner ul",".fullBanner ul li",".fullBanner>p i",".fullLeft",".fullRight","current",5000,500,true,"easeInOutSine");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>渐隐切换banner<font>Yeffect.fadeBanner()</font></b>
+        <p>Yeffect.fadeBanner("banner单位元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","缓动过程时间选填默认300","是否支持鼠标划入暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.fadeBanner(1,2,3,4,5,6,7,8,9);</font>
+            1. 单张banner元素名称指向 如：<span>".fadeBanner ul li"</span>;<br>
+            2. 显示banner当前状态的小点名称指向 如：<span>".fadeBanner p i"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            3. 左按钮名称指向 如：<span>".fadeLeft"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            4. 右按钮名称指向 如：<span>".fadeRight"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            5. 小点上的当前样式名称 默认 <span>"current"</span>  <span class="c2">(选填)</span><br>
+            6. 自动滚动一次的间隔时间 单位毫秒 默认 <span>5000</span>  <span class="c2">(选填)</span><br>
+            7. 缓动过程时间选填默认 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            8. 鼠标悬停banner上时是否暂停bnnaer的切换效果 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            9. banner切换所用的缓动函数名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. banner单项元素（第1个参数所指) 的父容器 必须具备  <span>高度、宽度、定位</span> 例如：<span class="c1">.fadeBanner ul { <span class="c2"> position:absolute; width:100%; height:100%;</span> }</span><br>
+            2. banner单项元素（第1个参数所指） 必须具备 <span>定位、宽度100%、高度100%、超出隐藏、设置一个背景色</span> 例如：<span class="c1">.fadeBanner ul li { <span class="c2"> position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden;background:#fff;</span> }</span><br>
+            3. 列表项元素图片（第1个参数所指）内的图片 必须具备 <span>高度100%、宽度100% </span> 例如：<span class="c1">.fadeBanner ul li img { <span class="c2"> height:100%; width:100%; </span> }</span><br>
+            4. 如果有 小点元素或左右按钮等元素 需设置 <span>z-index:大于100的数</span> 例如：<span class="c1">.fadeBanner>p { <span class="c2"> z-index:101; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="fadeBanner">
+                <a class="fadeLeft" href="javascript:void(0)"></a>
+                <a class="fadeRight" href="javascript:void(0)"></a>
+                <ul>
+                    <li><img src="images/dianpuM_01.jpg"></li>
+                    <li><img src="images/dianpuM_02.jpg"></li>
+                    <li><img src="images/dianpuM_03.jpg"></li>
+                    <li><img src="images/dianpuM_04.jpg"></li>
+                </ul>
+                <p><i></i><i></i><i></i><i></i></p>
+            </div>
+        </div>
+        <style>
+            .fadeBanner{width:599px; height:200px; position:relative; margin-left:50px;}
+            .fadeBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}
+            .fadeBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center; background:#fff;}
+            .fadeBanner ul li img{height:100%; width:100%;}
+            .fadeBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:101;}
+            .fadeBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}
+            .fadeBanner>p i.current{background:#F1B503;}
+            .fadeLeft{width:30px; height:50px; position:absolute; left:-50px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}
+            .fadeRight{width:30px; height:50px; position:absolute; right:-50px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}
+        </style>
+        <script>
+            Yeffect.fadeBanner(".fadeBanner ul li",".fadeBanner>p i",".fadeLeft",".fadeRight","current",5000,500,true,"easeInOutSine");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="fadeBanner"&gt;<br>
+                　　&lt;a class="fadeLeft" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;a class="fadeRight" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;ul&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/dianpuM_01.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/dianpuM_02.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/dianpuM_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/dianpuM_04.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;/ul&gt;<br>
+                　　&lt;p&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.fadeBanner{width:599px; height:200px; position:relative; margin-left:50px;}<br>
+                　　.fadeBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}<br>
+                　　.fadeBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center; background:#fff;}<br>
+                　　.fadeBanner ul li img{height:100%; width:100%;}<br>
+                　　.fadeBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:101;}<br>
+                　　.fadeBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}<br>
+                　　.fadeBanner>p i.current{background:#F1B503;}<br>
+                　　.fadeLeft{width:30px; height:50px; position:absolute; left:-50px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.fadeRight{width:30px; height:50px; position:absolute; right:-50px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.fadeBanner(".fadeBanner ul li",".fadeBanner>p i",".fadeLeft",".fadeRight","current",5000,500,true,"easeInOutSine");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>横向循环滚动banner<font>Yeffect.hBannerLoop()</font></b>
+        <p>Yeffect.hBannerLoop("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的宽度减去单张banner的width值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            宽度为固定宽度的水平方向滚动的banner适用，可拓展为别的效果
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.hBannerLoop(1,2,3,4,5,6,7,8,9,10,11);</font>
+            1. banner集合容器元素名称指向 如：<span>".hBanner ul"</span>;<br>
+            2. 单张banner元素名称指向 如：<span>".hBanner ul li"</span>;<br>
+            3. 显示banner当前状态的小点名称指向 如：<span>".hBanner p i"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            4. 左按钮名称指向 如：<span>".hBannerLeft"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            5. 右按钮名称指向 如：<span>".hBannerRight"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            6. 小点上的当前样式名称 默认 <span>"current"</span>  <span class="c2">(选填)</span><br>
+            7. 自动滚动一次的间隔时间 单位毫秒 默认 <span>5000</span>  <span class="c2">(选填)</span><br>
+            8. 缓动过程时间选填默认 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            9. 单张banner实际占用宽度减去width的值(包括左右margin值左右padding值左右border左右值之和); 默认 <span>0</span> ; <span class="c2">(选填)</span><br>
+            10. 鼠标悬停banner上时是否暂停bnnaer的切换效果 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            11. banner切换所用的缓动函数名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. banner集合容器（第1个参数所指) 须一层父容器且具备 <span>宽度、高度、定位、超出隐藏</span> 例如：<span class="c1">.hBanner .ulcontent { <span class="c2"> height:150px; position:absolute; width:100%; overflow:hidden; </span> }</span><br>
+            2. banner集合容器（第1个参数所指) 必须具备 <span>高度、定位、超出隐藏</span> 例如：<span class="c1">.hBanner ul { <span class="c2"> position:absolute;height:100%; overflow:hidden; left:0px; top:0px; </span> }</span><br>
+            3. 列表容器元素（第2个参数所指） 必须具备 <span>宽度、高度、左浮动</span> 例如：<span class="c1">.hBanner ul li { <span class="c2"> pfloat:left; height:150px; width:300px; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="hBanner">
+                <a class="hBannerLeft" href="javascript:void(0)"></a>
+                <a class="hBannerRight" href="javascript:void(0)"></a>
+                <div class="ulcontent">
+                    <ul>
+                        <li><img src="images/dianpuM_01.jpg"></li>
+                        <li><img src="images/dianpuM_02.jpg"></li>
+                        <li><img src="images/dianpuM_03.jpg"></li>
+                        <li><img src="images/dianpuM_04.jpg"></li>
+                    </ul>
+                </div>
+                <p><i></i><i></i><i></i><i></i></p>
+            </div>
+            <button class="tuozhan">点击此处拓展为横向能同时显示3张的图集效果</button>
+        </div>
+        <style>
+            .hBanner{width:300px; height:150px; position:relative; margin-left:50px;}
+            .ulcontent{height:150px; position:absolute; width:100%; overflow:hidden;}
+            .hBanner ul{position:absolute;  height:150px; overflow:hidden; left:0px; top:0px;}
+            .hBanner ul li{float:left; height:150px; width:300px; margin-right:5px; overflow:hidden; border-radius:5px;}
+            .hBanner ul li img{width:300px; height:150px;}
+            .hBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px;}
+            .hBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}
+            .hBanner>p i.current{background:#F1B503;}
+            .hBannerLeft{width:30px; height:50px; position:absolute; left:-50px; top:50px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}
+            .hBannerRight{width:30px; height:50px; position:absolute; right:-50px; top:50px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}
+            .tuozhan{background:#BC0A0D; color:#fff; border:0px; border-radius:5px; margin-top:10px; cursor:pointer;}
+        </style>
+        <script>
+            Yeffect.hBannerLoop(".hBanner ul",".hBanner ul li",".hBanner>p i",".hBannerLeft",".hBannerRight","current",5000,5,500,true,"easeInOutSine");
+            ////////下面的代码可以忽略//////////
+            var istuoh=false;
+            $(".tuozhan").click(function(){
+                if(!istuoh){
+                    $(".hBanner").width(910);
+                    $(this).text("点击此处拓展回banner效果");
+                }else{
+                    $(".hBanner").width(300);
+                    $(this).text("点击此处拓展为横向能同时显示3张的图集效果");
+                }
+                istuoh=!istuoh;
+            })
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="hBanner"&gt;<br>
+                　　&lt;a class="hBannerLeft" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;a class="hBannerRight" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;div class="ulcontent"&gt;<br>
+                　　　　&lt;ul&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_01.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_02.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_04.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;/ul&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;p&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;button class="tuozhan"&gt;点击此处拓展为横向能同时显示3张的图集效果&lt;/button&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.hBanner{width:300px; height:150px; position:relative; margin-left:50px;}<br>
+                　　.ulcontent{height:150px; position:absolute; width:100%; overflow:hidden;}<br>
+                　　.hBanner ul{position:absolute;  height:150px; overflow:hidden; left:0px; top:0px;}<br>
+                　　.hBanner ul li{float:left; height:150px; width:300px; margin-right:5px; overflow:hidden; border-radius:5px;}<br>
+                　　.hBanner ul li img{width:300px; height:150px;}<br>
+                　　.hBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px;}<br>
+                　　.hBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}<br>
+                　　.hBanner>p i.current{background:#F1B503;}<br>
+                　　.hBannerLeft{width:30px; height:50px; position:absolute; left:-50px; top:50px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.hBannerRight{width:30px; height:50px; position:absolute; right:-50px; top:50px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.tuozhan{background:#BC0A0D; color:#fff; border:0px; border-radius:5px; margin-top:10px; cursor:pointer;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.hBannerLoop(".hBanner ul",".hBanner ul li",".hBanner>p i",".hBannerLeft",".hBannerRight","current",5000,5,500,true,"easeInOutSine");<br>
+                　　 ////////下面的代码可以忽略//////////<br>
+                　　 var istuoh=false;<br>
+                　　 $(".tuozhan").click(function(){<br>
+                　　 　　if(!istuoh){<br>
+                　　 　　　　$(".hBanner").width(910);<br>
+                　　 　　　　$(this).text("点击此处拓展回banner效果");<br>
+                　　 　　}else{<br>
+                　　 　　　　$(".hBanner").width(300);<br>
+                　　 　　　　$(this).text("点击此处拓展为横向能同时显示3张的图集效果");<br>
+                　　 　　}<br>
+                　　 　　istuoh=!istuoh;<br>
+                　　 })<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>纵向循环滚动banner<font>Yeffect.vBannerLoop()</font></b>
+        <p>Yeffect.hBannerLoop("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的高度度减去单张banner的height值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            宽度为固定宽度的垂直方向滚动的banner适用，可拓展为别的效果
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.vBannerLoop(1,2,3,4,5,6,7,8,9,10,11);</font>
+            1. banner集合容器元素名称指向 如：<span>".vBanner ul"</span>;<br>
+            2. 单张banner元素名称指向 如：<span>".vBanner ul li"</span>;<br>
+            3. 显示banner当前状态的小点名称指向 如：<span>".vBanner p i"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            4. 按钮名称指向 如：<span>".vBannerLeft"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            5. 右按钮名称指向 如：<span>".vBannerRight"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            6. 小点上的当前样式名称 默认 <span>"current"</span>  <span class="c2">(选填)</span><br>
+            7. 自动滚动一次的间隔时间 单位毫秒 默认 <span>5000</span>  <span class="c2">(选填)</span><br>
+            8. 缓动过程时间选填默认 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            9. 单张banner实际占用高度减去height的值(包括上下margin值上下padding值上下border值之和); 默认 <span>0</span> ; <span class="c2">(选填)</span><br>
+            10. 鼠标悬停banner上时是否暂停bnnaer的切换效果 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            11. banner切换所用的缓动函数名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. banner集合容器（第1个参数所指) 须一层父容器且具备 <span>宽度、高度、定位、超出隐藏</span> 例如：<span class="c1">.Banner .ulcontent { <span class="c2"> height:150px; position:absolute; width:100%; overflow:hidden; </span> }</span><br>
+            2. banner集合容器（第1个参数所指) 必须具备 <span>宽度、定位、超出隐藏</span> 例如：<span class="c1">.vBanner ul { <span class="c2"> position:absolute;width:300px; overflow:hidden; left:0px; top:0px; </span> }</span><br>
+            3. 列表容器元素（第2个参数所指） 必须具备 <span>宽度、高度</span> 例如：<span class="c1">.vBanner ul li { <span class="c2">  height:150px; width:300px; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="vBanner">
+                <a class="vBannerLeft" href="javascript:void(0)"></a>
+                <a class="vBannerRight" href="javascript:void(0)"></a>
+                <div class="ulcontent">
+                    <ul>
+                        <li><img src="images/dianpuM_01.jpg"></li>
+                        <li><img src="images/dianpuM_02.jpg"></li>
+                        <li><img src="images/dianpuM_03.jpg"></li>
+                        <li><img src="images/dianpuM_04.jpg"></li>
+                    </ul>
+                </div>
+                <p><i></i><i></i><i></i><i></i></p>
+            </div>
+            <button class="vtuozhan">点击此处拓展为纵向能同时显示3张的图集效果</button>
+        </div>
+        <style>
+            .vBanner{width:300px; height:150px; position:relative; margin-left:50px;}
+            .ulcontent{height:100%; position:absolute; width:100%; overflow:hidden;}
+            .vBanner ul{position:absolute;  width:300px; overflow:hidden; left:0px; top:0px;}
+            .vBanner ul li{height:150px; width:300px; margin-bottom:5px; overflow:hidden; border-radius:5px;}
+            .vBanner ul li img{width:300px; height:150px;}
+            .vBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px;}
+            .vBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}
+            .vBanner>p i.current{background:#F1B503;}
+            .vBannerLeft{width:30px; height:50px; position:absolute; left:-50px; top:50%; margin-top:-25px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}
+            .vBannerRight{width:30px; height:50px; position:absolute; right:-50px; top:50%; margin-top:-25px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}
+            .vtuozhan{background:#BC0A0D; color:#fff; border:0px; border-radius:5px; margin-top:10px; cursor:pointer;}
+        </style>
+        <script>
+            Yeffect.vBannerLoop(".vBanner ul",".vBanner ul li",".vBanner>p i",".vBannerLeft",".vBannerRight","current",5000,5,500,true,"easeInOutSine");
+            ////////下面的代码可以忽略//////////
+            var istuohV=false;
+            $(".vtuozhan").click(function(){
+                if(!istuohV){
+                    $(".vBanner").height(460);
+                    $(this).text("点击此处拓展回banner效果");
+                }else{
+                    $(".vBanner").height(150);
+                    $(this).text("点击此处拓展为纵向能同时显示3张的图集效果");
+                }
+                istuohV=!istuohV;
+            })
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="vBanner"&gt;<br>
+                　　&lt;a class="vBannerLeft" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;a class="vBannerRight" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;div class="ulcontent"&gt;<br>
+                　　　　&lt;ul&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_01.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_02.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_03.jpg"&gt;&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;&lt;img src="images/dianpuM_04.jpg"&gt;&lt;/li&gt;<br>
+                　　　　&lt;/ul&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;p&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;button class="vtuozhan"&gt;点击此处拓展为纵向能同时显示3张的图集效果&lt;/button&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.vBanner{width:300px; height:150px; position:relative; margin-left:50px;}<br>
+                　　.ulcontent{height:100%; position:absolute; width:100%; overflow:hidden;}<br>
+                　　.vBanner ul{position:absolute;  width:300px; overflow:hidden; left:0px; top:0px;}<br>
+                　　.vBanner ul li{height:150px; width:300px; margin-bottom:5px; overflow:hidden; border-radius:5px;}<br>
+                　　.vBanner ul li img{width:300px; height:150px;}<br>
+                　　.vBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px;}<br>
+                　　.vBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}<br>
+                　　.vBanner>p i.current{background:#F1B503;}<br>
+                　　.vBannerLeft{width:30px; height:50px; position:absolute; left:-50px; top:50%; margin-top:-25px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.vBannerRight{width:30px; height:50px; position:absolute; right:-50px; top:50%; margin-top:-25px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.vtuozhan{background:#BC0A0D; color:#fff; border:0px; border-radius:5px; margin-top:10px; cursor:pointer;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.vBannerLoop(".vBanner ul",".vBanner ul li",".vBanner>p i",".vBannerLeft",".vBannerRight","current",5000,5,500,true,"easeInOutSine");<br>
+                　　 ////////下面的代码可以忽略//////////<br>
+                　　 var istuohV=false;<br>
+                　　 $(".vtuozhan").click(function(){<br>
+                　　 　　if(!istuohV){<br>
+                　　 　　　　$(".vBanner").height(460);<br>
+                　　 　　　　$(this).text("点击此处拓展回banner效果");<br>
+                　　 　　}else{<br>
+                　　 　　　　$(".vBanner").height(150);<br>
+                　　 　　　　$(this).text("点击此处拓展为纵向能同时显示3张的图集效果");<br>
+                　　 　　}<br>
+                　　 　　istuohV=!istuohV;<br>
+                　　 })<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>横向滚动banner（不循环）<font>Yeffect.hBanner()</font></b>
+        <p>Yeffect.hBanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的宽度减去单张banner的width值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            宽度为固定宽度的水平方向滚动的banner适用，可拓展为别的效果
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.hBanner(1,2,3,4,5,6,7,8,9,10,11);</font>
+            所有参数与Yeffect.hBannerLoop方法参数一致;
+        </p>
+        布局要求：
+        <p>
+            所有要求与Yeffect.hBannerLoop方法要求一致;<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            参见 Yeffect.hBannerLoop 的示例效果   唯一区别（当在最后一张时切到第一张的方式是从右向左反向缓动至第一张);
+        </div>
+    </div>
+
+    <div class="titleContent"><b>纵向滚动banner（不循环）<font>Yeffect.vBanner()</font></b>
+        <p>Yeffect.vBanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的高度度减去单张banner的height值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            宽度为固定宽度的水平方向滚动的banner适用，可拓展为别的效果
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.vBanner(1,2,3,4,5,6,7,8,9,10,11);</font>
+            所有参数与Yeffect.vBannerLoop方法参数一致;
+        </p>
+        布局要求：
+        <p>
+            所有要求与Yeffect.vBannerLoop方法要求一致;<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            参见 Yeffect.vBannerLoop 的示例效果   唯一区别（当在最后一张时切到第一张的方式是从下向上反向缓动至第一张);
+        </div>
+    </div>
+
+    <div class="titleContent"><b>手机版横向滚动banner<font>Yeffect.mobileBanner()</font></b>
+        <p>Yeffect.mobileBanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","缓动过程时间选填默认300",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            1、可以通过百分比的方式设置宽度，宽度变化时效果正常;<br>
+            2、对手势的支持（向左滑动、上右滑动、向左拖动、向右拖动）来控制banner切换;<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.mobileBanner(1,2,3,4,5,6,7,8,9);</font>
+            1. banner集合容器元素名称指向 如：<span>".mobBanner ul"</span>;<br>
+            2. 单张banner元素名称指向 如：<span>".mobBanner ul li"</span>;<br>
+            3. 显示banner当前状态的小点名称指向 如：<span>".mobBanner p i"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            4. 左按钮名称指向 如：<span>".mobLeft"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            5. 右按钮名称指向 如：<span>".mobRight"</span>; 默认 <span>""</span>  <span class="c2">(选填)</span><br>
+            6. 小点上的当前样式名称 默认 <span>"current"</span>  <span class="c2">(选填)</span><br>
+            7. 自动滚动一次的间隔时间 单位毫秒 默认 <span>5000</span>  <span class="c2">(选填)</span><br>
+            8. 缓动过程时间选填默认 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            9. banner切换所用的缓动函数名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. banner集合容器（第1个参数所指) 必须具备 <span>高度、宽度、定位、超出隐藏</span> 例如：<span class="c1">.mobBanner ul { <span class="c2"> position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; </span> }</span><br>
+            2. 列表容器元素（第2个参数所指） 必须具备 <span>定位、宽度100%、高度100%、超出隐藏、文本居中</span> 例如：<span class="c1">.mobBanner ul li { <span class="c2"> position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center; </span> }</span><br>
+            3. 列表项元素图片（第2个参数所指）内的图片 必须具备 <span>高度100% </span> 例如：<span class="c1">.mobBanner ul li img { <span class="c2"> height:100%; </span> }</span><br>
+        </p>
+
+        示例效果：(可用鼠标模拟手指 来滑动或拖动进行测试)
+        <div class="p">
+            <div class="mobBanner">
+                <a class="mobLeft" href="javascript:void(0)"></a>
+                <a class="mobRight" href="javascript:void(0)"></a>
+                <ul>
+                    <li><a><img src="images/dianpuM_01.jpg"></a></li>
+                    <li><a><img src="images/dianpuM_02.jpg"></a></li>
+                    <li><a><img src="images/dianpuM_03.jpg"></a></li>
+                </ul>
+                <p><i></i><i></i><i></i></p>
+            </div>
+        </div>
+        <style>
+            .mobBanner{width:30%; max-width:599px; height:200px; position:relative; margin-left:50px;}
+            .mobBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}
+            .mobBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center;}
+            .mobBanner ul li::after{content:""; display:block; position:absolute; width:100%; height:100%; left:0px; top:0px; z-index:10;}
+            .mobBanner ul li img{height:100%;}
+            .mobBanner ul li a{display:block; height:100%; position:absolute; width:3000px; left:50%; margin-left:-1500px;}
+            .mobBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:10;}
+            .mobBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}
+            .mobBanner>p i.current{background:#F1B503;}
+            .mobLeft{width:30px; height:50px; position:absolute; left:-50px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}
+            .mobRight{width:30px; height:50px; position:absolute; right:-50px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}
+        </style>
+        <script>
+            Yeffect.mobileBanner(".mobBanner ul",".mobBanner ul li",".mobBanner>p i",".mobLeft",".mobRight","current",5000,500,"easeInOutSine");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="mobBanner"&gt;<br>
+                　　&lt;a class="mobLeft" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;a class="mobRight" href="javascript:void(0)"&gt;&lt;/a&gt;<br>
+                　　&lt;ul&gt;<br>
+                　　　　&lt;li&gt;&lt;a&gt;&lt;img src="images/dianpuM_01.jpg"&gt;&lt;/a&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;a&gt;&lt;img src="images/dianpuM_02.jpg"&gt;&lt;/a&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;a&gt;&lt;img src="images/dianpuM_03.jpg"&gt;&lt;/a&gt;&lt;/li&gt;<br>
+                　　&lt;/ul&gt;<br>
+                　　&lt;p&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/p&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.mobBanner{width:30%; max-width:599px; height:200px; position:relative; margin-left:50px;}<br>
+                　　.mobBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}<br>
+                　　.mobBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center;}<br>
+                　　.mobBanner ul li::after{content:""; display:block; position:absolute; width:100%; height:100%; left:0px; top:0px; z-index:10;}<br>
+                　　.mobBanner ul li img{height:100%;}<br>
+                　　.mobBanner ul li a{display:block; height:100%; position:absolute; width:3000px; left:50%; margin-left:-1500px;}<br>
+                　　.mobBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:10;}<br>
+                　　.mobBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}<br>
+                　　.mobBanner>p i.current{background:#F1B503;}<br>
+                　　.mobLeft{width:30px; height:50px; position:absolute; left:-50px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}<br>
+                　　.mobRight{width:30px; height:50px; position:absolute; right:-50px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.mobileBanner(".mobBanner ul",".mobBanner ul li",".mobBanner>p i",".mobLeft",".mobRight","current",5000,500,"easeInOutSine");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>点击控制横向列表单次左右移动（适用于横向时间轴切换）<font>Yeffect.controlSlide()</font></b>
+        <p>Yeffect.controlSlide("列表项容器名称指向","列表项名称指向","左按钮名称指向","右按钮名称指向","同时能显示的数量","单项列表所占用的宽度减去单项的width值","移动过程的时间",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.controlSlide(1,2,3,4,5,6,7,8);</font>
+            1. 列表项容器名称指向 如：<span>".SlideUl ul"</span>;<br>
+            2. 列表项名称指向 如：<span>".SlideUl ul li"</span>;<br>
+            3. 左按钮名称指向 如：<span>".SlideLeft"</span>;<br>
+            4. 右按钮名称指向 如：<span>".SlideRight"</span>;<br>
+            5. 同时能显示的数量 如：<span>5</span>;<br>
+            6. 单项列表所占用的宽度减去单项的width值 如：<span>左右margin值+左右padding值+加左右border值</span> 默认 <span>0</span>  <span class="c2">(选填)</span><br>
+            7. 移动一次所需的时间 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            8. 缓动函数名名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 列表容器元素（第1个参数所指）外层必须有一个父级元素控制显示区域 且具备 <span>高度、宽度、定位、超出隐藏</span> 例如：<span class="c1">.SlideUl { <span class="c2"> height:62px; position:absolute; </span> }</span><br>
+            2. 列表容器元素（第1个参数所指） 必须具备 <span>定位</span> 例如：<span class="c1">.SlideUl ul { <span class="c2"> position:absolute; </span> }</span><br>
+            3. 列表项元素（第2个参数所指） 必须具备 <span>宽度、高度、左浮动 </span> 例如：<span class="c1">.SlideUl ul li { <span class="c2"> width:100px; height:60px; float:left; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="SlideUlCont">
+                <div class="SlideLeft"></div>
+                <div class="SlideRight"></div>
+                <div class="SlideUl">
+                    <ul>
+                        <li>2016</li>
+                        <li>2015</li>
+                        <li>2014</li>
+                        <li>2013</li>
+                        <li>2012</li>
+                        <li>2011</li>
+                        <li>2010</li>
+                        <li>2009</li>
+                        <li>2008</li>
+                        <li>2007</li>
+                        <li>2006</li>
+                        <li>2005</li>
+                        <li>2004</li>
+                        <li>2003</li>
+                        <li>2002</li>
+                        <li>2001</li>
+                        <li>2000</li>
+                        <li>1999</li>
+                        <li>1998</li>
+                        <li>1997</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <style>
+            .SlideUlCont{width:650px; height:60px; position:relative;}
+            .SlideUl{width:550px; height:60px; position:relative; overflow:hidden;margin:0px auto;}
+            .SlideUl ul{position:absolute; height:60px;}
+            .SlideUl ul li{width:100px; height:58px; float:left; font-size:20px; text-align:center; line-height:58px; margin-right:10px; border:1px solid #ddd; background:#fff;}
+            .SlideLeft{width:30px; height:50px; position:absolute; left:0px; top:5px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer;}
+            .SlideRight{width:30px; height:50px; position:absolute; right:0px; top:5px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer;}
+        </style>
+        <script>
+            Yeffect.controlSlide(".SlideUl ul",".SlideUl li",".SlideLeft",".SlideRight",5,12);
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="SlideUlCont"&gt;<br>
+                　　&lt;div class="SlideLeft"&gt;&lt;/div&gt;<br>
+                　　&lt;div class="SlideRight"&gt;&lt;/div&gt;<br>
+                　　&lt;div class="SlideUl"&gt;<br>
+                　　　　&lt;ul&gt;<br>
+                　　　　　　&lt;li&gt;2016&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2015&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2014&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2013&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2012&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2011&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2010&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2009&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2008&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2007&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2006&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2005&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2004&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2003&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2002&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2001&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;2000&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;1999&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;1998&lt;/li&gt;<br>
+                　　　　　　&lt;li&gt;1997&lt;/li&gt;<br>
+                　　　　&lt;/ul&gt;<br>
+                　　&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.SlideUlCont{width:650px; height:60px; position:relative;}<br>
+                　　.SlideUl{width:550px; height:60px; position:relative; overflow:hidden;margin:0px auto;}<br>
+                　　.SlideUl ul{position:absolute; height:60px;}<br>
+                　　.SlideUl ul li{width:100px; height:58px; float:left; font-size:20px; text-align:center; line-height:58px; margin-right:10px; border:1px solid #ddd; background:#fff;}<br>
+                　　.SlideLeft{width:30px; height:50px; position:absolute; left:0px; top:5px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer;}<br>
+                　　.SlideRight{width:30px; height:50px; position:absolute; right:0px; top:5px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.controlSlide(".SlideUl ul",".SlideUl li",".SlideLeft",".SlideRight",5,12);<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>原生滚动条外观控制（竖向）<font>Yeffect.scrollStyleV()</font></b>
+        <p>Yeffect.scrollStyleV("外层容器名称指向","内层容器名称指向","滚动条滑道名称指向","滚动条滑块名称指向");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            可用自定义元素显示原生滚动条的状态与操纵原生滚动条。<br>
+            优点:兼容性好、充分利用原生滚动条的优点、响应式网站可用移动设备上可以用手指滑动、内容高度发生变化时自动适应。<br>
+            缺点：嵌套层级偏多布局要求高。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.scrollStyleV(1,2,3,4);</font>
+            1. 外层容器名称 如：<span>".scrollV</span>;<br>
+            2. 内层容器名称 如：<span>".scrollVa</span>;<br>
+            3. 滚动条滑道名称 如：<span>".scrollVBar</span>; 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            4. 滚动条滑块名称 如：<span>".scrollVBar i</span>; 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 需要一个总容器元素包含整个滚动条效果内容 且具备 <span>定位、宽度、高度、超出隐藏等属性</span> 例如：<span class="c1">.scrollVC { <span class="c2"> width:400px; height:400px; </span> }</span><br>
+            2. 外层容器（第1个参数所指）所占宽度要大于总容器宽度，让总容器正好截取掉系统滚动条 且具备 <span>宽度、高度、y方向滚动条</span> 例如：<span class="c1">.scrollV { <span class="c2"> height:400px; width:100%; overflow:hidden; overflow-y:scroll; padding-right:15px; </span> }</span><br>
+            3. 内层容器（第2个参数所指）具备 <span>超出隐藏属性</span> 例如：<span class="c1">.scrollVa { <span class="c2"> overflow:hidden; </span> }</span><br>
+            4. 滚动条滑道（第3个参数所指）与（第1个参数所指元素）平级 置于总容器中  且具备 <span>定位、高度100%、隐藏等属性</span> 例如：<span class="c1">.scrollVBar { <span class="c2"> width:5px; height:100%; top:0px; position:absolute; right:2px; display:none; </span> }</span><br>
+            5. 滚动条滑块（第4个参数所指）放在滑道（第3个参数所指元素所指）中  且具备 <span>定位、宽度</span> 例如：<span class="c1">.scrollVBar i { <span class="c2"> position:absolute; width:100%;</span> }</span><br>
+
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="scrollVC">
+                <div class="scrollV">
+                    <div class="scrollVa">
+                        这里面是滚动条的内容<img src="images/index7.jpg"><img src="images/dianpu_gg2.png">这里面是滚动条的内容
+                    </div>
+                </div>
+                <div class="scrollVBar"><i></i></div>
+            </div>
+        </div>
+        <style>
+            .scrollVC{width:400px; height:400px; position:relative; overflow:hidden; background:#fff; border:1px solid #ccc;}
+            .scrollV{height:400px; width:100%; overflow:hidden; overflow-y:scroll; padding-right:15px;}
+            .scrollVa{overflow:hidden; padding:0px 5px;}
+            .scrollVBar{width:5px; height:100%; top:0px; position:absolute; right:2px; border-radius:5px; background:rgba(255,190,195,0.5); display:none;}
+            .scrollVBar i{position:absolute; width:100%;display:none; background:#3D3A3A; display:block;  height:100px; border-radius:5px; cursor:pointer; opacity:0.9;}
+        </style>
+        <script>
+            Yeffect.scrollStyleV(".scrollV",".scrollVa",".scrollVBar",".scrollVBar i");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="scrollVC"&gt;<br>
+                　　&lt;div class="scrollV"&gt;<br>
+                　　　　&lt;div class="scrollVa"&gt;<br>
+                　　　　　　这里面是滚动条的内容&lt;img src="images/index7.jpg"&gt;&lt;img src="images/dianpu_gg2.png"&gt;这里面是滚动条的内容<br>
+                　　　　&lt;/div&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;div class="scrollVBar"&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.scrollVC{width:400px; height:400px; position:relative; overflow:hidden; background:#fff; border:1px solid #ccc;}<br>
+                　　.scrollV{height:400px; width:100%; overflow:hidden; overflow-y:scroll; padding-right:15px;}<br>
+                　　.scrollVa{overflow:hidden; padding:0px 5px;}<br>
+                　　.scrollVBar{width:5px; height:100%; top:0px; position:absolute; right:2px; border-radius:5px; background:rgba(255,190,195,0.5); display:none;}<br>
+                　　.scrollVBar i{position:absolute; width:100%;display:none; background:#3D3A3A; display:block;  height:100px; border-radius:5px; cursor:pointer; opacity:0.9;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.scrollStyleV(".scrollV",".scrollVa",".scrollVBar",".scrollVBar i");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>原生滚动条外观控制（横向）<font>Yeffect.scrollStyleH()</font></b>
+        <p>Yeffect.scrollStyleH("外层容器名称指向","内层容器名称指向","滚动条滑道名称指向","滚动条滑块名称指向");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            可用自定义元素显示原生滚动条的状态与操纵原生滚动条。<br>
+            优点:兼容性好、充分利用原生滚动条的优点、响应式网站可用移动设备上可以用手指滑动、内容宽度发生变化时自动适应。<br>
+            缺点：嵌套层级偏多布局要求高。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.scrollStyleH(1,2,3,4);</font>
+            1. 外层容器名称 如：<span>".scrollH</span>;<br>
+            2. 内层容器名称 如：<span>".scrollHa</span>;<br>
+            3. 滚动条滑道名称 如：<span>".scrollHBar</span>; 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            4. 滚动条滑块名称 如：<span>".scrollHBar i</span>; 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 需要一个总容器元素包含整个滚动条效果内容 且具备 <span>定位、宽度、高度、超出隐藏等属性</span> 例如：<span class="c1">.scrollHC { <span class="c2"> width:400px; height:400px; </span> }</span><br>
+            2. 外层容器（第1个参数所指）所占高度要大于总容器宽度，让总容器正好截取掉系统滚动条 且具备 <span>宽度、高度、x方向滚动条</span> 例如：<span class="c1">.scrollH { <span class="c2"> height:400px; width:400px; overflow:hidden; overflow-x:scroll; padding-bottom:15px; </span> }</span><br>
+            3. 内层容器（第2个参数所指）具备 <span>超出隐藏、左浮动、最小宽度100%属性</span> 例如：<span class="c1">.scrollHa { <span class="c2"> overflow:hidden; float:left; min-width:100%;; </span> }</span><br>
+            4. 滚动条滑道（第3个参数所指）与（第1个参数所指元素）平级 置于总容器中  且具备 <span>定位、宽度100%、隐藏等属性</span> 例如：<span class="c1">.scrollHBar { <span class="c2"> width:100%; height:5px; left:0px; position:absolute; bottom:2px; display:none; </span> }</span><br>
+            5. 滚动条滑块（第4个参数所指）放在滑道（第3个参数所指元素所指）中  且具备 <span>定位、宽度</span> 例如：<span class="c1">.scrollHBar i { <span class="c2"> position:absolute; height:100%;</span> }</span><br>
+
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="scrollHC">
+                <div class="scrollH">
+                    <div class="scrollHa">
+                        这里面是滚动条的内容<img src="images/dianpuM_02.jpg">这里面是滚动条的内容
+                    </div>
+                </div>
+                <div class="scrollHBar"><i></i></div>
+            </div>
+        </div>
+        <style>
+            .scrollHC{width:400px; height:400px; position:relative; overflow:hidden; background:#fff; border:1px solid #ccc;}
+            .scrollH{height:400px; width:400px; overflow:hidden; overflow-x:scroll; padding-bottom:15px;}
+            .scrollHa{overflow:hidden; float:left; min-width:100%; padding:5px 0px; height:400px;}
+            .scrollHBar{width:100%; height:5px; left:0px; position:absolute; bottom:2px; border-radius:5px; background:rgba(255,190,195,0.5); display:none;}
+            .scrollHBar i{position:absolute; height:100%;display:none; background:#3D3A3A; display:block;  width:100px; border-radius:5px; cursor:pointer; opacity:0.9;}
+        </style>
+        <script>
+            Yeffect.scrollStyleH(".scrollH",".scrollHa",".scrollHBar",".scrollHBar i");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="scrollHC"&gt;<br>
+                　　&lt;div class="scrollH"&gt;<br>
+                　　　　&lt;div class="scrollHa"&gt;<br>
+                　　　　　　这里面是滚动条的内容&lt;img src="images/index7.jpg"&gt;<br>
+                　　　　&lt;/div&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;div class="scrollHBar"&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.scrollHC{width:400px; height:400px; position:relative; overflow:hidden; background:#fff; border:1px solid #ccc;}<br>
+                　　.scrollH{height:400px; width:400px; overflow:hidden; overflow-x:scroll; padding-bottom:15px;}<br>
+                　　.scrollHa{overflow:hidden; float:left; min-width:100%; padding:5px 0px; height:400px;}<br>
+                　　.scrollHBar{width:100%; height:5px; left:0px; position:absolute; bottom:2px; border-radius:5px; background:rgba(255,190,195,0.5); display:none;}<br>
+                　　.scrollHBar i{position:absolute; height:100%;display:none; background:#3D3A3A; display:block;  width:100px; border-radius:5px; cursor:pointer; opacity:0.9;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.scrollStyleH(".scrollH",".scrollHa",".scrollHBar",".scrollHBar i");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>模拟app滚动条 ‘上拉加载更多’ '下拉刷新'<font>Yeffect.addMobscroll()</font></b>
+        <p>Yeffect.addMobscroll("外容器对象名称指向","内容器对象名称指向"，"是否隐藏滚动条"，"是否解除全局的默认禁止拖动"，"回调函数"“通过参数返回拖动位置与拖动状态用于加载更多与刷新”);
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.addMobscroll(1,2,3,4,5);</font>
+            1. 外容器对象名称指向<br>
+            2. 内容器对象名称指向<br>
+            3. 是否隐藏滚动条（如果为true时滚动条不显示） 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            4. 是否解除全局的默认禁止拖动（如果为true不禁止全局的默认滚动） 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            5. 回调函数（在底部或者顶部拖动时的回调函数 设置‘上拉加载更多’ '下拉刷新'时可在该函数内向相关功能  通过两个参数获取相关数据 第一个参数获取拖动量 顶部为正、底部为负,第二个参数返回手指是否松开）  默认 <span>function(){}</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 外容器对象名称指向（第1个参数所指）需要具备 <span>宽度、高度、y方向滚动条</span> 例如：<span class="c1">.bodyAb { <span class="c2"> height:100%; overflow-x:hidden; overflow-y:scroll;</span> }</span><br>
+            2. 内容器对象名称指向（第2个参数所指）需要具备 <span>超出隐藏</span> 例如：<span class="c1">.bodyB { <span class="c2"> overflow:hidden;</span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a target="_blank" href="html/mobscroll.html">请点击示例（手机上才能看出效果）</a>
+        </div>
+        <style>
+        </style>
+        <script>
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="bodyAb"&gt;<br>
+                　　&lt;div class="bodyB" style="background:#E4FDFF"&gt;&lt;div class="text A"&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;下拉刷新&lt;/span&gt;&lt;/div&gt;<br>
+                　　&lt;div class="content"&gt;<br>
+                　　　　&lt;img src="../images/dianpu_gg2.png"&gt;&lt;br&gt;<br>
+                　　　　&lt;img src="../images/index7.jpg"&gt;&lt;br&gt;<br>
+                　　　　&lt;img src="../images/index8.jpg"&gt;&lt;br&gt;<br>
+                　　　　&lt;img src="../images/index29.jpg"&gt;&lt;br&gt;<br>
+                　　　　&lt;img src="../images/index30.jpg"&gt;&lt;br&gt;<br>
+                　　　　&lt;img src="../images/index32.jpg"&gt;&lt;br&gt;<br>
+                　　&lt;div class="text B"&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;上拉加载更多&lt;/span&gt;&lt;/div&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.bodyAb{position:absolute; width:100%; height:100%; overflow-x:hidden; overflow-y:scroll; width:100%;left:0%;}<br>
+                　　.bodyB{position:relative;}<br>
+                　　.bodyB img{max-width:100%;}<br>
+                　　.text{width:100%; height:50px; line-height:50px; font-size:13px; text-align:center; color:#666; position:absolute;}<br>
+                　　.text i{display:inline-block; width:0px; height:0px; border-top:10px solid #666; border-left:7px solid transparent;border-right:7px solid transparent; margin-right:2px;}<br>
+                　　.text.B i{border-bottom:10px solid #666; border-top:0px;}<br>
+                　　.text.A{top:-50px;}<br>
+                　　.text.B{top:100%;}<br>
+                　　.loadmask{background:rgba(0,0,0,0.5); position:fixed; z-index:1500; width:100%; height:100%; left:0px; top:0px; display:none;}<br>
+                　　.loadmask::after{content:"加载中..."; position:absolute; display:block; height:30px; line-height:30px; text-align:center; font-size:20px; width:50%; left:25%; top:50%; margin-top:-15px; color:#fff;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 <span>///////如果不需要上拉加载更多下拉刷新可简写成：Yeffect.addMobscroll(".bodyAb",".bodyB");<br>　　 完成版如下:</span><br>
+                　　 var isLOad=true;<br>
+                　　 var trige=0;<br>
+                　　 var shuaxNUm=0;////刷新次数//////<br>
+                　　 var jiazNUm=0;//////加载次数///////////<br>
+                　　 Yeffect.addMobscroll(".bodyAb",".bodyB",false,false,function(num,ismove){<br>
+                　　 　　if(num&gt;70){  ///////向下拖动////////<br>
+                　　 　　　　$(".text.A span").text("松开刷新");<br>
+                　　 　　}else{<br>
+                　　 　　　　$(".text.A span").text("下拉刷新");<br>
+                　　 　　}<br>
+                　　 　　if(num&lt;-70){  ///////向上拖动////////<br>
+                　　 　　　　$(".text.B span").text("松开加载更多");<br>
+                　　 　　　　if(isLOad && ismove){<br>
+                　　 　　　　　　isLOad=false;<br>
+                　　 　　　　　　$(".loadmask").show();<br>
+                　　 　　　　　　loadhtml();<br>
+                　　 　　　　}<br>
+                　　 　　}else{<br>
+                　　 　　　　$(".text.B span").text("下拉加载更多");<br>
+                　　 　　}<br>
+                　　 　　var jiao=Math.abs(num)*180/70;<br>
+                　　 　　jiao=jiao&gt;180?180:jiao;<br>
+                　　 　　$(".text i").css({"transform":"rotate("+jiao+"deg)","-webkit-transform":"rotate("+jiao+"deg)"});<br>
+                　　 });<br><br>
+                　　 function loadhtml(){<br>
+                　　 　　setTimeout(function(){<br>
+                　　 　　　　$(".bodyB .content").append('&lt;img src="../images/nreimg_01.jpg"&gt;&lt;img src="../images/nreimg_02.jpg"&gt;&lt;img src="../images/nreimg_03.jpg"&gt;&lt;img src="../images/nreimg_04.jpg"&gt;&lt;img src="../images/nreimg_05.jpg"&gt;&lt;img src="../images/nreimg_01.jpg"&gt;&lt;img src="../images/nreimg_02.jpg"&gt;&lt;img src="../images/nreimg_03.jpg"&gt;&lt;img src="../images/nreimg_04.jpg"&gt;&lt;img src="../images/nreimg_05.jpg"&gt;&lt;img src="../images/nreimg_01.jpg"&gt;&lt;img src="../images/nreimg_02.jpg"&gt;&lt;img src="../images/nreimg_03.jpg"&gt;&lt;img src="../images/nreimg_04.jpg"&gt;&lt;img src="../images/nreimg_05.jpg"&gt;&lt;img src="../images/nreimg_01.jpg"&gt;&lt;img src="../images/nreimg_02.jpg"&gt;&lt;img src="../images/nreimg_03.jpg"&gt;&lt;img src="../images/nreimg_04.jpg"&gt;&lt;img src="../images/nreimg_05.jpg"&gt;&lt;img src="../images/nreimg_01.jpg"&gt;&lt;img src="../images/nreimg_02.jpg"&gt;&lt;img src="../images/nreimg_03.jpg"&gt;&lt;img src="../images/nreimg_04.jpg"&gt;&lt;img src="../images/nreimg_05.jpg"&gt;&lt;img src="../images/nreimg_01.jpg"&gt;&lt;img src="../images/nreimg_02.jpg"&gt;&lt;img src="../images/nreimg_03.jpg"&gt;&lt;img src="../images/nreimg_04.jpg"&gt;&lt;img src="../images/nreimg_05.jpg"&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;');<br>
+                　　 　　　　isLOad=true;<br>
+                　　 　　　　$(".loadmask").hide();<br>
+                　　 　　},1000);<br>
+                　　 }<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>启用与禁用手指拖动和滚动条<font>Yeffect.endscroll(),Yeffect.starscroll()</font></b>
+        <p>Yeffect.endscroll();无参数<br>
+            Yeffect.starscroll();无参数
+        </p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            1. 适用于禁止滚动条或移动端禁止手指滑动的禁用。<br>
+            2. 主要用于页面弹出层弹出时禁用页面的滚动或滑动。<br>
+            3. Yeffect.endscroll();方法用于禁用滚动，如 弹出层弹出时调用此方法。<br>
+            4. Yeffect.starscroll();方法用于恢复滚动，如 弹出层关闭时调用此方法。<br>
+        </p>
+        参数说明：
+        <p>
+            无<br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a href="javascript:void(0)" class="linkbtn endscroll">点击禁用滚动条与手指滑动</a>
+            <a href="javascript:void(0)" class="linkbtn startscroll">点击恢复滚动条与手指滑动</a>
+        </div>
+        <style>
+
+        </style>
+        <script>
+            ///////禁用滚动条//////////
+            $(".endscroll").click(function(){
+                Yeffect.endscroll();
+                alert("已禁用，请试着滑动滚动条。");
+            });
+            ///////启用滚动条//////////
+            $(".startscroll").click(function(){
+                Yeffect.starscroll();
+                alert("已恢复，请试着滑动滚动条。");
+            });
+        </script>
+
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;a href="javascript:void(0)" class="linkbtn endscroll"&gt;点击禁用滚动条与手指滑动&lt;/a&gt;<br>
+                &lt;a href="javascript:void(0)" class="linkbtn startscroll"&gt;点击恢复滚动条与手指滑动&lt;/a&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 ///////禁用滚动条//////////
+                　　 $(".endscroll").click(function(){<br>
+                　　 　　Yeffect.endscroll();<br>
+                　　 　　alert("已禁用，请试着滑动滚动条。");<br>
+                　　 });<br>
+                　　 ///////启用滚动条//////////<br>
+                　　 $(".startscroll").click(function(){<br>
+                　　 　　Yeffect.starscroll();<br>
+                　　 　　alert("已恢复，请试着滑动滚动条。");<br>
+                　　 });<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>正常比例展示图片<font>Yeffect.imgGeomeScale()</font></b>
+        <p>Yeffect.imgGeomeScale("图片元素名称指向","是否取消图片居中");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            可解决由于限制固定宽高而造成的比例不准确问题。
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.imgGeomeScale(1,2);</font>
+            1. 图片元素名称指向 如：<span>".geome img"</span>;<br>
+            2. 是否设置为取消图片居中模式  默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 图片需要用样式设置固定的宽高 例如：<span class="c1">.geome img { <span class="c2"> width:200px; height:200px; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="geome">
+                <img src="images/dianpuM_02.jpg">
+                <img src="images/dianpuM_04.jpg">
+                <img src="images/nreimg_02.jpg">
+                <img src="images/nreimg_03.jpg">
+                <img src="images/dianpu_gg2.png">
+                <img src="images/index7.jpg">
+                <img src="images/index8.jpg">
+            </div>
+        </div>
+        <style>
+            .geome img{width:200px; height:200px; margin-right:10px; background:#fff; border:1px solid #aaa;}
+        </style>
+        <script>
+            Yeffect.imgGeomeScale(".geome img");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="geome"&gt;<br>
+                　　&lt;img src="images/dianpuM_02.jpg"&gt;<br>
+                　　&lt;img src="images/dianpuM_04.jpg"&gt;<br>
+                　　&lt;img src="images/nreimg_02.jpg"&gt;<br>
+                　　&lt;img src="images/nreimg_03.jpg"&gt;<br>
+                　　&lt;img src="images/dianpu_gg2.png"&gt;<br>
+                　　&lt;img src="images/index7.jpg"&gt;<br>
+                　　&lt;img src="images/index8.jpg"&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.geome img {width:200px; height:200px; margin-right:10px; background:#fff; border:1px solid #aaa;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.imgGeomeScale(".geome img");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>高度等比例适应宽度(以引用为参数 优点效率高)<font>Yeffect.resizeHtW()</font></b>
+        <p>Yeffect.resizeHtW("产考宽度元素的引用","设置高度元素对象的引用","原始宽度","原始高度");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            当某些元素宽度以百分比定义时，在window宽度发生变化该元素宽度也发生变化时，控制高度按照设定的比例也随之变化。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.resizeHtW(1,2,3,4);</font>
+            1. 产考宽度元素的引用 如：<span>$(".resizedom")</span>;<br>
+            2. 设置高度元素对象的引用 如：<span>$(".resizedom")</span>;<br>
+            3. 原始宽度(正常时的宽度) 如：<span>599</span> 默认 <span>100</span> ;<span class="c2">(选填)</span><br>
+            4. 原始高度(正常时的高度) 如：<span>200</span> 默认 <span>100</span> ;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+
+        示例效果：(缩放浏览器宽度查看缩放效果)
+        <div class="p">
+            <div class="resizedom"><img src="images/dianpuM_01.jpg"></div>
+            <div class="resizedom"><img src="images/dianpuM_02.jpg"></div>
+        </div>
+        <style>
+            .resizedom{width:20%; height:200px; margin-bottom:10px;}
+            .resizedom img{width:100%; height:100%;}
+        </style>
+        <script>
+            var resizedom=$(".resizedom");
+            Yeffect.resizeHtW(resizedom.eq(0),resizedom,599,200);
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="resizedom"&gt;&lt;img src="images/dianpuM_01.jpg"&gt;&lt;/div&gt;<br>
+                &lt;div class="resizedom"&gt;&lt;img src="images/dianpuM_02.jpg"&gt;&lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.resizedom{width:20%; height:200px; margin-bottom:10px;}<br>
+                　　.resizedom img{width:100%; height:100%;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 var resizedom=$(".resizedom");<br>
+                　　 Yeffect.resizeHtW(resizedom.eq(0),resizedom,599,200);<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>高度等比例适应宽度（以字名称参数 优点适应数据变换）<font>Yeffect.resizeHtWstr()</font></b>
+        <p>Yeffect.resizeHtWstr("产考宽度元素名称指向","设置高度元素对象名称指向","原始宽度","原始高度");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            1、当某些元素宽度以百分比定义时，在window宽度发生变化该元素宽度也发生变化时，控制高度按照设定的比例也随之变化。<br>
+            2、有动态数据插入时（如ajax请求数据）可手动调用一次 Yeffect.resizeHtWstr() 的返回值函数。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.resizeHtWstr(1,2,3,4);</font>
+            1. 产考宽度元素的引用 如：<span>".resizestr li"</span>;<br>
+            2. 设置高度元素对象的引用 如：<span>".resizestr li"</span>;<br>
+            3. 原始宽度(正常时的宽度) 如：<span>317</span> 默认 <span>100</span> ;<span class="c2">(选填)</span><br>
+            4. 原始高度(正常时的高度) 如：<span>240</span> 默认 <span>100</span> ;<span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+
+        示例效果：(缩放浏览器宽度查看缩放效果)
+        <div class="p">
+            <ul class="resizestr">
+                <li><img src="images/index29.jpg"></li>
+                <li><img src="images/index30.jpg"></li>
+                <li><img src="images/index31.jpg"></li>
+                <li><img src="images/index32.jpg"></li>
+            </ul>
+        </div>
+        <style>
+            .resizestr{width:100%; overflow:hidden;}
+            .resizestr li{width:17%; height:240px; float:left; margin-right:10px;}
+            .resizestr li img{width:100%; height:100%;}
+        </style>
+        <script>
+            Yeffect.resizeHtWstr(".resizestr li",".resizestr li",317,240);
+
+            ////////如有异步加载的数据可用如下写法//////////////
+            /*
+             var relist=Yeffect.resizeHtWstr(".resizestr li",".resizestr li",317,240); /////正常执行/////
+             relist();/////有新数据载入后调用////////
+             */
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;ul class="resizestr"&gt;<br>
+                　　&lt;li&gt;&lt;img src="images/index29.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="images/index30.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="images/index31.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="images/index32.jpg"&gt;&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.resizestr{width:100%; overflow:hidden;}<br>
+                　　.resizestr li{width:17%; height:240px; float:left; margin-right:10px;}<br>
+                　　.resizestr li img{width:100%; height:100%;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.resizeHtWstr(".resizestr li",".resizestr li",317,240);<br><br>
+                　　 ////////如有异步加载的数据可用如下写法//////////////<br>
+                　　 /*<br>
+                　　 　　var relist=Yeffect.resizeHtWstr(".resizestr li",".resizestr li",317,240); /////正常执行/////<br>
+                　　 　　relist();/////有新数据载入后调用////////<br>
+                　　 */<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>返回顶部<font>Yeffect.goTop()</font></b>
+        <p>调用方式：Yeffect.goTop("接受点击事件的dom元素的名称指向","回到顶部后是否隐藏该按钮",<i onClick="TnacShow()">缓动函数名选填</i>,"距离顶部的偏移量");</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.goTop(1,2,3,4);</font>
+            1. 接受点击事件的dom元素的名称指向 如：<span>".gotobtn"</span>;<br>
+            2. 回到顶部后是否隐藏该按钮 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            3. 缓动函数名选填 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+            4. 距离顶部的偏移量 默认 <span>0</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+
+        示例效果：
+        <div class="p">
+            <button class="goTopBtn">点击<br>回顶部</button>
+        </div>
+        <style>
+            .goTopBtn{width:70px; height:60px; cursor:pointer; border:1px solid #aaa; background:#ddd;}
+        </style>
+        <script>
+            Yeffect.goTop(".goTopBtn");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;button class="goTopBtn"&gt;点击&lt;br&gt;回顶部&lt;/button&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.goTopBtn{width:70px; height:60px; cursor:pointer; border:1px solid #aaa; background:#ddd;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.goTop(".goTopBtn");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>漂浮窗<font>Yeffect.pFloating()</font></b>
+        <p>Yeffect.pFloating("漂浮元素名称指向","关闭按钮名称指向","是否相对于当前文档","移动的单位距离","移动的单位时间");</p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.pFloating(1,2,3,4);</font>
+            1. 漂浮元素名称指向 如：<span>".pFloatingDom"</span>;<br>
+            2. 关闭按钮名称指向 如：<span>".pFloatingDom .x"</span>;<br>
+            3. 是否相对于当前文档 为false相对于可视区域,为true时相对于document  默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            4. 移动的单位距离 单位像素  默认 <span>1</span> ; <span class="c2">(选填)</span><br>
+            5. 移动的单位时间 单位毫秒  默认 <span>30</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 漂浮元素（第1个参数所指）必须且具备 <span>高度、宽度</span> 例如：<span class="c1">.pFloatingDom { <span class="c2"> width:100px; height:100px; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="pFloatingDom"><img src="images/ipc_07.png"><a href="javascript:void(0)" class="x">X</a></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button class="pFloatingBtn">执行漂浮窗效果</button>
+        </div>
+        <style>
+            .pFloatingDom{width:100px; height:100px; position:absolute;}
+            .pFloatingDom .x{display:block; width:20px; height:20px; text-align:center; line-height:20px; background:#c00; color:#fff; position:absolute; right:0px; top:0px; border-radius:20px;}
+            .pFloatingBtn{display:block; background:#c00; border:0px; border-radius:5px; color:#fff; cursor:pointer;}
+        </style>
+        <script>
+            $(".pFloatingBtn").click(function(){
+                Yeffect.pFloating(".pFloatingDom",".pFloatingDom .x");////正常使用可不用放在这个事件里////
+            })
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="pFloatingDom"&gt;&lt;img src="images/ipc_07.png"&gt;&lt;a href="javascript:void(0)" class="x"&gt;X&lt;/a&gt;&lt;/div&gt;<br>
+                &lt;button class="pFloatingBtn"&gt;执行漂浮窗效果&lt;/button&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.pFloatingDom{width:100px; height:100px; position:absolute;}<br>
+                　　.pFloatingDom .x{display:block; width:20px; height:20px; text-align:center; line-height:20px; background:#c00; color:#fff; position:absolute; right:0px; top:0px; border-radius:20px;}<br>
+                　　.pFloatingBtn{display:block; background:#c00; border:0px; border-radius:5px; color:#fff; cursor:pointer;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 $(".pFloatingBtn").click(function(){<br>
+                　　 　　Yeffect.pFloating(".pFloatingDom",".pFloatingDom .x");////正常使用只需要这一句可不用放在这个事件里////<br>
+                　　 })<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>html5头像上传预览单个<font>Yeffect.Html5FileReader()</font></b>
+        <p>Yeffect.Html5FileReader("文件域名称指向","图片名称","是否禁用对低版本浏览器的不支持提示");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            支持直接预览图片,上传时可直接获取file的值,也可获取图片src上的图像数据。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.Html5FileReader(1,2,3);</font>
+            1. file文件域的名称指向 如：<span>".finleReder input"</span>;<br>
+            2. 做为预览图片的名称指向 如：<span>".finleReder .img"</span>; 默认 <span>"(查找与file同级的img)"</span> ; <span class="c2">(选填)</span><br>
+            3. 是否禁用对低版本浏览器的不支持提示  默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. file最好包含属性 <span>accept="image/gif,image/jpeg,image/png"</span>。<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="finleReder">
+                <input type="file" accept="image/gif,image/jpeg,image/png">
+                <img src="images/index_23.png">
+            </div>
+        </div>
+        <style>
+            .finleReder{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc;}
+            .finleReder img{width:118px; height:118px;}
+            .finleReder input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}
+        </style>
+        <script>
+            Yeffect.Html5FileReader(".finleReder input");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="finleReder"&gt;<br>
+                　　&lt;input type="file" accept="image/gif,image/jpeg,image/png"&gt;<br>
+                　　&lt;img src="images/index_23.png"&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.finleReder{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc;}<br>
+                　　.finleReder img{width:118px; height:118px;}<br>
+                　　.finleReder input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.Html5FileReader(".finleReder input");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>html5头像上传预览多个<font>Yeffect.Html5FileReaders()</font></b>
+        <p>Yeffect.Html5FileReaders("文件域名称指向","文件域与图片共有的父级元素名称指向(文件域往上访问)","图片元素名称指向（父级往下访问）","是否禁用对低版本浏览器的不支持提示");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            支持直接预览图片,上传时可直接获取file的值,也可获取图片src上的图像数据,可是使用一句调用启用多组效果。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.Html5FileReaders(1,2,3,4);</font>
+            1. file文件域的名称指向 如：<span>".finleReders input</span>;<br>
+            2. file文件域与图片共有的父级元素名称指向(文件域往上访问) 不填时指向直接父级元素 如：<span>".finleReders"</span> 默认 <span>""</span>; <span class="c2">(选填)</span><br>
+            3. 图片元素名称指向（父级往下访问） 如：<span>".img"</span>; 默认 <span>"img"</span> ; <span class="c2">(选填)</span><br>
+            3. 是否禁用对低版本浏览器的不支持提示  默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. file最好包含属性 <span>accept="image/gif,image/jpeg,image/png"</span>。<br>
+            2.file文件域与图片有一个共同的父级元素。<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="finleCondiv">
+                <div class="finleReders">
+                    <input type="file" accept="image/gif,image/jpeg,image/png">
+                    <img src="images/index_23.png">
+                </div>
+                <div class="finleReders">
+                    <input type="file" accept="image/gif,image/jpeg,image/png">
+                    <img src="images/index_23.png">
+                </div>
+                <div class="finleReders">
+                    <input type="file" accept="image/gif,image/jpeg,image/png">
+                    <img src="images/index_23.png">
+                </div>
+            </div>
+
+        </div>
+        <style>
+            .finleCondiv{height:120px;}
+            .finleReders{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}
+            .finleReders img{width:118px; height:118px;}
+            .finleReders input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}
+        </style>
+        <script>
+            Yeffect.Html5FileReaders(".finleReders input",".finleReders","img");
+            ///可简写成/// Yeffect.Html5FileReaders(".finleReders input");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="finleCondiv"&gt;<br>
+                　　&lt;div class="finleReders"&gt;<br>
+                　　　　&lt;input type="file" accept="image/gif,image/jpeg,image/png"&gt;<br>
+                　　　　&lt;img src="images/index_23.png"&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;div class="finleReders"&gt;<br>
+                　　　　&lt;input type="file" accept="image/gif,image/jpeg,image/png"&gt;<br>
+                　　　　&lt;img src="images/index_23.png"&gt;<br>
+                　　&lt;/div&gt;<br>
+                　　&lt;div class="finleReders"&gt;<br>
+                　　　　&lt;input type="file" accept="image/gif,image/jpeg,image/png"&gt;<br>
+                　　　　&lt;img src="images/index_23.png"&gt;<br>
+                　　&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.finleCondiv{height:120px;}<br>
+                　　.finleReders{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}<br>
+                　　.finleReders img{width:118px; height:118px;}<br>
+                　　.finleReders input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.Html5FileReaders(".finleReders input",".finleReders","img");<br>
+                　　 //////可简写成：Yeffect.Html5FileReaders(".finleReders input");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>html5图片上传预览（支持压缩与数量设置与批量添加）<font>Yeffect.uploadFileAppend()</font></b>
+        <p>Yeffect.uploadFileAppend("file的容器元素名称指向","容器下的图片元素名称指向","容器下的关闭按钮名称指向","选择图片完成或删除图片完成时的回调函数","设置最大宽度或高度","如果选择的不是图片文件的提示语句","最多能选择的数量"，"存储格式默认png","是否为头像图片如果是即为单张可修改");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            1. 支持直接预览图片,推荐也可获取图片src上的图像数据,可添加于预览多张图片 数量不限、也可以单独设置。<br>
+            2. 可以对图像数据进行压缩通过设置（第5个参数设置最大宽高）设置。<br>
+            2. 被渲染元素组与上传按钮组有两点不同之处：1、被渲染的元素组内不包含file文件域。2、被渲染元素组容器会有一个名为'show'的class名称（可通过该class来设置内部的关闭按钮显示状态）。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.uploadFileAppend(1,2,3,4,5,6,7,8,9);</font>
+            1. file文件域与图片共有父级的名称指向 如：<span>".fileAppend</span>;<br>
+            2. 容器内图片名称指向(父级往下访问)  如：<span>".img"</span> 默认 <span>"img"</span>; <span class="c2">(选填)</span><br>
+            3. 容器内关闭按钮名称指向(父级往下访问)  如：<span>".X"</span> 默认 <span>""</span>; <span class="c2">(选填)</span><br>
+            4. 选择图片完成或删除图片完成时的回调函数（可通过该函数实现对隐藏于赋值等操作）默认 <span>function(){}</span>; <span class="c2">(选填)</span><br>
+            5. 设置最大宽度或高度(被选择的图片的宽高会被控制在该范围以内)  如：<span>500</span> 默认 <span>1000</span>; <span class="c2">(选填)</span><br>
+            6. 如果选择的不是图片文件的提示语句（如果选择非图片会造成预览失败,可在此设置对用户的提示语）  如：<span>"您选择的不是图片文件请重新选择"</span> 默认 <span>"你选择的不是图片！"</span>; <span class="c2">(选填)</span><br>
+            7. 最多能选择的数量（可用来限制选择与渲染的图片数量当大于该数值是 上传按钮会被隐藏）  如：<span>10</span> 默认 <span>100</span>; <span class="c2">(选填)</span><br>
+            8. 转换为图像数据的格式（jpeg、png、gif）任选其一  如：<span>"jpeg"</span> 默认 <span>"png"</span>; <span class="c2">(选填)</span><br>
+            9. 是否为头像图片如果是即为单张可修改（可反复重复选择修改渲染，不会新增渲染且只能有一张）  如：<span>true</span> 默认 <span>false</span>; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. file最好包含属性 <span>accept="image/gif,image/jpeg,image/png"</span>。<br>
+            2. file文件域与图片有一个共同的父级元素。<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="fileApdDiv">
+                <div class="fileAppend"><input type="file" multiple accept="image/gif,image/jpeg,image/png"><img class="img" src="images/index_23.png"><button class="X">X</button></div>
+            </div>
+        </div>
+        <style>
+            .fileApdDiv{height:120px; overflow:hidden; padding-top:5px;}
+            .fileAppend{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}
+            .fileAppend img{width:118px; height:118px;}
+            .fileAppend input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}
+            .fileAppend button{width:20px; height:20px; position:absolute; background:#f00; border:0px; border-radius:20px; color:#fff; cursor:pointer; top:-5px; right:-5px; z-index:10; display:none;}
+            .fileAppend.show button{display:block;}
+        </style>
+        <script>
+            Yeffect.uploadFileAppend(".fileAppend",".img",".X",function(){
+                console.log("更新完成!");
+            },500,"您选择的不是图片请重新选择!",10,"png",false);
+            ///可简写成/// Yeffect.uploadFileAppend(".fileAppend",".img",".X");
+            ///最简单可写成/// Yeffect.uploadFileAppend(".fileAppend");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="fileApdDiv"&gt;<br>
+                　　&lt;div class="fileAppend"&gt;&lt;input type="file" multiple accept="image/gif,image/jpeg,image/png"&gt;&lt;img class="img" src="images/index_23.png"&gt;&lt;button class="X"&gt;X&lt;/button&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.fileApdDiv{height:120px; overflow:hidden; padding-top:5px;}<br>
+                　　.fileAppend{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}<br>
+                　　.fileAppend img{width:118px; height:118px;}<br>
+                　　.fileAppend input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}<br>
+                　　.fileAppend button{width:20px; height:20px; position:absolute; background:#f00; border:0px; border-radius:20px; color:#fff; cursor:pointer; top:-5px; right:-5px; z-index:10; display:none;}<br>
+                　　.fileAppend.show button{display:block;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.uploadFileAppend(".fileAppend",".img",".X",function(){<br>
+                　　 　　console.log("更新完成!");<br>
+                　　 },500,"您选择的不是图片请重新选择!",10,"png",false);<br><br>
+                　　 ///可简写成/// Yeffect.uploadFileAppend(".fileAppend",".img",".X");<br>
+                　　 ///最简单可写成/// Yeffect.uploadFileAppend(".fileAppend");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>图集展示5个<font>Yeffect.imglist5()</font></b>
+        <p>Yeffect.imglist5("列表项容器名称指向","左按钮名称指向","右按钮名称指向","列表项标签名","数据数组","初始向后移动的张数","显示文本的标签名","储存文本的标签名","缓动过程时长",<i onClick="TnacShow()">缓动函数名选填</i>);
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.imglist5(1,2,3,4,5,6,7,8,9,10);</font>
+            1. 列表项容器名称指向 如：<span>".ImgsCont ul"</span>;<br>
+            2. 左按钮名称指向 如：<span>".ImgsLeft"</span>;<br>
+            3. 右按钮名称指向 如：<span>".ImgsRight"</span>;<br>
+            4. 列表项名称指向 如：<span>"li"</span>;<br>
+            5. 各个位置的数据数组 如：<span>[{x:0,y:63,w:117,h:175,z:2},{x:77,y:25,w:167,h:250,z:3},{x:150,y:0,w:200,h:300,z:4},{x:257,y:25,w:167,h:250,z:3},{x:383,y:63,w:117,h:175,z:2}]</span>;<br>
+            6. 初始向后移动的张数 默认 <span>0</span> ; <span class="c2">(选填)</span><br>
+            7. 显示文本的标签名称指向  如：<span>".ImgsShowText"</span>; 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            8. 储存文本的标签名称  如：<span>"p"</span>; 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            9. 缓动函数名名称 单位毫秒 默认 <span>300</span> ; <span class="c2">(选填)</span><br>
+            10. 缓动函数名名称 默认 <span>"linear"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 列表容器元素（第1个参数所指） 必须具备 <span>高度、宽度、定位、超出隐藏</span> 例如：<span class="c1">.ImgsCont ul { <span class="c2"> width:500px;height:300px; position:relative; </span> }</span><br>
+            2. 列表容器元素（第4个参数所指） 必须具备 <span>绝对定位</span> 例如：<span class="c1">.ImgsCont ul li { <span class="c2"> position:absolute; </span> }</span><br>
+            3. 列表容器元素（第4个参数所指）里面的图片元素 必须具备 <span>宽度、高度均为100%</span> 例如：<span class="c1">.ImgsCont ul li img { <span class="c2"> position:absolute; </span> }</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="ImgsCont">
+                <div class="ImgsLeft"></div>
+                <div class="ImgsRight"></div>
+                <ul>
+                    <li><img src="images/index29.jpg"><p>第一张的文本</p></li>
+                    <li><img src="images/index30.jpg"><p>第二张的文字内容</p></li>
+                    <li><img src="images/index31.jpg"><p>第三张内的文本</p></li>
+                    <li><img src="images/index32.jpg"><p>第四张的描述</p></li>
+                    <li><img src="images/nreimg_01.jpg"><p>第五张描述信息</p></li>
+                    <li><img src="images/nreimg_02.jpg"><p>第六张文本文本</p></li>
+                    <li><img src="images/nreimg_03.jpg"><p>第七张的标题</p></li>
+                    <li><img src="images/nreimg_04.jpg"><p>第八张测试文本</p></li>
+                    <li><img src="images/nreimg_05.jpg"><p>第九张信息描述</p></li>
+                </ul>
+                <div class="ImgsShowText"></div>
+            </div>
+        </div>
+        <style>
+            .ImgsCont{width:600px; height:350px; position:relative; position:relative;}
+            .ImgsCont ul{position:relative; width:500px; height:300px; margin:0px auto; overflow:hidden;}
+            .ImgsCont ul li{position:absolute;}
+            .ImgsCont ul li p{display:none;}
+            .ImgsCont ul li img{width:100%; height:100%; box-sizing:border-box; border:2px solid #0485BB;}
+            .ImgsLeft{width:30px; height:50px; position:absolute; left:0px; top:135px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer;}
+            .ImgsRight{width:30px; height:50px; position:absolute; right:0px; top:135px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer;}
+            .ImgsShowText{height:50px; line-height:50px; text-align:center; font-size:20px;}
+        </style>
+        <script>
+            var potinobj=[{x:0,y:63,w:117,h:175,z:2},{x:77,y:25,w:167,h:250,z:3},{x:150,y:0,w:200,h:300,z:4},{x:257,y:25,w:167,h:250,z:3},{x:383,y:63,w:117,h:175,z:2}];
+            Yeffect.imglist5(".ImgsCont ul",".ImgsLeft",".ImgsRight","li",potinobj,0,".ImgsShowText","p",500,"easeOutBack");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="ImgsCont"&gt;<br>
+                　　&lt;div class="ImgsLeft"&gt;&lt;/div&gt;<br>
+                　　&lt;div class="ImgsRight"&gt;&lt;/div&gt;<br>
+                　　&lt;ul&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/index29.jpg"&gt;&lt;p&gt;第一张的文本&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/index30.jpg"&gt;&lt;p&gt;第二张的文字内容&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/index31.jpg"&gt;&lt;p&gt;第三张内的文本&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/index32.jpg"&gt;&lt;p&gt;第四张的描述&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/nreimg_01.jpg"&gt;&lt;p&gt;第五张描述信息&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/nreimg_02.jpg"&gt;&lt;p&gt;第六张文本文本&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/nreimg_03.jpg"&gt;&lt;p&gt;第七张的标题&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/nreimg_04.jpg"&gt;&lt;p&gt;第八张测试文本&lt;/p&gt;&lt;/li&gt;<br>
+                　　　　&lt;li&gt;&lt;img src="images/nreimg_05.jpg"&gt;&lt;p&gt;第九张信息描述&lt;/p&gt;&lt;/li&gt;<br>
+                　　&lt;/ul&gt;<br>
+                　　&lt;div class="ImgsShowText"&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.ImgsCont{width:600px; height:350px; position:relative; position:relative;}<br>
+                　　.ImgsCont ul{position:relative; width:500px; height:300px; margin:0px auto; overflow:hidden;}<br>
+                　　.ImgsCont ul li{position:absolute;}<br>
+                　　.ImgsCont ul li p{display:none;}<br>
+                　　.ImgsCont ul li img{width:100%; height:100%; box-sizing:border-box; border:2px solid #0485BB;}<br>
+                　　.ImgsLeft{width:30px; height:50px; position:absolute; left:0px; top:135px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer;}<br>
+                　　.ImgsRight{width:30px; height:50px; position:absolute; right:0px; top:135px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer;}<br>
+                　　.ImgsShowText{height:50px; line-height:50px; text-align:center; font-size:20px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 var potinobj=[{x:0,y:63,w:117,h:175,z:2},{x:77,y:25,w:167,h:250,z:3},{x:150,y:0,w:200,h:300,z:4},{x:257,y:25,w:167,h:250,z:3},{x:383,y:63,w:117,h:175,z:2}];<br>
+                　　 Yeffect.imglist5(".ImgsCont ul",".ImgsLeft",".ImgsRight","li",potinobj,0,".ImgsShowText","p",500,"easeOutBack");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>滚屏效果支持移动设备与响应<font>Yeffect.pageScroll()</font></b>
+        <p>Yeffect.pageScroll("每一屏的容器对象","支持整屏幕滚动的最小宽度","top值偏移量","缓动系数默认为5数值越大时间越久","缓动类型ABCD","鼠标滚轮禁用时间默认200毫秒","向下按钮名称指向",“帧频函数返回当前拼的索引与比分比值","头部函数需返回一个布尔值","底部函数需返回一个布尔值");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            1. 适用于鼠标滑轮滑动一下即切换一屏的效果。<br>
+            2. 可设置一个最小宽度,当小于最小宽度值是会自动取消滑屏效果而是用系统默认的滚动条效果（可被使用于响应式网站适用于手机的时候）。<br>
+            3. 可设置滚动偏移量。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.pageScroll(1,2,3,4,5,6,7,8,9,10);</font>
+            1. 每一屏的容器对象 如：<span>".pageScroll li"</span>;<br>
+            2. 支持整屏幕滚动的最小宽度(小于设置的宽度即取消整屏的滚动滑动效果)  如：<span>700</span> 默认 <span>1000</span>; <span class="c2">(选填)</span><br>
+            3. top偏移量（以整屏为基础的上下位置偏移数值）  如：<span>50</span> 默认 <span>0</span>; <span class="c2">(选填)</span><br>
+            4. 缓动系数默认为5数值越大时间越久（通过测参数设置缓动的柔和程度）如：<span>5</span> 默认 <span>5</span>; <span class="c2">(选填)</span><br>
+            5. 缓动类型ABCD（跟缓动函数类似A、B、C、D四个选项）  如：<span>"B"</span> 默认 <span>"B"</span>; <span class="c2">(选填)</span><br>
+            6. 鼠标滚轮禁用时间默认200毫秒(防止重复滑动的延时单位毫秒)  如：<span>300</span> 默认 <span>200</span>; <span class="c2">(选填)</span><br>
+            7. 向下按钮名称指向（可通过此按钮来手动控制切换到下一屏）  如：<span>".divsss"</span> 默认 <span>""</span>; <span class="c2">(选填)</span><br>
+            8. 帧频函数返回当前拼的索引与比分比值（设置一个函数作为参数可通过参数获取当前屏的索引,与滚动的百分比值，可用来拓展更发杂的效果）  如：<span>function(pageInt,bfb){}</span> 默认 <span>function(){}</span>; <span class="c2">(选填)</span><br>
+            9. 头部函数需返回一个布尔值（达到头部后继续往上会执行得函数，通过返回值设置是否禁用一次来实现特殊的需求,可通过参数s为0或1判断状态）</span> 默认 <span>function(s){return true;}</span>; <span class="c2">(选填)</span><br>
+            10. 底部函数需返回一个布尔值（达到底部后继续往上会执行得函数，通过返回值设置是否禁用一次来实现特殊的需求,可通过参数s为0或1判断状态）</span> 默认 <span>function(s){return true;}</span>; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 每一屏的内容合理化。
+        </p>
+
+        示例效果：
+        <div class="p">
+            <a target="_blank" href="html/pageScroll.html">请点击查看示例</a>
+        </div>
+
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;ul class="pageScroll"&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/index29.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/index30.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/index31.jpg"&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;&lt;img src="../images/index32.jpg"&gt;&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+                &lt;div class="divsss"&gt;V&lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.pageScroll li{padding-right:50px; background:#e9e9e9;}<br>
+                　　.pageScroll li:nth-child(2n){background:#fff;}<br>
+                　　.pageScroll img{display:block; width:100%; min-height:100%;}<br>
+                　　.divsss{width:50px; height:50px; background:#fff; box-sizing:0px 0px 5px rgba(0,0,0,0.5); position:fixed; left:50%; bottom:30px; z-index:1000; cursor:pointer; text-align:center; line-height:50px; font-family:30px; }<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.pageScroll($(".pageScroll li"),700,0,5,"B",300,".divsss",function(cuint,bfb){console.log(cuint+":"+bfb)},function(){return true;},function(){return true;});<br>
+                　　 ///可简写成/// Yeffect.pageScroll($(".pageScroll li"));<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>表单验证<font>Yeffect.Validform()</font></b>
+        <p>Yeffect.Validform("是否验证空字符","是否启用输入时及时验证"，"是否启用输入限制","回调函数返回验证时的对象元素","获得焦点时的class名称","验证不通过的class名称","验证通过的class名称","用户名验证时的最低长度","密码验证时的最低长度");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.Validform(1,2,3,4,5,6,7,8,9);</font>
+            1. 是否验证空字符（如果为true则不输入时归为验证不通过） 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            2. 是否启用输入时及时验证（如果为true这在输入过程中就会不断验证是否通过，为flase则是失去焦点时验证） 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            3. 是否启用输入限制（如果为true则不合法字符会禁止输入） 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            4. 回调函数返回验证时的对象元素  如 <span>function(dom){alert(dom.val())}</span> 默认 <span>function(){}</span> ; <span class="c2">(选填)</span><br>
+            5. 获得焦点时的class名称（可通过此样式设置获得焦点时的外观）  默认 <span>"yv-focu"</span> ; <span class="c2">(选填)</span><br>
+            6. 验证不通过的class名称（可通过此样式设置验证不通过时的外观）  默认 <span>"yv-error"</span> ; <span class="c2">(选填)</span><br>
+            7. 验证通过的class名称（可通过此样式设置验证通过时的外观） 默认 <span>"yv-correct"</span> ; <span class="c2">(选填)</span><br>
+            8. 用户名验证时的最低长度（用户名验证通过的最小位数）  默认 <span>4</span> ; <span class="c2">(选填)</span><br>
+            9. 密码验证时的最低长度（密码验证通过的最小位数）  默认 <span>6</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 邮箱输入input需要有class名称:<span>"yv-mills"</span><br>
+            2. 手机号输入input需要有class名称:<span>"yv-phone"</span><br>
+            3. 数字输入input需要有class名称:<span>"yv-num"</span><br>
+            4. 省份证输入input需要有class名称:<span>"yv-sfz"</span><br>
+            5. 固话输入input需要有class名称:<span>"yv-tel"</span><br>
+            6. 用户名输入input需要有class名称:<span>"yv-user"</span><br>
+            7. 密码输入input需要有class名称:<span>"yv-pass"</span><br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            邮箱：<input class="yv-mills" type="text">
+            手机号：<input class="yv-phone" type="text">
+            数字：<input class="yv-num" type="text">
+            身份证：<input class="yv-sfz" type="text">
+            固话：<input class="yv-tel" type="text">
+            用户名：<input class="yv-user" type="text">
+            密码：<input class="yv-pass" type="text">
+        </div>
+        <style>
+            input{border-width:2px; border-color:#666; border-style:solid; border-radius:3px;}
+            .yv-focus{border-color:#0084FF; box-shadow:0px 0px 3px rgba(0,0,0,0.3);}
+            .yv-error{border-color:#BD0003;}
+            .yv-correct{border-color:#008C33;}
+        </style>
+        <script>
+            Yeffect.Validform();
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                邮箱：&lt;input class="yv-mills" type="text"&gt;<br>
+                手机号：&lt;input class="yv-phone" type="text"&gt;<br>
+                数字：&lt;input class="yv-num" type="text"&gt;<br>
+                身份证：&lt;input class="yv-sfz" type="text"&gt;<br>
+                固话：&lt;input class="yv-tel" type="text"&gt;<br>
+                用户名：&lt;input class="yv-user" type="text"&gt;<br>
+                密码：&lt;input class="yv-pass" type="text"&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　input{border-width:2px; border-color:#666; border-style:solid; border-radius:3px;}<br>
+                　　.yv-focus{border-color:#0084FF; box-shadow:0px 0px 3px rgba(0,0,0,0.3);}<br>
+                　　.yv-error{border-color:#BD0003;}<br>
+                　　.yv-correct{border-color:#008C33;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.Validform();<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>添加滑动事件（支持手指滑动与鼠标滑动）<font>Yeffect.addTouchEevent()</font></b>
+        <p>Yeffect.addTouchEevent("需同时监测方向","事件绑定对象的名称指向","回调函数","触发时是否禁用其他方向的拖动");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.addTouchEevent(1,2,3,4);</font>
+            1. 需同时监测方向 提供四个方向选择分别是："left","right","top","bottom"（可填入1-4个用任意法号隔开顺序不限） 如 <span>"left,right"</span><br>
+            2. 需要绑定滑动事件的元素名称指向 如<span>".touchdom"</span> <br>
+            3. 回调函数（可传入两个参数来获取相关信息 可通过第一个参数取得是具体哪一个元素促发了滑动事件，可通过第二个参数取得促发滑动的方向） 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            4. 触发时是否禁用其他方向的拖动 默认 <span>false</span><br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+
+        示例效果：(可用鼠标左右滑动下面的列表来测试效果)
+        <div class="p">
+            <ul class="touchdom">
+                <li>1<a href="javascript:void(0)">删除</a></li>
+                <li>2<a href="javascript:void(0)">删除</a></li>
+                <li>3<a href="javascript:void(0)">删除</a></li>
+                <li>4<a href="javascript:void(0)">删除</a></li>
+                <li>5<a href="javascript:void(0)">删除</a></li>
+            </ul>
+        </div>
+        <style>
+            .touchdom{position:relative; border:2px solid #fff; width:640px; left:0px; top:0px; z-index:100; list-style:none; margin:0px; padding:0px; overflow:hidden;}
+            .touchdom li{background:#D7D1D1; border-bottom:2px solid #fff; height:60px;list-style:none;margin:0px; padding:0px; text-align:center; line-height:60px; position:relative; transition:all 0.3s ease-out;-webkit-transition:all 0.3s ease-out;transform:translateX(0);-webkit-transform:translateX(0); width:100%;}
+            .touchdom li a{position:absolute; height:60px; width:100px; background:#E9282C; color:#fff; line-height:60px; left:100%; top:0px;}
+            .touchdom li.hover{ margin-left:-100px;}
+        </style>
+        <script>
+            Yeffect.addTouchEevent("left,right",".touchdom li",function(dom,action){
+                if(action=="left"){
+                    dom.addClass("hover");
+                }else{
+                    dom.removeClass("hover");
+                }
+            },true);
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;ul class="touchdom"&gt;<br>
+                　　&lt;li&gt;1&lt;a href="javascript:void(0)"&gt;删除&lt;/a&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;2&lt;a href="javascript:void(0)"&gt;删除&lt;/a&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;3&lt;a href="javascript:void(0)"&gt;删除&lt;/a&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;4&lt;a href="javascript:void(0)"&gt;删除&lt;/a&gt;&lt;/li&gt;<br>
+                　　&lt;li&gt;5&lt;a href="javascript:void(0)"&gt;删除&lt;/a&gt;&lt;/li&gt;<br>
+                &lt;/ul&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.touchdom{position:relative; border:2px solid #fff; width:640px; left:0px; top:0px; z-index:100; list-style:none; margin:0px; padding:0px; overflow:hidden;}<br>
+                　　.touchdom li{background:#D7D1D1; border-bottom:2px solid #fff; height:60px;list-style:none;margin:0px; padding:0px; text-align:center; line-height:60px; position:relative; transition:all 0.3s ease-out;-webkit-transition:all 0.3s ease-out;transform:translateX(0);-webkit-transform:translateX(0); width:100%;}<br>
+                　　.touchdom li a{position:absolute; height:60px; width:100px; background:#E9282C; color:#fff; line-height:60px; left:100%; top:0px;}<br>
+                　　.touchdom li.hover{ margin-left:-100px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.addTouchEevent("left,right",".touchdom li",function(dom,action){<br>
+                　　 　　if(action=="left"){<br>
+                　　 　　　　dom.addClass("hover");<br>
+                　　 　　}else{<br>
+                　　 　　　　dom.removeClass("hover");<br>
+                　　 　　}<br>
+                　　 },true);<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>复选框全选与取消全选<font>Yeffect.allChecked()</font></b>
+        <p>Yeffect.allChecked("全选input名称指向","单选input的名称指向");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.allChecked(1,2,);</font>
+            1. 全选input名称指向 如 <span>".quanx"</span><br>
+            2. 单选input的名称指向 如<span>".danx"</span> <br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+
+        示例效果：(可用鼠标左右滑动下面的列表来测试效果)
+        <div class="p" style="background:#fff;">
+            <input class="quanx" type="checkbox">全选A<br>
+            <input class="danx" type="checkbox">选项1
+            <input class="danx" type="checkbox">选项2
+            <input class="danx" type="checkbox">选项3
+            <input class="danx" type="checkbox">选项4
+            <input class="danx" type="checkbox">选项5
+            <input class="danx" type="checkbox">选项6
+            <input class="danx" type="checkbox">选项7<br>
+            <input class="quanx" type="checkbox">全选B
+        </div>
+        <style>
+        </style>
+        <script>
+            Yeffect.allChecked(".quanx",".danx");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;input class="quanx" type="checkbox"&gt;全选A&lt;br&gt;<br>
+                &lt;input class="danx" type="checkbox"&gt;选项1<br>
+                &lt;input class="danx" type="checkbox"&gt;选项2<br>
+                &lt;input class="danx" type="checkbox"&gt;选项3<br>
+                &lt;input class="danx" type="checkbox"&gt;选项4<br>
+                &lt;input class="danx" type="checkbox"&gt;选项5<br>
+                &lt;input class="danx" type="checkbox"&gt;选项6<br>
+                &lt;input class="danx" type="checkbox"&gt;选项7&lt;br&gt;<br>
+                &lt;input class="quanx" type="checkbox"&gt;全选B<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br><br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.allChecked(".quanx",".danx");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>同页面内容拖动（移动或删除）<font>Yeffect.adddragDom()</font></b>
+        <p>Yeffect.adddragDom("开始拖动的元素名称指向","拖动到的目标元素名称指向","临时容器名称指向","针对拖动元素的文本关系表达式","针对拖动元素的id表达式","目标元素的放置表达式","准确投放到目标的回调函数","投放大非拖动元素非目标元素的回调函数");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.adddragDom(1,2,3,4,5,6,7,8);</font>
+            1. 开始拖动的元素名称指向 如 <span>"".wudhhhsx li""</span><br>
+            2. 拖动到的目标元素名称指向 如<span>".textcontmen"</span> <br>
+            3. 临时容器名称指向 如<span>".mousetar"</span> <br>
+            4. 针对拖动元素的文本关系表达式（以拖动元素为基准需要放入零时容器内容的相对关系式） 如<span>".find('span').text()"</span> 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            5. 针对拖动元素的id表达式（以拖动元素为基准能够找到唯一标识的相对关系式） 如<span>".attr('id')"</span> 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            6. 目标元素的放置表达式（以目标元素为基准放置文本的关系表达式） 如<span>".attr('id')"</span> 默认 <span>""</span> ; <span class="c2">(选填)</span><br>
+            7. 准确投放到目标的回调函数（返回3个参数 1.拖动对象的标识id; 2.目标对象; 3.零时容器放置的文本） 默认 <span>function(){}</span> ; <span class="c2">(选填)</span><br>
+            8. 投放大非拖动元素非目标元素的回调函数（返回拖动对象） 默认 <span>function(){}</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1.临时容器名称（第三个参数所指）需要具备 <span>宽度、高度、定位、隐藏、margin-left、margin-right</span> 例如：<span class="c1">.mousetar { <span class="c2"> height:30px; position:absolute; margin-top:-50px; margin-left:-50px; display:none; </span> }</span><br>
+        </p>
+
+        示例效果：(用鼠标来拖动列项分别到下面的3个div中测试不同的效果和拖出区域删除列表)
+        <div class="p" style="background:#fff;">
+            <div class="wudhhhsx">
+                <ul>
+                    <li id="11"><span>Aaaaaa</span>叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬</li>
+                    <li id="12"><span>短标题2</span>叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬</li>
+                    <li id="13"><span>第三条信息sss</span>叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬</li>
+                    <li id="14"><span>关键信息5</span>叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬</li>
+                    <li id="15"><span>最后一条信息</span>叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬</li>
+                </ul>
+            </div>
+            <div class="textcontmenCont">
+                <div class="textcontmen A">
+                    <p></p>
+                </div>
+                <div class="textcontmen B">
+
+                </div>
+                <div class="textcontmen C">
+
+                </div>
+            </div>
+            <div class="mousetar"></div>
+        </div>
+        <style>
+            .textcontmen{width:300px; height:100px; border:1px solid #aaa; margin:20px; float:left;}
+            .wudhhhsx{width:500px; height:300px; border:1px solid #aaa; margin:20px; padding:5px;}
+            .wudhhhsx li{border-bottom:1px dashed #bbb; margin-bottom:5px; font-size:14px;}
+            .wudhhhsx li span{color:#FF0000; margin-right:5px;}
+            .mousetar{height:30px; position:absolute; font-size:20px; color:#333; margin-top:-50px; margin-left:-50px; display:none; opacity:0.7;}
+            .textcontmenCont{height:150px;}
+        </style>
+        <script>
+            Yeffect.adddragDom(".wudhhhsx li",".textcontmen",".mousetar",".find('span').text()",".attr('id')",".find('p').text",function(id,dom,text){
+                if(dom.hasClass("A")){
+                    alert("已将id为："+id+"列表项的关键信息文本放入到第一个div中。");
+                }else if(dom.hasClass("B")){
+                    dom.append($("#"+id).outerHTML())
+                    alert("已将id为："+id+"的整条信息地复制版放入第二个div中。");
+                }else if(dom.hasClass("C")){
+                    dom.append($("#"+id))
+                    alert("已将id为："+id+"的整条信息移动到第三个div中。");
+                }
+            },function(dom){
+                var idzhi=dom.attr("id");
+                dom.remove();
+                alert("已移除id为："+idzhi+"的列表项元素。");
+            });
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="wudhhhsx"&gt;<br>
+                　　&lt;ul&gt;<br>
+                　　　　&lt;li id="11"&gt;&lt;span&gt;Aaaaaa&lt;/span&gt;叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬&lt;/li&gt;<br>
+                　　　　&lt;li id="12"&gt;&lt;span&gt;短标题2&lt;/span&gt;叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬&lt;/li&gt;<br>
+                　　　　&lt;li id="13"&gt;&lt;span&gt;第三条信息sss&lt;/span&gt;叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬&lt;/li&gt;<br>
+                　　　　&lt;li id="14"&gt;&lt;span&gt;关键信息5&lt;/span&gt;叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬&lt;/li&gt;<br>
+                　　　　&lt;li id="15"&gt;&lt;span&gt;最后一条信息&lt;/span&gt;叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬叫肯德基艾丝凡考虑到健身房第三方斯蒂芬斯蒂芬&lt;/li&gt;<br>
+                　　&lt;/ul&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;div class="textcontmenCont"&gt;<br>
+                　　&lt;div class="textcontmen A"&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;<br>
+                　　&lt;div class="textcontmen B"&gt;&lt;/div&gt;<br>
+                　　&lt;div class="textcontmen C"&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;div class="mousetar"&gt;&lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.textcontmen{width:300px; height:100px; border:1px solid #aaa; margin:20px; float:left;}<br>
+                　　.wudhhhsx{width:500px; height:300px; border:1px solid #aaa; margin:20px; padding:5px;}<br>
+                　　.wudhhhsx li{border-bottom:1px dashed #bbb; margin-bottom:5px; font-size:14px;}<br>
+                　　.wudhhhsx li span{color:#FF0000; margin-right:5px;}<br>
+                　　.mousetar{height:30px; position:absolute; font-size:20px; color:#333; margin-top:-50px; margin-left:-50px; display:none; opacity:0.7;}<br>
+                　　.textcontmenCont{height:150px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.adddragDom(".wudhhhsx li",".textcontmen",".mousetar",".find('span').text()",".attr('id')",".find('p').text",function(id,dom,text){<br>
+                　　 　　if(dom.hasClass("A")){<br>
+                　　　　　　alert("已将id为："+id+"列表项的关键信息文本放入到第一个div中。");<br>
+                　　　　}else if(dom.hasClass("B")){<br>
+                　　　　　　dom.append($("#"+id).outerHTML());<br>
+                　　　　　　alert("已将id为："+id+"的整条信息地复制版放入第二个div中。");<br>
+                　　　　}else if(dom.hasClass("C")){<br>
+                　　　　　　dom.append($("#"+id))<br>
+                　　　　　　alert("已将id为："+id+"的整条信息移动到第三个div中。");	<br>
+                　　　　}<br>
+                　　　},function(dom){<br>
+                　　　　　　var idzhi=dom.attr("id");<br>
+                　　　　　　dom.remove();<br>
+                　　　　　　alert("已移除id为："+idzhi+"的列表项元素。");	<br>
+                　　　});<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>普通dom编辑表单元素取值<font>Yeffect.elementInput()</font></b>
+        <p>Yeffect.elementInput("dom元素名称指向","dom元素内的表单元素");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.elementInput(1,2);</font>
+            1. dom元素名称指向 如 <span>".inputdiv"</span><br>
+            2. 相对于dom元素的表单元素 默认<span>"input"</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. 需要有编辑功能的dom元素 里面需要放入一个表单元素用于取值（最好是隐藏域）;
+        </p>
+
+        示例效果：(可尝试在下面的DIV元素中输入文本内容)
+        <div class="p">
+            <div class="inputdiv">
+                <input type="hidden">
+            </div>
+        </div>
+        <style>
+            .inputdiv{width:300px; height:60px; line-height:30px; border:1px solid #565656; padding:0px 5px; background:#fff; overflow:hidden;}
+        </style>
+        <script>
+            Yeffect.elementInput(".inputdiv",">input");
+            /////该方法会返回一个函数有必要时可用于初始化///////
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="inputdiv"&gt;<br>
+                　　&lt;input type="hidden"&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.inputdiv{width:300px; height:60px; line-height:30px; border:1px solid #565656; padding:0px 5px; background:#fff; overflow:hidden;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.elementInput(".inputdiv");<br>
+                　　 /////该方法会返回一个函数有必要时可用于初始化///////<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>简化版重复定时器<font>Yeffect.t15() , Yeffect.t30() , Yeffect.t50() , Yeffect.t100() , Yeffect.t200()</font></b>
+        <p>Yeffect.t15("回调函数");
+        </p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            1. 一共分为5个方法分别为:Yeffect.t15() 15毫秒，Yeffect.t30() 30毫秒，Yeffect.t50() 50毫秒，Yeffect.t100() 100毫秒，Yeffect.t200() 200毫秒;<br>
+            2. 效果优点多次调用同一个方法只在页面添加一个定时器。(第一次调用的时候创建一个定时器,后面的每次调用都使用第一个定时器来驱动);<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.t15(1);</font>
+            1. 定时器回调函数<br>
+        </p>
+        布局要求：
+        <p>
+            无;
+        </p>
+        示例效果：
+        <div class="p">
+            <a href="javascript:void(0)" class="linkbtn timeMovebtn">点击让该按钮左右移动</a>
+        </div>
+        <style>
+            .timeMovebtn{position:relative;}
+        </style>
+        <script>
+            $(".timeMovebtn").click(function(){
+                $(this).unbind("click");
+                var thisO=$(this);
+                var W=thisO.width();
+                var leftZ=0;
+                var leftU=2;
+                Yeffect.t30(function(){
+                    leftZ+=leftU
+                    if(leftZ>300 || leftZ<0){
+                        leftU*=-1;
+                    }
+                    thisO.css("left",leftZ);
+                })
+            })
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;a href="javascript:void(0)" class="linkbtn timeMovebtn"&gt;点击让该按钮左右移动&lt;/a&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.timeMovebtn{position:relative;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 $(".timeMovebtn").click(function(){<br>
+                　　 　　$(this).unbind("click");<br>
+                　　 　　var thisO=$(this);<br>
+                　　 　　var W=thisO.width();<br>
+                　　 　　var leftZ=0;<br>
+                　　 　　var leftU=2;<br>
+                　　 　　Yeffect.t30(function(){<br>
+                　　 　　　　leftZ+=leftU<br>
+                　　 　　　　if(leftZ&gt;300 || leftZ&lt;0){<br>
+                　　 　　　　　　leftU*=-1;<br>
+                　　 　　　　}<br>
+                　　 　　　　thisO.css("left",leftZ);<br>
+                　　 　　})<br>
+                　　 });<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="titleContent"><b>修复底部fixed定位在软键盘弹出时的BUG <font>Yeffect.footFixedInput()</font></b>
+        <p>Yeffect.footFixedInput([{el:"底部容器名称",tp:"上下偏移数"}],"触发软键盘弹出的表单元素","底部容器元素向上的偏移量:默认0","是否每次都进行精准计算:默认false","样式计算的延迟时间");
+        </p>
+    </div>
+    <div class="detailContent">
+        参数说明：
+        <p>
+            <font>Yeffect.footFixedInput(1,2,3,4);</font>
+            1. 底部容器名称及偏移数 的数组 如 <span>[{el:".foter",tp:-50},{el:".fot2",tp:-103}]</span><br>
+            2. 能够促发软键盘弹出的表单元素 如<span>".foter input"</span> <br>
+            3. 底部fixed元素的向上偏移量 最好带单位 如<span>"10px"</span> <br>
+            4. 是否每次都精准计算软键盘高度 如<span>false</span> 默认 <span>false</span> ; <span class="c2">(选填)</span><br>
+            5. 设置样式的延迟时间（单位毫秒，越小效果越好但太小可能会不起作用） 如<span>10</span> 默认 <span>10</span> ; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+        <div class="p" style="background:#fff;">
+            <div class="foter" id="footbtn"><input type="text"></div><br>
+            <div class="fot2" id="fot2"><input type="text"></div>
+            <button onclick="footbtn.className='foter fixedfoot';fot2.className='fot2 fixedfoot';">点击按钮设置为fixed定位测试效果</button>
+        </div>
+        <style>
+            .foter{width: 100%; height: 50px; background: #fff; position: relative;  left: 0px; bottom: 0px; box-shadow: 0px 0px 5px rgba(0,0,0,0.5);}
+            .foter input{width: 95%; height: 30px; display: block; margin: 5px auto;}
+            .gethet{height: 100%; position: relative; left: 0px; top: 0px; width: 5px; background: #f00; }
+            .fot2{width: 100%; height: 50px; left: 0px; bottom: 0px; position: relative;  z-index: 10; background: #ff0;}
+            .fixedfoot{position: fixed;}
+        </style>
+        <script>
+            Yeffect.footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],"input");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class=&quot;foter&quot; &gt;&lt;input type=&quot;text&quot;&gt;&lt;/div&gt;<br>
+                &lt;div class=&quot;fot2&quot; style=&quot;margin-top: -80px;&quot;&gt;&lt;input type=&quot;text&quot;&gt;&lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.foter{width: 100%; height: 50px; background: #fff; position: fixed;  left: 0px; bottom: 0px; box-shadow: 0px 0px 5px rgba(0,0,0,0.5);}<br>
+                　　.foter input{width: 95%; height: 30px; display: block; margin: 5px auto;}<br>
+                　　.gethet{height: 100%; position: fixed; left: 0px; top: 0px; width: 5px; background: #f00; }<br>
+                　　.fot2{width: 100%; height: 50px; position: fixed; bottom: 53px; z-index: 10; background: #ff0;}
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],"input");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+
+
+
+
+</body>
+</html>

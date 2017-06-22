@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta id="viewport" name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../js/Yeffect16_1214.min.js"></script>
+    <title>移动端网页自定义滚动条</title>
+    <style type="text/css">
+		body{overflow:hidden; margin:0px;}
+		.bodyAb{position:absolute; width:100%; height:100%; overflow-x:hidden; overflow-y:scroll; width:100%;left:0%;}
+		.bodyB{position:relative;}
+		.bodyB img{max-width:100%;}
+		.text{width:100%; height:50px; line-height:50px; font-size:13px; text-align:center; color:#666; position:absolute;}
+		.text i{display:inline-block; width:0px; height:0px; border-top:10px solid #666; border-left:7px solid transparent;border-right:7px solid transparent; margin-right:2px;}
+		.text.B i{border-bottom:10px solid #666; border-top:0px;}
+		.text.A{top:-50px;}
+		.text.B{top:100%;}
+		.loadmask{background:rgba(0,0,0,0.5); position:fixed; z-index:1500; width:100%; height:100%; left:0px; top:0px; display:none;}
+		.loadmask::after{content:"加载中..."; position:absolute; display:block; height:30px; line-height:30px; text-align:center; font-size:20px; width:50%; left:25%; top:50%; margin-top:-15px; color:#fff;}
+    </style>
+</head>
+<body>
+<div class="loadmask"></div>
+
+<div class="bodyAb">
+    <div class="bodyB" style="background:#E4FDFF"><div class="text A"><i></i><span>下拉刷新</span></div>
+    <div class="content">
+    	<img src="../images/dianpu_gg2.png"><br>
+		<img src="../images/index7.jpg"><br>
+		<img src="../images/index8.jpg"><br>
+        <img src="../images/index29.jpg"><br>
+        <img src="../images/index30.jpg"><br>
+        <img src="../images/index32.jpg"><br>
+    <div class="text B"><i></i><span>上拉加载更多</span></div>
+    </div>
+    </div>
+</div>
+
+
+ <script type="text/javascript">
+	var isLOad=true;
+	var trige=0;
+	var shuaxNUm=0;////刷新次数//////
+	var jiazNUm=0;//////加载次数///////////
+	Yeffect.addMobscroll(".bodyAb",".bodyB",false,false,function(num,ismove){
+			if(num>70){  ///////向下拖动////////
+				$(".text.A span").text("松开刷新");
+			}else{
+				$(".text.A span").text("下拉刷新");
+			}
+			if(num<-70){  ///////向上拖动////////
+				$(".text.B span").text("松开加载更多");
+				if(isLOad && ismove){
+					isLOad=false;
+					$(".loadmask").show();
+					loadhtml();
+				}
+			}else{
+				$(".text.B span").text("下拉加载更多");
+			}
+			var jiao=Math.abs(num)*180/70;
+			jiao=jiao>180?180:jiao;
+			$(".text i").css({"transform":"rotate("+jiao+"deg)","-webkit-transform":"rotate("+jiao+"deg)"});	
+	})
+	
+	function loadhtml(){
+		setTimeout(function(){
+			$(".bodyB .content").append('<img src="../images/nreimg_01.jpg"><img src="../images/nreimg_02.jpg"><img src="../images/nreimg_03.jpg"><img src="../images/nreimg_04.jpg"><img src="../images/nreimg_05.jpg"><img src="../images/nreimg_01.jpg"><img src="../images/nreimg_02.jpg"><img src="../images/nreimg_03.jpg"><img src="../images/nreimg_04.jpg"><img src="../images/nreimg_05.jpg"><img src="../images/nreimg_01.jpg"><img src="../images/nreimg_02.jpg"><img src="../images/nreimg_03.jpg"><img src="../images/nreimg_04.jpg"><img src="../images/nreimg_05.jpg"><img src="../images/nreimg_01.jpg"><img src="../images/nreimg_02.jpg"><img src="../images/nreimg_03.jpg"><img src="../images/nreimg_04.jpg"><img src="../images/nreimg_05.jpg"><img src="../images/nreimg_01.jpg"><img src="../images/nreimg_02.jpg"><img src="../images/nreimg_03.jpg"><img src="../images/nreimg_04.jpg"><img src="../images/nreimg_05.jpg"><img src="../images/nreimg_01.jpg"><img src="../images/nreimg_02.jpg"><img src="../images/nreimg_03.jpg"><img src="../images/nreimg_04.jpg"><img src="../images/nreimg_05.jpg"><br><br><br>');
+			isLOad=true;
+			$(".loadmask").hide();
+		},1000);
+	}	
+	
+	
+    </script>
+    
+</body>
+</html>
