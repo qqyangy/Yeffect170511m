@@ -70,16 +70,14 @@
 					}
 					Imgreader.readAsDataURL(thisfil[i]);
 					Imgreader.onload = function(e) {
-						console.log(IMglength);
 						var datasrl = e.target.result;
 						getImgData(datasrl, orientation,
 								function(data) {
 									Io++;
 									IOa++;
 									if (isTouxing) {
-										console.log(data);
 										OBjctent.find(img).attr("src", data);
-										fn();
+										creatIMGbox(data,OBjctent.find(img));
 										return
 									}
 									var newImg = $(thisHtml);
@@ -93,12 +91,11 @@
 										curLeng = removeAry(curLeng);
 										OBjctent.show();
 										IMglength--;
-										fn()
 									});
 									OBjctent.before(newImg);
 									curLeng.push(newImg);
 									if (IOa > thisfil.length - 1 || Io >= maxLeng) {
-										fn()
+
 									}
 								});
 						Imgreader = null
@@ -231,8 +228,13 @@
 				istouchend=true;
 			})
 		}
-		var linkL,linkR;
+		var linkL,linkR;_domimg,newobjef;
 		function creatIMGbox(img,domimg){
+			//domimg.height(50)
+			newobjef={
+				src:img,
+				domimg:domimg
+			};
 			if(!ImgboxE){
 				ImgboxE=$("<div>");
 				ImgboxE.css({width:"100%",height:"100%",position:"fixed",backgrund:"#000",left:"0px",top:"0px",overflow:"hidden",zIndex:"9999"});
@@ -282,18 +284,16 @@
 					linkR.hide();
 				});
 				linkR.click(function(){
-					getImgDataB({
-						src:img,
-						imgw:boxinnerImg.width(),
-						imgh:boxinnerImg.height(),
-						imgl:parseInt(boxinnerImg.css("left")),
-						imgt:parseInt(boxinnerImg.css("top")),
-						w:borderW,
-						h:borderH,
-						l:bmarginLeft,
-						t:bmarginTop,
-						domimg:domimg
-					});
+					newobjef.imgw=boxinnerImg.width();
+					newobjef.imgh=boxinnerImg.height()
+					newobjef.imgl=parseInt(boxinnerImg.css("left"))
+					newobjef.imgt=parseInt(boxinnerImg.css("top"))
+					newobjef.w=borderW;
+					newobjef.h=borderH;
+					newobjef.l=bmarginLeft;
+					newobjef.t=bmarginTop;
+
+					getImgDataB(newobjef);
 					ImgboxE.hide();
 					linkL.hide();
 					linkR.hide();
@@ -325,6 +325,7 @@
 				var context = canvas.getContext("2d");
 				context.drawImage(this, leftz, topz, drawWidth, drawHeight);
 				dato.domimg.attr("src",canvas.toDataURL("image/" + geshi, .8));
+				fn();
 			};
 			image.src = dato.src;
 		}
@@ -408,7 +409,7 @@
 
 <script>
 	ImageClipping(".fileAppend",".img",".X",function(){
-		console.log("更新完成!");
+		console.log("更新完成！");
 	},500,"您选择的不是图片请重新选择!",10,"png",false,400,300);
 </script>
 
