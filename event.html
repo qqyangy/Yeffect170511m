@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>event</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/Yeffect16_1214.min.js"></script>
+</head>
+<body>
+<style>
+    .box{width: 300px; height: 300px; background: #ff00ff; cursor: pointer;}
+    .text{height: 100px; border: 1px solid #666; margin-top: 20px;}
+</style>
+<div class="box"></div>
+<div class="text"></div>
+<script>
+    var text=$(".text");
+ /////start,move,ent,pans,click/////////
+
+ /*******start*********/
+
+
+    Yeffect.event.start(".box",function(e,es){
+    // alert(es)
+    // $(this).width(50)
+       // alert(e.pageX)
+     e.preventDefault()
+ })
+ /*******move*********/
+
+ Yeffect.event.move(".box",function(e){
+     $(this).width(200)
+     text.text(e.deltaY)
+     e.preventDefault();
+ })
+
+/*******end*********/
+
+Yeffect.event.end(".box",function(e){
+
+        text.text(e.deltaX+":"+e.deltaY)
+    });
+
+
+
+    /////////////////////banner/////////////////////
+    Yeffect.mobileBanner_aaaaa=function (obj1, obj2, num, btnL, btnR, css, time, aniTimer, easingstr) {
+        num = num || "";
+        btnL = btnL || "";
+        btnR = btnR || "";
+        css = css || "current";
+        time = time || 5e3;
+        aniTimer = aniTimer || 300;
+        easingstr = easingstr || "linear";
+        var obj1ul = $(obj1);
+        var obj2li = $(obj2);
+        var numdian = $(num);
+        if (obj1ul.length < 1) return;
+        if (obj2li.length < 2) return;
+        var domObj=obj1ul.eq(0);
+        obj1ul.css("width", "100%");
+        obj2li.css({
+            position: "absolute",
+            top: 0,
+            left: "100%",
+            width: "100%"
+        });
+        var ulweidth = obj1ul.width();
+        var liliength = obj2li.length;
+        var curptins = 0;
+        var setIntervalsAAA;
+        var panstPotinX = 0;
+        var starTime = 0;
+        var isDragendeanli = true;
+        obj2li.eq(curptins).css({
+            left: 0
+        });
+        numdian.removeClass(css).eq(curptins).addClass(css);
+        obj2li.removeClass(css).eq(curptins).addClass(css);
+        numdian.click(function () {
+            var curindex = numdian.index(this);
+            if (curindex != curptins) {
+                animatgundxz(curindex, true)
+            }
+        });
+        $(btnL).click(function () {
+            if (curptins - 1 < 0) {
+                animatgundxz(liliength - 1, false)
+            } else {
+                animatgundxz(curptins - 1, false)
+            }
+        });
+        $(btnR).click(function () {
+            if (curptins + 1 > liliength - 1) {
+                animatgundxz(0, true)
+            } else {
+                animatgundxz(curptins + 1, true)
+            }
+        });
+        this.event.start(domObj,function (ev) {
+            if (!isDragendeanli) return;
+            panstPotinX = 0;
+            starTime = new Date().getTime()
+        });
+
+        function animateEndfunction() {
+            isDragendeanli = true
+        }
+        this.event.end(document,function (ev) {
+            if (!isDragendeanli){
+                setTimeout(animateEndfunction,aniTimer)
+                return;
+            }
+            isDragendeanli = false;
+            var thstates = new Date().getTime();
+            var chazhis = thstates - starTime;
+            if (chazhis < 300) {
+                if (panstPotinX < 40 && panstPotinX > 0) {
+                    obj2li.eq(curptins).stop().animate({
+                        left: 100 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 10);
+                    obj2li.eq(getPrveInt()).stop().animate({
+                        left: 0 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 5);
+                    if (liliength > 2) {
+                        obj2li.eq(getNextInt()).stop().animate({
+                            left: -100 + "%"
+                        }, aniTimer, easingstr, animateEndfunction).css("z-index", 0)
+                    }
+                    curptins--
+                }
+                if (panstPotinX > -40 && panstPotinX < 0) {
+                    obj2li.eq(curptins).stop().animate({
+                        left: -100 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 10);
+                    obj2li.eq(getNextInt()).stop().animate({
+                        left: 0 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 5);
+                    if (liliength > 2) {
+                        obj2li.eq(getPrveInt()).stop().animate({
+                            left: 100 + "%"
+                        }, aniTimer, easingstr, animateEndfunction).css("z-index", 0)
+                    }
+                    curptins++
+                }
+            } else {
+                obj2li.eq(curptins).stop().animate({
+                    left: 0 + "%"
+                }, aniTimer, easingstr, animateEndfunction).css("z-index", 10);
+                if (panstPotinX > 0) {
+                    obj2li.eq(getPrveInt()).stop().animate({
+                        left: -100 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 5);
+                    if (liliength > 2) {
+                        obj2li.eq(getNextInt()).stop().animate({
+                            left: 100 + "%"
+                        }, aniTimer, easingstr, animateEndfunction).css("z-index", 0)
+                    }
+                } else {
+                    obj2li.eq(getNextInt()).stop().animate({
+                        left: 100 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 5);
+                    if (liliength > 2) {
+                        obj2li.eq(getPrveInt()).stop().animate({
+                            left: -100 + "%"
+                        }, aniTimer, easingstr, animateEndfunction).css("z-index", 0)
+                    }
+                }
+            } if (panstPotinX > 40) {
+                obj2li.eq(curptins).stop().animate({
+                    left: 100 + "%"
+                }, aniTimer, easingstr, animateEndfunction).css("z-index", 10);
+                obj2li.eq(getPrveInt()).stop().animate({
+                    left: 0 + "%"
+                }, aniTimer, easingstr, animateEndfunction).css("z-index", 5);
+                if (liliength > 2) {
+                    obj2li.eq(getNextInt()).stop().animate({
+                        left: -100 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 0)
+                }
+                curptins--
+            }
+            if (panstPotinX < -40) {
+                obj2li.eq(curptins).stop().animate({
+                    left: -100 + "%"
+                }, aniTimer, easingstr, animateEndfunction).css("z-index", 10);
+                obj2li.eq(getNextInt()).stop().animate({
+                    left: 0 + "%"
+                }, aniTimer, easingstr, animateEndfunction).css("z-index", 5);
+                if (liliength > 2) {
+                    obj2li.eq(getPrveInt()).stop().animate({
+                        left: 100 + "%"
+                    }, aniTimer, easingstr, animateEndfunction).css("z-index", 0)
+                }
+                curptins++
+            }
+            setcurptinszhi();
+            panstPotinX = 0
+        });
+
+        function setcurptinszhi() {
+            if (curptins < 0) {
+                curptins = liliength - 1
+            }
+            if (curptins > liliength - 1) {
+                curptins = 0
+            }
+            numdian.removeClass(css).eq(curptins).addClass(css);
+            obj2li.removeClass(css).eq(curptins).addClass(css)
+        }
+
+        this.event.move(domObj,function (ev) {
+            if(Math.abs(ev.deltaY)>Math.abs(ev.deltaX)*5){
+                return;
+            }else{
+                ev.preventDefault();
+            }
+            if (!isDragendeanli) return;
+            clearInterval(setIntervalsAAA);
+            setIntervalsAAA = setInterval(functionTimegd, time);
+            var deltaXz = ev.deltaX;
+            var baifenbuzh = deltaXz / ulweidth * 100;
+            panstPotinX = baifenbuzh;
+            obj2li.eq(curptins).stop().css({
+                left: baifenbuzh + "%"
+            });
+            if (deltaXz > 0) {
+                obj2li.eq(getPrveInt()).stop().css({
+                    left: baifenbuzh - 100 + "%"
+                });
+                if (liliength > 2) {
+                    obj2li.eq(getNextInt()).stop().css({
+                        left: baifenbuzh + 100 + "%"
+                    })
+                }
+            } else {
+                obj2li.eq(getNextInt()).stop().css({
+                    left: baifenbuzh + 100 + "%"
+                });
+                if (liliength > 2) {
+                    obj2li.eq(getPrveInt()).stop().css({
+                        left: baifenbuzh - 100 + "%"
+                    })
+                }
+            }
+        });
+
+        function getPrveInt() {
+            var PrveInt = curptins - 1;
+            if (PrveInt < 0) {
+                PrveInt = liliength - 1
+            }
+            return PrveInt
+        }
+
+        function getNextInt() {
+            var NextInt = curptins + 1;
+            if (NextInt > liliength - 1) {
+                NextInt = 0
+            }
+            return NextInt
+        }
+        setIntervalsAAA = setInterval(functionTimegd, time);
+
+        function functionTimegd() {
+            if (curptins + 1 > liliength - 1) {
+                animatgundxz(0, true)
+            } else {
+                animatgundxz(curptins + 1, true)
+            }
+        }
+
+        function animatgundxz(cuet, drect) {
+            clearInterval(setIntervalsAAA);
+            setIntervalsAAA = setInterval(functionTimegd, time);
+            obj2li.stop().css({
+                left: "100%"
+            });
+            if (drect) {
+                obj2li.eq(cuet).stop().css({
+                    left: "100%"
+                });
+                obj2li.eq(cuet).animate({
+                    left: 0
+                }, aniTimer, easingstr, animateEndfunction);
+                obj2li.eq(curptins).stop().css({
+                    left: "0%"
+                });
+                obj2li.eq(curptins).animate({
+                    left: "-100%"
+                }, aniTimer, easingstr, animateEndfunction)
+            } else {
+                obj2li.eq(cuet).css({
+                    left: "-100%"
+                }).animate({
+                    left: 0
+                }, aniTimer, easingstr, animateEndfunction);
+                obj2li.eq(curptins).css({
+                    left: "0%"
+                }).animate({
+                    left: "100%"
+                }, aniTimer, easingstr, animateEndfunction)
+            }
+            curptins = cuet;
+            numdian.removeClass(css).eq(curptins).addClass(css);
+            obj2li.removeClass(css).eq(curptins).addClass(css)
+        }
+        $(window).resize(function () {
+            obj2li.stop().css({
+                left: "100%"
+            });
+            obj2li.eq(curptins).stop().css({
+                left: 0
+            });
+            ulweidth = obj1ul.width()
+        })
+    }
+
+</script>
+<div class="mobBanner">
+    　　<a class="mobLeft" href="javascript:void(0)"></a>
+    　　<a class="mobRight" href="javascript:void(0)"></a>
+    　　<ul>
+    　　　　<li><a><img src="images/dianpuM_01.jpg"></a></li>
+    　　　　<li><a><img src="images/dianpuM_02.jpg"></a></li>
+    　　　　<li><a><img src="images/dianpuM_03.jpg"></a></li>
+    　　</ul>
+    　　<p><i></i><i></i><i></i></p>
+</div>
+<style>
+ ul,li{margin: 0px; padding: 0px; list-style: none;}
+.mobBanner{width:90%; max-width:599px; height:200px; position:relative; margin-left:20px;}
+.mobBanner ul{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px;}
+    .mobBanner ul li{position:absolute; width:100%; height:100%; overflow:hidden; left:0px; top:0px; overflow:hidden; text-align:center;}
+    .mobBanner ul li::after{content:""; display:block; position:absolute; width:100%; height:100%; left:0px; top:0px; z-index:10;}
+    .mobBanner ul li img{height:100%;}
+    .mobBanner ul li a{display:block; height:100%; position:absolute; width:3000px; left:50%; margin-left:-1500px;}
+    .mobBanner>p{position:absolute; height:0px; line-height:0px; text-align:center; width:100%; margin:0px; padding:0px; left:0px; bottom:10px; z-index:10;}
+    .mobBanner>p i{display:inline-block; width:5px; height:5px; border-radius:5px; background:#fff; margin:0px 3px; cursor:pointer;}
+    .mobBanner>p i.current{background:#F1B503;}
+    .mobLeft{width:30px; height:50px; position:absolute; left:-20px; top:75px; background:url(images/leftbtn.png) left center no-repeat; cursor:pointer; z-index:10;}
+    .mobRight{width:30px; height:50px; position:absolute; right:-20px; top:75px; background:url(images/rightbtn.png) right center no-repeat; cursor:pointer; z-index:10;}
+</style>
+<script>
+    Yeffect.mobileBanner_aaaaa(".mobBanner ul",".mobBanner ul li",".mobBanner>p i",".mobLeft",".mobRight","current",5000,500,"easeInOutSine");
+</script>
+</body>
+</html>

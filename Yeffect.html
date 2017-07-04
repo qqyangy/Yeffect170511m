@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit" />
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/Yeffect16_1214.min.js"></script>
-    <title>Yeffect效果说明</title>
+    <title>Yeffect帮助文档</title>
 </head>
 <body>
 <style>
@@ -119,8 +119,12 @@
 
 <!--左侧导航-->
 <dl class="navdl">
+    <dt>事件</dt>
+    <dd class="current">start</dd>
+    <dd>move</dd>
+    <dd>end</dd>
     <dt>tab选项卡</dt>
-    <dd class="current">clickTabs</dd>
+    <dd>clickTabs</dd>
     <dd>hoverTabs</dd>
     <dd>hoverTab</dd>
     <dd>hoverTab2</dd>
@@ -226,6 +230,112 @@
 
 <div class="bodyA">
     js引入说明：<img src="images/script.png"><br><br>
+    <div class="titleContent">
+        <b>手指按下/鼠标按下<font>Yeffect.event.start();</font></b>
+        <p>调用方式：Yeffect.event.start("需要注册事件的元素名称指向",回调函数);</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            相同的时间注册方式兼容手指事件与鼠标事件;
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.event.start(1,2);</font>
+            1. 接受事件的元素名称指向 如：<span>".eventbox"</span>;<br>
+            2. 回调函数 如：<span>function(e){}</span>;<br>
+        </p>
+        布局要求：
+        <p>
+            1.无
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div>
+                <div class="tabNavs"><a href="javascript:void(0)">选项一</a><a href="javascript:void(0)">选项二</a><a href="javascript:void(0)">选项三</a></div>
+                <div class="tabContents">
+                    内容一
+                </div>
+                <div class="tabContents">
+                    内容二
+                </div>
+                <div class="tabContents">
+                    内容三
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="tabNavs"><a href="javascript:void(0)">选项A</a><a href="javascript:void(0)">选项B</a><a href="javascript:void(0)">选项C</a></div>
+                <div class="tabContents">
+                    内容A
+                </div>
+                <div class="tabContents">
+                    内容B
+                </div>
+                <div class="tabContents">
+                    内容C
+                </div>
+            </div>
+        </div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div&gt;<br>
+                　　&lt;div class="tabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项一&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项二&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项三&lt;/a&gt;&lt;/div&gt;<br>
+                　　&lt;div class="tabContents"&gt;<br>
+                　　　　内容一<br>
+                　　&lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　　 　内容二<br>
+                　　 &lt;/div&gt;<br>
+                　　&lt;div class="tabContents"&gt;<br>
+                　　　　内容三<br>
+                　　&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+                &lt;br&gt;<br>
+                &lt;div&gt;<br>
+                　　 &lt;div class="tabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项A&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项B&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项C&lt;/a&gt;&lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　 　　内容A<br>
+                　　 &lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　 　　内容B<br>
+                　　&lt;/div&gt;<br>
+                　　 &lt;div class="tabContents"&gt;<br>
+                　　　　内容C<br>
+                　　 &lt;/div&gt;<br>
+                &lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.tabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}<br>
+                　　.tabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}<br>
+                　　.tabNavs a.current{background:#fff; height:36px;}<br>
+                　　.tabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.clickTabs(".tabNavs a",".tabContents","current");;<br>
+                　　 <span class="hui">//////最后一个参数省略时会默认成"current"///////</span><br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .tabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}
+            .tabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}
+            .tabNavs a.current{background:#fff; height:36px;}
+            .tabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}
+        </style>
+        <script>
+            Yeffect.clickTabs(".tabNavs a",".tabContents","current");
+        </script>
+    </div>
 
     <div class="titleContent">
         <b>Tab选项卡（支持同页面多组）<font>Yeffect.clickTabs();</font></b>
