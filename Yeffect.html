@@ -237,105 +237,245 @@
     <div class="detailContent">
         效果特点：
         <p>
-            相同的时间注册方式兼容手指事件与鼠标事件;
+            相同的事件注册方式兼容手指事件与鼠标事件，支持多点触摸(通过event.identifier区分);
         </p>
         参数说明：
         <p>
             <font>Yeffect.event.start(1,2);</font>
-            1. 接受事件的元素名称指向 如：<span>".eventbox"</span>;<br>
+            1. 接受事件的元素名称指向 如：<span>".event-start"</span>;<br>
             2. 回调函数 如：<span>function(e){}</span>;<br>
+        </p>
+        回调函数参数说明：
+        <p>
+            <font>function(1,2){}</font>
+            1. 原生的event对象内置pageX，pageY,curent，preventDefault...等属性与方法;<br>
+            2. 如果是手机端返回原生event对象的touches属性 <br>
+        </p>
+        回调函数体内this指向说明：
+        <p>
+            指向绑定事件的对象
         </p>
         布局要求：
         <p>
             1.无
         </p>
-
         示例效果：
-        <div class="p">
-            <div>
-                <div class="tabNavs"><a href="javascript:void(0)">选项一</a><a href="javascript:void(0)">选项二</a><a href="javascript:void(0)">选项三</a></div>
-                <div class="tabContents">
-                    内容一
-                </div>
-                <div class="tabContents">
-                    内容二
-                </div>
-                <div class="tabContents">
-                    内容三
-                </div>
-            </div>
-            <br>
-            <div>
-                <div class="tabNavs"><a href="javascript:void(0)">选项A</a><a href="javascript:void(0)">选项B</a><a href="javascript:void(0)">选项C</a></div>
-                <div class="tabContents">
-                    内容A
-                </div>
-                <div class="tabContents">
-                    内容B
-                </div>
-                <div class="tabContents">
-                    内容C
-                </div>
-            </div>
-        </div>
+        <div class="event-start">点击测试</div>
         全部源码：<br>
         <div class="p">
             <strong>html部分</strong>
             <p class="linhet">
-                &lt;div&gt;<br>
-                　　&lt;div class="tabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项一&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项二&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项三&lt;/a&gt;&lt;/div&gt;<br>
-                　　&lt;div class="tabContents"&gt;<br>
-                　　　　内容一<br>
-                　　&lt;/div&gt;<br>
-                　　 &lt;div class="tabContents"&gt;<br>
-                　　　 　内容二<br>
-                　　 &lt;/div&gt;<br>
-                　　&lt;div class="tabContents"&gt;<br>
-                　　　　内容三<br>
-                　　&lt;/div&gt;<br>
-                &lt;/div&gt;<br>
-                &lt;br&gt;<br>
-                &lt;div&gt;<br>
-                　　 &lt;div class="tabNavs"&gt;&lt;a href="javascript:void(0)"&gt;选项A&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项B&lt;/a&gt;&lt;a href="javascript:void(0)"&gt;选项C&lt;/a&gt;&lt;/div&gt;<br>
-                　　 &lt;div class="tabContents"&gt;<br>
-                　　 　　内容A<br>
-                　　 &lt;/div&gt;<br>
-                　　 &lt;div class="tabContents"&gt;<br>
-                　　 　　内容B<br>
-                　　&lt;/div&gt;<br>
-                　　 &lt;div class="tabContents"&gt;<br>
-                　　　　内容C<br>
-                　　 &lt;/div&gt;<br>
-                &lt;/div&gt;
+                &lt;div class=&quot;event-start&quot;&gt;点击测试&lt;/div&gt;
             </p>
             <strong>css部分</strong>
             <p class="linhet">
                 &lt;style&gt;<br>
-                　　.tabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}<br>
-                　　.tabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}<br>
-                　　.tabNavs a.current{background:#fff; height:36px;}<br>
-                　　.tabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}<br>
+                　　.event-start{width: 150px; height: 150px; border: 1px solid #666; background: #fff; line-height: 150px; text-align: center;}<br>
                 &lt;/style&gt;<br>
             </p>
             <strong>js部分</strong>
             <p class="linhet">
                 &lt;script&gt;<br>
-                　　 Yeffect.clickTabs(".tabNavs a",".tabContents","current");;<br>
-                　　 <span class="hui">//////最后一个参数省略时会默认成"current"///////</span><br>
+                　　 Yeffect.event.start(".event-start",function(e){<br>
+                　　 　　alert("已按下");<br>
+                　　 });<br>
                 &lt;/script&gt;<br>
             </p>
         </div>
 
         <style>
-            .tabNavs{height:35px; width:303px; border:1px solid #aaa; background:#eee; border-right:0px; position:relative;}
-            .tabNavs a{display:block; height:35px; line-height:35px; width:100px; border-right:1px solid #aaa; float:left; text-align:center; color:#333;}
-            .tabNavs a.current{background:#fff; height:36px;}
-            .tabContents{ display:none; width:302px; height:100px; border:1px solid #aaa; background:#fff; margin-top:-1px; font-size:14px;}
+            .event-start{width: 150px; height: 150px; border: 1px solid #666; background: #fff; line-height: 150px; text-align: center;}
         </style>
         <script>
-            Yeffect.clickTabs(".tabNavs a",".tabContents","current");
+            Yeffect.event.start(".event-start",function(e){
+                alert("已按下");
+            });
         </script>
     </div>
+
+
+
+    <div class="titleContent">
+        <b>手指滑动/鼠标移动<font>Yeffect.event.move();</font></b>
+        <p>调用方式：Yeffect.event.move("需要注册事件的元素名称指向",回调函数);</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            相同的事件注册方式兼容手指事件与鼠标事件，支持多点触摸(通过event.identifier区分);
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.event.move(1,2);</font>
+            1. 接受事件的元素名称指向 如：<span>".event-move"</span>;<br>
+            2. 回调函数 如：<span>function(e){}</span>;<br>
+        </p>
+        回调函数参数说明：
+        <p>
+            <font>function(1,2){}</font>
+            1. 原生的event对象内置pageX，pageY,curent，preventDefault...等属性与方法; 新增属性(<br>
+                　　　　<span>deltaX</span> 从开始位置当当前位置X方向上移动的距离;<br>
+                　　　　<span>deltaY</span> 从开始位置当当前位置Y方向上移动的距离;<br>
+                　　　　<span>mousedown</span> 如果为鼠标事件此属性为true则代表是数遍按下时移动否则代表未按下时移动,移动端没有此属性;<br>
+            　　)<br>
+            2. 如果是手机端返回原生event对象的touches属性 <br>
+        </p>
+        回调函数体内this指向说明：
+        <p>
+            指向绑定事件的对象
+        </p>
+        布局要求：
+        <p>
+            1.无
+        </p>
+        示例效果：
+        <div class="event-move">当前位置</div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class=&quot;event-move&quot;&gt;当前位置&lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.event-move{width: 200px; height: 200px; font-weight: normal; color: #333; border: 1px solid #666; background: #fff; line-height: 20px;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.event.move(".event-move",function(e){<br>
+                　　 　$(this).html(<br>
+                　　 　　"鼠标X位置："+e.pageX+"&lt;br&gt;"+<br>
+                　　 　　"鼠标Y位置："+e.pageY+"&lt;br&gt;"+<br>
+                　　 　　"鼠标拖动X距离："+e.deltaX+"&lt;br&gt;"+<br>
+                　　 　　"鼠标拖动Y距离："+e.deltaY+"&lt;br&gt;"<br>
+                　　　 )<br>
+                　　 });<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .event-move{width: 200px; height: 200px; font-weight: normal; color: #333; border: 1px solid #666; background: #fff; line-height: 20px;}
+        </style>
+        <script>
+            Yeffect.event.move(".event-move",function(e){
+                $(this).html(
+                        "鼠标X位置："+e.pageX+"<br>"+
+                        "鼠标Y位置："+e.pageY+"<br>"+
+                        "鼠标拖动X距离："+e.deltaX+"<br>"+
+                        "鼠标拖动Y距离："+e.deltaY+"<br>"
+                )
+            });
+        </script>
+    </div>
+
+
+    <div class="titleContent">
+        <b>手指离开/鼠标抬起<font>Yeffect.event.end();</font></b>
+        <p>调用方式：Yeffect.event.end("需要注册事件的元素名称指向",回调函数);</p>
+    </div>
+    <div class="detailContent">
+        效果特点：
+        <p>
+            相同的事件注册方式兼容手指事件与鼠标事件，支持多点触摸(通过event.identifier区分);
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.event.end(1,2);</font>
+            1. 接受事件的元素名称指向 如：<span>".event-end"</span>;<br>
+            2. 回调函数 如：<span>function(e){}</span>;<br>
+        </p>
+        回调函数参数说明：
+        <p>
+            <font>function(1,2){}</font>
+            1. 原生的event对象内置pageX，pageY,curent，preventDefault...等属性与方法; 新增属性(<br>
+            　　　　<span>deltaX</span> 从开始位置当当前位置X方向上移动的距离;<br>
+            　　　　<span>deltaY</span> 从开始位置当当前位置Y方向上移动的距离;<br>
+            　　　　<span>mousedown</span> 如果为鼠标事件此属性为true则代表是数遍按下时移动否则代表未按下时移动,移动端没有此属性;<br>
+            　　)<br>
+            2. 如果是手机端返回原生event对象的touches属性 <br>
+        </p>
+        回调函数体内this指向说明：
+        <p>
+            指向绑定事件的对象
+        </p>
+        布局要求：
+        <p>
+            1.无
+        </p>
+        示例效果：
+        <div class="event-end">点击测试</div>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class=&quot;event-end&quot;&gt;点击测试&lt;/div&gt;
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.event-end{width: 150px; height: 150px; border: 1px solid #666; background: #fff; text-align: center;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.event.end(".event-end",function(e){<br>
+                　　 　　 $(this).html("鼠标/手指松开时的位置为："+e.pageX+","+e.pageY);<br>
+                　　 });<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+
+        <style>
+            .event-end{width: 150px; height: 150px; border: 1px solid #666; background: #fff; text-align: center;}
+        </style>
+        <script>
+            Yeffect.event.end(".event-end",function(e){
+                $(this).html("鼠标/手指松开时的位置为："+e.pageX+","+e.pageY);
+            });
+        </script>
+        事件的综合示例：<br>
+        <div class="eventCotent">在此区域内拖动小方块
+            <div class="events-div"></div>
+        </div>
+        <style>
+            .eventCotent{width: 400px; height: 400px; border: 1px solid #666; background: #fff; position: relative; overflow: hidden;}
+            .events-div{width:50px; height: 50px; position:absolute; background: #f00; left: 10px; top:20px; cursor: move;}
+        </style>
+        <script>
+            Yeffect.event.move(".eventCotent",function(e){
+                $(".events-div").css({"margin-left":e.deltaX,"margin-top":e.deltaY});
+            })
+            Yeffect.event.end(".eventCotent",function(e){
+                var enters=$(".events-div");
+                enters.css({left:parseInt(enters.css("left"))+parseInt(enters.css("margin-left")),top:parseInt(enters.css("top"))+parseInt(enters.css("margin-top")),"margin-left":0,"margin-top":0});
+            })
+        </script>
+        事件的综合示例源码：<br>
+        <p class="linhet">
+        　　 &lt;div class=&quot;eventCotent&quot;&gt;在此区域内拖动小方块<br>
+        　　 　　&lt;div class=&quot;events-div&quot;&gt;&lt;/div&gt;<br>
+        　　 &lt;/div&gt;<br>
+        　　 &lt;style&gt;<br>
+            　　 　　.eventCotent{width: 400px; height: 400px; border: 1px solid #666; background: #fff; position: relative; overflow: hidden;}<br>
+            　　 　　.events-div{width:50px; height: 50px; position:absolute; background: #f00; left: 10px; top:20px; cursor: move;}<br>
+        　　 &lt;/style&gt;<br>
+        　　 &lt;script&gt;<br>
+            　　 　　 Yeffect.event.move(".eventCotent",function(e){<br>
+            　　 　　　　$(".events-div").css({"margin-left":e.deltaX,"margin-top":e.deltaY});<br>
+            　　 　　 })<br>
+            　　 　　Yeffect.event.end(".eventCotent",function(e){<br>
+            　　 　　　　var enters=$(".events-div");<br>
+            　　 　　　　enters.css({left:parseInt(enters.css("left"))+parseInt(enters.css("margin-left")),top:parseInt(enters.css("top"))+parseInt(enters.css("margin-top")),"margin-left":0,"margin-top":0});<br>
+            　　 　　})<br>
+        　　 &lt;/script&gt;<br>
+        </p>
+    </div>
+
 
     <div class="titleContent">
         <b>Tab选项卡（支持同页面多组）<font>Yeffect.clickTabs();</font></b>
