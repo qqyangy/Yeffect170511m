@@ -174,6 +174,7 @@
     <dd>Html5FileReader</dd>
     <dd>Html5FileReaders</dd>
     <dd>uploadFileAppend</dd>
+    <dd>ImageClipping</dd>
     <dt>图集展示</dt>
     <dd>imglist5</dd>
     <dt>滚屏效果</dt>
@@ -3191,6 +3192,97 @@
         </div>
     </div>
 
+
+
+    <div class="titleContent"><b>html5图片裁剪上传预览（支持压缩与数量设置裁剪设置）<font>Yeffect.ImageClipping()</font></b>
+        <p>Yeffect.ImageClipping("file的容器元素名称指向","容器下的图片元素名称指向","容器下的关闭按钮名称指向","选择图片完成或删除图片完成时的回调函数","设置最大宽度或高度","如果选择的不是图片文件的提示语句","最多能选择的数量"，"存储格式默认png","是否为头像图片如果是即为单张可修改"，"需要裁剪成的宽度","需要裁剪成的高度");</p>
+    </div>
+    <div class="detailContent">
+        效果说明：
+        <p>
+            1. 支持直接预览图片,推荐也可获取图片src上的图像数据,可添加预览多张图片 数量不限、也可以单独设置（input不要设置multiple属性）。<br>
+            2. 可以对图像数据进行压缩通过设置（第5个参数设置最大宽高）设置，最后两个参数分别设置需要裁剪成的宽度和高度。<br>
+            2. 被渲染元素组与上传按钮组有两点不同之处：1、被渲染的元素组内不包含file文件域。2、被渲染元素组容器会有一个名为'show'的class名称（可通过该class来设置内部的关闭按钮显示状态）。<br>
+        </p>
+        参数说明：
+        <p>
+            <font>Yeffect.ImageClipping(1,2,3,4,5,6,7,8,9,10,11);</font>
+            1. file文件域与图片共有父级的名称指向 如：<span>".fileAppend</span>;<br>
+            2. 容器内图片名称指向(父级往下访问)  如：<span>".img"</span> 默认 <span>"img"</span>; <span class="c2">(选填)</span><br>
+            3. 容器内关闭按钮名称指向(父级往下访问)  如：<span>".X"</span> 默认 <span>""</span>; <span class="c2">(选填)</span><br>
+            4. 选择图片完成或删除图片完成时的回调函数（可通过该函数实现对隐藏于赋值等操作）默认 <span>function(){}</span>; <span class="c2">(选填)</span><br>
+            5. 设置最大宽度或高度(被选择的图片的宽高会被控制在该范围以内)  如：<span>500</span> 默认 <span>1000</span>; <span class="c2">(选填)</span><br>
+            6. 如果选择的不是图片文件的提示语句（如果选择非图片会造成预览失败,可在此设置对用户的提示语）  如：<span>"您选择的不是图片文件请重新选择"</span> 默认 <span>"你选择的不是图片！"</span>; <span class="c2">(选填)</span><br>
+            7. 最多能选择的数量（可用来限制选择与渲染的图片数量当大于该数值是 上传按钮会被隐藏）  如：<span>10</span> 默认 <span>100</span>; <span class="c2">(选填)</span><br>
+            8. 转换为图像数据的格式（jpeg、png、gif）任选其一  如：<span>"jpeg"</span> 默认 <span>"png"</span>; <span class="c2">(选填)</span><br>
+            9. 是否为头像图片如果是即为单张可修改（可反复重复选择修改渲染，不会新增渲染且只能有一张）  如：<span>true</span> 默认 <span>false</span>; <span class="c2">(选填)</span><br>
+            10. 需要裁剪后图片的宽度  如：<span>450</span> 默认 <span>300</span>; <span class="c2">(选填)</span><br>
+            11. 需要裁剪后图片的高度  如：<span>450</span> 默认 <span>300</span>; <span class="c2">(选填)</span><br>
+        </p>
+        布局要求：
+        <p>
+            1. file最好包含属性 <span>accept="image/gif,image/jpeg,image/png"</span>。<br>
+            2. file文件域与图片有一个共同的父级元素。<br>
+        </p>
+
+        示例效果：
+        <div class="p">
+            <div class="ClippingDiv">
+                <div class="Clipping"><input type="file" multiple accept="image/gif,image/jpeg,image/png"><img class="img" src="images/index_23.png"><button class="X">X</button></div>
+            </div>
+        </div>
+        <style>
+            .ClippingDiv{height:120px; overflow:hidden; padding-top:5px;}
+            .Clipping{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}
+            .Clipping img{width:118px; height:118px;}
+            .Clipping input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}
+            .Clipping button{width:20px; height:20px; position:absolute; background:#f00; border:0px; border-radius:20px; color:#fff; cursor:pointer; top:-5px; right:-5px; z-index:10; display:none;}
+            .Clipping.show button{display:block;}
+        </style>
+        <script>
+            Yeffect.ImageClipping(".Clipping",".img",".X",function(){
+                console.log("更新完成!");
+            },500,"您选择的不是图片请重新选择!",10,"png",false,450,450);
+            ///可简写成/// Yeffect.ImageClipping(".Clipping",".img",".X");
+            ///最简单可写成/// Yeffect.ImageClipping(".Clipping");
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div class="ClippingDiv"&gt;<br>
+                　　&lt;div class="Clipping"&gt;&lt;input type="file" multiple accept="image/gif,image/jpeg,image/png"&gt;&lt;img class="img" src="images/index_23.png"&gt;&lt;button class="X"&gt;X&lt;/button&gt;&lt;/div&gt;<br>
+                &lt;/div&gt;<br>
+            </p>
+            <strong>css部分</strong>
+            <p class="linhet">
+                &lt;style&gt;<br>
+                　　.ClippingDiv{height:120px; overflow:hidden; padding-top:5px;}<br>
+                　　.Clipping{width:118px; height:118px; position:relative; background:#fff; border:1px solid #ccc; float:left; margin-right:10px;}<br>
+                　　.Clipping img{width:118px; height:118px;}<br>
+                　　.Clipping input{position:absolute; width:100%; height:100%; opacity:0; left:0px; top:0px; cursor:pointer;}<br>
+                　　.Clipping button{width:20px; height:20px; position:absolute; background:#f00; border:0px; border-radius:20px; color:#fff; cursor:pointer; top:-5px; right:-5px; z-index:10; display:none;}<br>
+                　　.Clipping.show button{display:block;}<br>
+                &lt;/style&gt;<br>
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　 Yeffect.ImageClipping(".Clipping",".img",".X",function(){<br>
+                　　 　　console.log("更新完成!");<br>
+                　　 },500,"您选择的不是图片请重新选择!",10,"png",false,450,450);<br><br>
+                　　 ///可简写成/// Yeffect.ImageClipping(".Clipping",".img",".X");<br>
+                　　 ///最简单可写成/// Yeffect.ImageClipping(".Clipping");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+
     <div class="titleContent"><b>图集展示5个<font>Yeffect.imglist5()</font></b>
         <p>Yeffect.imglist5("列表项容器名称指向","左按钮名称指向","右按钮名称指向","列表项标签名","数据数组","初始向后移动的张数","显示文本的标签名","储存文本的标签名","缓动过程时长",<i onClick="TnacShow()">缓动函数名选填</i>);
         </p>
@@ -3867,7 +3959,7 @@
             .fixedfoot{position: fixed;}
         </style>
         <script>
-            Yeffect.footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],"input");
+            Yeffect.footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],".foter input,.fot2 input");
         </script>
         全部源码：<br>
         <div class="p">
@@ -3888,7 +3980,7 @@
             <strong>js部分</strong>
             <p class="linhet">
                 &lt;script&gt;<br>
-                　　 footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],"input");<br>
+                　　 footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],".foter input,.fot2 input");<br>
                 &lt;/script&gt;<br>
             </p>
         </div>
