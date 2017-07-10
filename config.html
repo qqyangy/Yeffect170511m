@@ -16,6 +16,7 @@
 	.selectContent li{float: left; width: 25%; height: 25px; line-height: 25px; font-size: 12px; list-style: none; padding: 0px; margin: 0px; margin-bottom: 3px;}
 	.selectContent li input:checked+span{background:#393; display: inline-block; color: #fff; width: 160px; padding-left: 5px; border-radius: 5px;}
 	.selectContent li input:disabled+span{background:#6aa; display: inline-block; color: #fff; width: 160px; padding-left: 5px; border-radius: 5px;}
+	.selectContent li input.rely:disabled+span{background:#679; display: inline-block; color: #fff; width: 160px; padding-left: 5px; border-radius: 5px;}
 	button{display: block; height: 40px; width: 100px; border-radius: 10px; margin: 10px auto; border: 0px; background: #069; color: #fff; font-size: 14px; cursor:pointer;}
 	.textarea{display: block; border: 1px solid #aaa; width: 100%; font-size: 13px; color: #333; min-height: 300px; resize: none; background: #fefefe; border-radius: 10px; padding: 5px; box-sizing: border-box;}
 	.textarea b{font-weight: normal; display: block; color: #666; font-size: 13px;}
@@ -60,6 +61,42 @@
 <script class="YeffectAttr">var YeffectAttr={isendscroll:false,isaddtousmove:false,resizeHt_func:[],YeffectT15time:false,YeffectT15Arry:[],YeffectT30time:false,YeffectT30Arry:[],YeffectT50time:false,YeffectT50Arry:[],YeffectT100time:false,YeffectT100Arry:[],YeffectT200time:false,YeffectT200Arry:[],$upary:[],dragupEvent:function (){for(var i=0;i<this.$upary.length;i++){this.$upary[i]();}}};</script>
 
 <script>
+	//////设置依赖/////////
+	function relyOn(o,s){
+		s=s.toString();
+		var rely=[];
+		if(o!="event" && s.indexOf(".event.")>-1){
+			rely.push("event");
+		}
+		if(o!="isPC" && s.indexOf(".isPC")>-1){
+			rely.push("isPC");
+		}
+		if(o!="mAlert" && s.indexOf(".mAlert")>-1){
+			rely.push("mAlert");
+		}
+		if(o!="endscroll" && s.indexOf(".endscroll")>-1){
+			rely.push("endscroll");
+		}
+		if(o!="starscroll" && s.indexOf(".starscroll")>-1){
+			rely.push("starscroll");
+		}
+		if(o!="t15" && s.indexOf(".t15")>-1){
+			rely.push("t15");
+		}
+		if(o!="t30" && s.indexOf(".t30")>-1){
+			rely.push("t30");
+		}
+		if(o!="t50" && s.indexOf(".t50")>-1){
+			rely.push("t50");
+		}
+		if(o!="t100" && s.indexOf(".t100")>-1){
+			rely.push("t100");
+		}
+		if(o!="t200" && s.indexOf(".t200")>-1){
+			rely.push("t200");
+		}
+		return rely.join(",")
+	}
 	var animatestr='';
 	var selectContent=$(".selectContent");
 	var textarea=$(".textarea");
@@ -67,13 +104,30 @@
 		var listHtml="";
 		for(var o in Yeffect){
 			listHtml+="<li>";
-				listHtml+='<label><input id="'+o+'" type="checkbox"><span>'
+				listHtml+='<label><input data-rely="'+relyOn(o,getdtaStr(Yeffect[o]))+'" id="'+o+'" type="checkbox"><span>'
 					listHtml+="Yeffect."+o;
 				listHtml+='</span></label>'
 			listHtml+="</li>";
 		}
 		selectContent.html(listHtml);
 	})();
+	function getdtaStr(st){
+		var ostyr="";
+		if(st.constructor==Object){
+			ostyr+="{";
+			for(ev in st){
+				if(ostyr!="{"){
+					ostyr+=",";
+				}
+				ostyr+=ev+":"+st[ev];
+			}
+			ostyr+="}";
+		}else{
+			ostyr=st+"";
+		}
+		return ostyr;
+	}
+
 	var newYeffect;
 	textarea.val("");
 	$("button").click(function(){
@@ -98,7 +152,8 @@
 				}
 				index++;
 				creatNotes+=o;
-				var ostyr=newYeffect[o]+"";
+				var newydata=newYeffect[o];
+				var ostyr=getdtaStr(newydata);
 				if(!isanimate){
 					if(ostyr.indexOf("animate")>-1){
 						isanimate=true;
@@ -114,11 +169,6 @@
 						isPicturer=true;
 					}
 				}
-				if(!isTouchs){
-					if(ostyr.indexOf("event.")>-1){
-						//isTouchs=true;
-					}
-				}
 				if(!isYeffectAttr){
 					if(ostyr.indexOf("YeffectAttr")>-1){
 						isYeffectAttr=true;
@@ -129,8 +179,16 @@
 			}
 		creatNotes+="*/\n";
 		stringify+="}";
-		var Es=/(\n|\t|\r|\b|  ){1,}/g;
+		var Es=/(\n|\t|\b|  ){1,}/g;
 		stringify=stringify.replace(Es,"");
+		var Reg=/\}$/mg;
+		stringify=stringify.replace(Reg,"};");
+		stringify=stringify.replace(/\)$/mg,");");
+		stringify=stringify.replace(/\r/g,"");
+		stringify=stringify.replace(/\};\}/g,"\}\}");
+		stringify=stringify.replace(/\);\)/g,"\)\)");
+		stringify=stringify.replace(/\);\}/g,"\)\}");
+		stringify=stringify.replace(/\};\)/g,"\}\)");
 		var varname="";
 		if(isanimate){
 			varname+=$(".animater").html();
@@ -140,9 +198,6 @@
 		}
 		if(isPicturer){
 			varname+=$(".picturer").html();
-		}
-		if(isTouchs){
-			//varname+=$(".toucher").html();
 		}
 		if(isYeffectAttr){
 			varname+=$(".YeffectAttr").html();
@@ -157,7 +212,7 @@
 	function defaultinputchange(){
 		var text=defaultinput.val().trim();
 		var Es=/^\/\*.{0,}\*\/$/;
-		selectContent.find("li input").removeAttr("disabled");
+		selectContent.find("li input").removeAttr("disabled").removeClass("thdefault");
 		if(Es.test(text)){
 			text=text.substring(2,text.length-2);
 			text=text.split(",");
@@ -173,7 +228,7 @@
 					if(!thise.is(":checked")){
 						thise.trigger("click");
 					}
-					thise.attr("disabled","true");
+					thise.attr("disabled","true").addClass("thdefault");
 				}
 			});
 		}else{
@@ -186,6 +241,35 @@
 	}
 	defaultinputchange();
 	defaultinput.change(defaultinputchange);
+
+	//////////勾选时依赖设置/////////
+	var liList=$(".selectContent li");
+	$(".selectContent li input").change(setRely)
+
+	function setRely(){
+		liList.find("input.rely").each(function(){
+			var thiso=$(this);
+			thiso.removeClass("rely");
+			if(!thiso.hasClass("thdefault")){
+				thiso.removeAttr("disabled");
+			}
+		})
+		liList.find("input:checked").each(function(){
+			var thiso=$(this);
+			var rely=thiso.attr("data-rely");
+			if(rely!=""){
+				rely=rely.split(",");
+				rely.forEach(function(s){
+					var $s=$("#"+s);
+					if(!$s.is(":checked")){
+						$s.trigger("click")
+					}
+					$s.addClass("rely").attr("disabled","true");
+				})
+			}
+		})
+	}
+
 
 
 
