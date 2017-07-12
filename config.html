@@ -180,16 +180,16 @@
 		creatNotes+="*/\n";
 		stringify+="}";
 		var Es=/(\n|\t|\b|  ){1,}/g;
-		stringify=stringify.replace(Es,"");
 		var Reg=/\}$/mg;
 		stringify=stringify.replace(Reg,"};");
+		stringify=stringify.replace(Es,"");
 		stringify=stringify.replace(/\)$/mg,");");
 		stringify=stringify.replace(/\r/g,"");
 		stringify=stringify.replace(/\};\}/g,"\}\}");
 		stringify=stringify.replace(/\);\)/g,"\)\)");
 		stringify=stringify.replace(/\);\}/g,"\)\}");
 		stringify=stringify.replace(/\};\)/g,"\}\)");
-		
+
 		var varname="";
 		if(isanimate){
 			varname+=$(".animater").html();
