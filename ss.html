@@ -82,16 +82,36 @@
     .abc{width: ${ab}px;height: ${ab}px; border-radius: ${ab}px;}
 </style>
 
+<div class="abcdA">
+    "${ab}"asdkaskjfklsjjsdgk
+    <p>${a}</p>
+</div>
+
+<div class="div2">
+
+</div>
+
 <script>
 
     var weidtha=100;
-    var styledt={ab:100};
-    e6t($(".abcd")[0],styledt);
-    setInterval(function(){
-        weidtha+=(1000-weidtha)/5;
-       // console.log(weidtha)
-        styledt.ab=weidtha;
-    },50)
+    var styledt={ab:100,a:"AAAAAAAAAAAAAAAAAAAAA"};
+   // e6t($(".abcd")[0],styledt);
+//    setInterval(function(){
+//        weidtha+=(1000-weidtha)/5;
+//        styledt.ab=weidtha;
+//    },50)
+
+    e6t($(".abcdA")[0],styledt)
+
+    setTimeout(function(){
+        styledt.a="内容已被修改"
+    },2000)
+    var asssAAA="li里面的内容++++++";
+    var divstr='<ul class="a"><li>${asss}</li></ul>'
+    $(".div2").html(e6t(divstr,{asss:asssAAA}));
+    var hahshu='<div>${asssAAA+"123132121"}</div>'
+    alert(hahshu)
+
 </script>
 
 
@@ -140,13 +160,12 @@
 
 
 
-
-
-
-
 </script>
 <div>
 
 </div>
+<div id="htmlt"><div>${a}<p>${b}</p></div></div></div>
+
+
 </body>
 </html>
