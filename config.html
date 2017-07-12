@@ -182,6 +182,7 @@
 		var Es=/(\n|\t|\b|  ){1,}/g;
 		var Reg=/\}$/mg;
 		stringify=stringify.replace(Reg,"};");
+		stringify=stringify.replace(/\)$/mg,");");
 		stringify=stringify.replace(Es,"");
 		stringify=stringify.replace(/\)$/mg,");");
 		stringify=stringify.replace(/\r/g,"");
