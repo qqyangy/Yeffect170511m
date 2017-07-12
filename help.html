@@ -193,6 +193,8 @@
     <dd>t15,t30,t50,t100,t200</dd>
     <dt>软键盘弹出位置错乱</dt>
     <dd>footFixedInput</dd>
+    <dt>流程控制</dt>
+    <dd>start</dd>
 </dl>
 <script>
     $(function(){
@@ -3981,6 +3983,86 @@
             <p class="linhet">
                 &lt;script&gt;<br>
                 　　 footFixedInput([{el:".foter",tp:-50},{el:".fot2",tp:-103}],".foter input,.fot2 input");<br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
+
+    <div class="titleContent"><b>异步流程控制 <font>Yeffect.start()</font></b>
+        <p>Yeffect.start();
+        </p>
+    </div>
+    <div class="detailContent">
+        功能说明：
+        <p>
+            适用于类似多个ajax有相互依赖的场景，与ES6的Promise类似，但支持多级异步链式。
+        </p>
+        布局要求：
+        参数说明：
+        <p>
+            无参数，但返回值为Object具备then方法需要传入function作为参数。
+        </p>
+        布局要求：
+        <p>
+            无
+        </p>
+        then方法参数说明：
+        <p>
+            传入一个回调函数作为参数，回调函数需要一个参数，当回调函数调用时改参数会被赋予一个对象，该对象具备：
+            1.next方法，用于控制跳转到下一个then方法。
+            2.data上一个then方法设置的数据，可修改传给下一个then方法。
+            3.index当前流程的索引。
+        </p>
+        结束说明：
+        <p>
+            需调用end方法结束无需参数。
+        </p>
+        <div class="p" style="background:#fff;">
+            <button onclick="thenclick()">点击测试</button>
+        </div>
+        <script>
+            function thenclick(){
+                Yeffect.start().then(function(d){
+                    alert("第一个流程执行");
+                    d.data="MMMMM这是传给第二个流程的数据哦";
+                    setTimeout(function(){
+                        d.next();//跳转到下一个流程//////
+                    },1000)
+                }).then(function(d){
+                    alert("第二个流程执行，且获得上一个流程的参数为:"+d.data);
+                    setTimeout(function(){
+                        d.next();/////跳转到下一个流程，且未修改参数让参数继续传递//////
+                    },500)
+                }).then(function(d){
+                    alert("第三个参数执行，获得的参数为："+d.data);////没有更多流程了可以不用next函数////
+                }).end();
+            }
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;button onclick=&quot;thenclick()"&quot; &gt;&lt;点击测试&lt;/button&gt;
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　  function thenclick(){<br>
+                　　  　　Yeffect.start().then(function(d){<br>
+                　　  　　　　alert("第一个流程执行");<br>
+                　　  　　　　setTimeout(function(){<br>
+                　　  　　　　　　d.data="这是传给第二个流程的数据";<br>
+                　　  　　　　　　d.next();//跳转到下一个流程//////<br>
+                　　  　　　　},1000)<br>
+                　　  　　}).then(function(d){<br>
+                　　  　　　　alert("第二个流程执行，且获得上一个流程的参数为"+d.data);<br>
+                　　  　　　　setTimeout(function(){<br>
+                　　  　　　　　　d.next();/////跳转到下一个流程，且未修改参数让参数继续传递//////<br>
+                　　  　　　　},500)<br>
+                　　  　　}).then(function(d){<br>
+                　　  　　　　alert("第三个参数执行，获得的参数为："+d.data);////没有更多流程了可以不用next函数////<br>
+                　　  　　}).end();<br>
+                　　  }<br>
                 &lt;/script&gt;<br>
             </p>
         </div>
