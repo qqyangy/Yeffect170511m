@@ -195,6 +195,8 @@
     <dd>footFixedInput</dd>
     <dt>流程控制</dt>
     <dd>start</dd>
+    <dt>面向对象</dt>
+    <dd>call</dd>
 </dl>
 <script>
     $(function(){
@@ -3997,7 +3999,6 @@
         <p>
             适用于类似多个ajax有相互依赖的场景，与ES6的Promise类似，但支持多级异步链式。
         </p>
-        布局要求：
         参数说明：
         <p>
             无参数，但返回值为Object具备then方法需要传入function作为参数。
@@ -4068,7 +4069,163 @@
         </div>
     </div>
 
+    <div class="titleContent"><b>面向对象之创建类与继承类 <font>Yeffect.class()</font></b>
+        <p>Yeffect.class();
+        </p>
+    </div>
+    <div class="detailContent">
+        功能说明：
+        <p>
+            适用于面向对象编程时创建类与继承类。<br>
+            创建的类可通过静态属性parents访问继承链数组;
+        </p>
+        参数说明：
+        <p>
+            需要一个字符串名参数作为类名，注：首字母须为大写字母；返回Object对象包含一个constructor方法须传入一个函数作为构造函数，再返回Object对象包含extends、prototype、static三个方法可链式调用。
+        </p>
+        constructor方法说明：
+        <p>
+            传入一个回调函数作为构造函数，函数体内部可用于实现该类的相关逻辑，
+            如果设置了继承的父类可在函数体内通过_super方法向父类的构造函数传入参数，如：_super("aa",100);
+            如果父类不需要传参则可以省略_super函数的调用；
+            constructor函数的调用会返回一个Object对象包含extends、prototype、static三个方法可链式调用；
 
+        </p>
+        extends方法参数说明：
+        <p>
+            传入一个已经存在的通过Yeffect.class方法创建的类作为父类；
+            如有继承在链式调用时请最先调用extends，及constructor返回后第一个调用extends;
+        </p>
+        prototype方法参数说明：
+        <p>
+            定义该类原型链上的属性或方法；<br>
+            传入一个Object作为参数，该对象的每一个键值对均会对应到该类实例的方法或属性上。这些属性或方法可以被子类所继承。
+            通过 实例名.属性 或 实例名.方法访问；<br>
+        </p>
+        static方法参数说明：
+        <p>
+            定义该类的静态属性或方法；<br>
+            传入一个Object作为参数，该对象的每一个键值对均会对应到该类静态方法或属性上。这些属性或方法可以被子类所继承。<br>
+            通过 类名.属性 或 类名.方法访问；<br>
+        </p>
+        <div class="p" style="background:#fff;">
+            <div id="showclasslog" style="color: darkmagenta;">
+
+            </div>
+        </div>
+        <script>
+            //////第一级父类///////
+            Yeffect.class("Acla").constructor(function(a){
+                this.a=a;
+            }).static({
+                sa:"static:10"
+            }).prototype({
+                fa:function(){
+                    return this.a;
+                }
+            });
+            //////第二级父类且继承了第一级父类///////
+            Yeffect.class("Bcla").constructor(function(){
+                _super("向第一级父类传入的参数");
+                this.b=20;
+            }).extends(Acla).static({
+                sb:"static:20"
+            }).prototype({
+                fb:function(){
+                    return this.b;
+                }
+            });
+            //////子类且继承了第二级父类///////
+            Yeffect.class("Ccla").constructor(function(c){
+                this.c=30;
+            }).extends(Bcla).static({
+                sc:"static:30"
+            }).prototype({
+                fc:function(){
+                    return this.c;
+                }
+            })
+
+            /////实例化子类////////
+            var nCcla=new Ccla();
+            var htmllog="<br>";
+            htmllog+="通过子类实例调用第一级父类的fa方法,打印结果为："+nCcla.fa()+"<br>";
+            htmllog+="通过子类获取第一级父类中定义的静态属性sa值为："+Ccla.sa+"<br>";
+            htmllog+="通过子类实例获取第一级父类中定义的实例属a性值为："+nCcla.a+"<br><br>";
+
+            htmllog+="通过子类实例调用第二级父类的fb方法,打印结果为："+nCcla.fb()+"<br>";
+            htmllog+="通过子类获取第二级父类中定义的静态属性sb值为："+Ccla.sb+"<br>";
+            htmllog+="通过子类实例获取第二级父类中定义的实例属b性值为："+nCcla.b+"<br><br>";
+
+            htmllog+="通过子类实例调用子类定义的fc方法,打印结果为："+nCcla.fc()+"<br>";
+            htmllog+="通过子类获取子类中定义的静态属性sc值为："+Ccla.sc+"<br>";
+            htmllog+="通过子类实例获取子类中定义的实例属c性值为："+nCcla.c+"<br><br>";
+
+
+            document.getElementById("showclasslog").innerHTML=htmllog;
+        </script>
+        全部源码：<br>
+        <div class="p">
+            <strong>html部分</strong>
+            <p class="linhet">
+                &lt;div id=&quot;showclasslog&quot; style=&quot;color: darkmagenta;&quot;&gt;&lt;/div&gt;
+            </p>
+            <strong>js部分</strong>
+            <p class="linhet">
+                &lt;script&gt;<br>
+                　　   //////第一级父类///////<br>
+                　　   Yeffect.class("Acla").constructor(function(a){<br>
+                　　   　　this.a=a;<br>
+                　　   }).static({<br>
+                　　   　　sa:"static:10"<br>
+                　　   }).prototype({<br>
+                　　   　　fa:function(){<br>
+                　　   　　　　return this.a;<br>
+                　　   　　}<br>
+                　　   });<br>
+                　　   //////第二级父类且继承了第一级父类///////<br>
+                　　   Yeffect.class("Bcla").constructor(function(){<br>
+                　　   　　_super("向第一级父类传入的参数");<br>
+                　　   　　this.b=20;<br>
+                　　   }).extends(Acla).static({<br>
+                　　   　　sb:"static:20"<br>
+                　　   }).prototype({<br>
+                　　   　　fb:function(){<br>
+                　　   　　　　return this.b;<br>
+                　　   　　}<br>
+                　　   });<br>
+                　　   //////子类且继承了第二级父类///////<br>
+                　　   Yeffect.class("Ccla").constructor(function(c){<br>
+                　　   　　this.c=30;<br>
+                　　   }).extends(Bcla).static({<br>
+                　　   　　sc:"static:30"<br>
+                　　   }).prototype({<br>
+                　　   　　fc:function(){<br>
+                　　   　　　return this.c;<br>
+                　　   　　}<br>
+                　　   })<br><br>
+
+                　　   /////实例化子类////////<br>
+                　　   var nCcla=new Ccla();<br>
+                　　   var htmllog="&lt;br&gt;";<br>
+                　　   htmllog+="通过子类实例调用第一级父类的fa方法,打印结果为："+nCcla.fa()+"&lt;br&gt;";<br>
+                　　   htmllog+="通过子类获取第一级父类中定义的静态属性sa值为："+Ccla.sa+"&lt;br&gt;";<br>
+                　　   htmllog+="通过子类实例获取第一级父类中定义的实例属a性值为："+nCcla.a+"&lt;br&gt;&lt;br&gt;";<br><br>
+
+                　　   htmllog+="通过子类实例调用第二级父类的fb方法,打印结果为："+nCcla.fb()+"&lt;br&gt;";<br>
+                　　   htmllog+="通过子类获取第二级父类中定义的静态属性sb值为："+Ccla.sb+"&lt;br&gt;";<br>
+                　　   htmllog+="通过子类实例获取第二级父类中定义的实例属b性值为："+nCcla.b+"&lt;br&gt;&lt;br&gt;";<br><br>
+
+                　　   htmllog+="通过子类实例调用子类定义的fc方法,打印结果为："+nCcla.fc()+"&lt;br&gt;";<br>
+                　　   htmllog+="通过子类获取子类中定义的静态属性sc值为："+Ccla.sc+"&lt;br&gt;";<br>
+                　　   htmllog+="通过子类实例获取子类中定义的实例属c性值为："+nCcla.c+"&lt;br&gt;&lt;br&gt;";<br><br>
+
+
+                　　   document.getElementById("showclasslog").innerHTML=htmllog;<br><br>
+                &lt;/script&gt;<br>
+            </p>
+        </div>
+    </div>
 
 
 </div>
