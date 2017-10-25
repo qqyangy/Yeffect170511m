@@ -3392,7 +3392,7 @@
 
 
     <div class="titleContent"><b>滚屏效果支持移动设备与响应<font>Yeffect.pageScroll()</font></b>
-        <p>Yeffect.pageScroll("每一屏的容器对象","支持整屏幕滚动的最小宽度","top值偏移量","缓动系数默认为5数值越大时间越久","缓动类型ABCD","鼠标滚轮禁用时间默认200毫秒","向下按钮名称指向",“帧频函数返回当前拼的索引与比分比值","头部函数需返回一个布尔值","底部函数需返回一个布尔值");</p>
+        <p>Yeffect.pageScroll("每一屏的容器对象","支持整屏幕滚动的最小宽度","top值偏移量","缓动系数默认为5数值越大时间越久","缓动类型ABCD","鼠标滚轮禁用时间默认200毫秒","向下按钮名称指向",“帧频函数返回当前拼的索引与比分比值","头部函数需返回一个布尔值","底部函数需返回一个布尔值","参考高度的dom元素名称指向");</p>
     </div>
     <div class="detailContent">
         效果说明：
@@ -3403,7 +3403,7 @@
         </p>
         参数说明：
         <p>
-            <font>Yeffect.pageScroll(1,2,3,4,5,6,7,8,9,10);</font>
+            <font>Yeffect.pageScroll(1,2,3,4,5,6,7,8,9,10,11);</font>
             1. 每一屏的容器对象 如：<span>".pageScroll li"</span>;<br>
             2. 支持整屏幕滚动的最小宽度(小于设置的宽度即取消整屏的滚动滑动效果)  如：<span>700</span> 默认 <span>1000</span>; <span class="c2">(选填)</span><br>
             3. top偏移量（以整屏为基础的上下位置偏移数值）  如：<span>50</span> 默认 <span>0</span>; <span class="c2">(选填)</span><br>
@@ -3414,6 +3414,7 @@
             8. 帧频函数返回当前拼的索引与比分比值（设置一个函数作为参数可通过参数获取当前屏的索引,与滚动的百分比值，可用来拓展更发杂的效果）  如：<span>function(pageInt,bfb){}</span> 默认 <span>function(){}</span>; <span class="c2">(选填)</span><br>
             9. 头部函数需返回一个布尔值（达到头部后继续往上会执行得函数，通过返回值设置是否禁用一次来实现特殊的需求,可通过参数s为0或1判断状态）</span> 默认 <span>function(s){return true;}</span>; <span class="c2">(选填)</span><br>
             10. 底部函数需返回一个布尔值（达到底部后继续往上会执行得函数，通过返回值设置是否禁用一次来实现特殊的需求,可通过参数s为0或1判断状态）</span> 默认 <span>function(s){return true;}</span>; <span class="c2">(选填)</span><br>
+            11. 控制每屏高度的参考元素</span> 默认 <span>window</span>; <span class="c2">(选填)</span><br>
         </p>
         布局要求：
         <p>
@@ -3444,12 +3445,13 @@
                 　　.pageScroll li:nth-child(2n){background:#fff;}<br>
                 　　.pageScroll img{display:block; width:100%; min-height:100%;}<br>
                 　　.divsss{width:50px; height:50px; background:#fff; box-sizing:0px 0px 5px rgba(0,0,0,0.5); position:fixed; left:50%; bottom:30px; z-index:1000; cursor:pointer; text-align:center; line-height:50px; font-family:30px; }<br>
+                    .pageScroll{height: 100%; position: absolute; width: 100%}
                 &lt;/style&gt;<br>
             </p>
             <strong>js部分</strong>
             <p class="linhet">
                 &lt;script&gt;<br>
-                　　 Yeffect.pageScroll($(".pageScroll li"),700,0,5,"B",300,".divsss",function(cuint,bfb){console.log(cuint+":"+bfb)},function(){return true;},function(){return true;});<br>
+                　　 Yeffect.pageScroll($(".pageScroll li"),700,0,5,"B",300,".divsss",function(cuint,bfb){console.log(cuint+":"+bfb)},function(){return true;},function(){return true;},".pageScroll");<br>
                 　　 ///可简写成/// Yeffect.pageScroll($(".pageScroll li"));<br>
                 &lt;/script&gt;<br>
             </p>
