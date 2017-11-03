@@ -196,7 +196,7 @@
     <dt>流程控制</dt>
     <dd>start</dd>
     <dt>面向对象</dt>
-    <dd>call</dd>
+    <dd>class</dd>
 </dl>
 <script>
     $(function(){
@@ -4083,7 +4083,7 @@
         </p>
         参数说明：
         <p>
-            需要一个字符串名参数作为类名，注：首字母须为大写字母；返回Object对象包含一个constructor方法须传入一个函数作为构造函数，再返回Object对象包含extends、prototype、static三个方法可链式调用。
+            1.需要一个字符串名参数作为类名，注：首字母须为大写字母；2.包名,Object类型作为类的作用域依赖（选传，不传时默认window即全局作用域）;返回Object对象包含一个constructor方法须传入一个函数作为构造函数，再返回Object对象包含extends、prototype、static三个方法可链式调用。
         </p>
         constructor方法说明：
         <p>
@@ -4126,8 +4126,9 @@
                     return this.a;
                 }
             });
-            //////第二级父类且继承了第一级父类///////
-            Yeffect.class("Bcla").constructor(function(){
+            //////在bpackge作用域下创建第二级父类且继承了全局的第一级父类///////
+            var bpackge={};
+            Yeffect.class("Bcla",bpackge).constructor(function(){
                 _super("向第一级父类传入的参数");
                 this.b=20;
             }).extends(Acla).static({
@@ -4137,10 +4138,10 @@
                     return this.b;
                 }
             });
-            //////子类且继承了第二级父类///////
+            //////子类且继承了在bpackge作用域下的第二级父类///////
             Yeffect.class("Ccla").constructor(function(c){
                 this.c=30;
-            }).extends(Bcla).static({
+            }).extends(bpackge.Bcla).static({
                 sc:"static:30"
             }).prototype({
                 fc:function(){
@@ -4185,8 +4186,9 @@
                 　　   　　　　return this.a;<br>
                 　　   　　}<br>
                 　　   });<br>
-                　　   //////第二级父类且继承了第一级父类///////<br>
-                　　   Yeffect.class("Bcla").constructor(function(){<br>
+                　　   //////在bpackge作用域下创建第二级父类且继承了全局的第一级父类///////<br>
+                　　   var bpackge={};<br>
+                　　   Yeffect.class("Bcla",bpackge).constructor(function(){<br>
                 　　   　　_super("向第一级父类传入的参数");<br>
                 　　   　　this.b=20;<br>
                 　　   }).extends(Acla).static({<br>
@@ -4199,7 +4201,7 @@
                 　　   //////子类且继承了第二级父类///////<br>
                 　　   Yeffect.class("Ccla").constructor(function(c){<br>
                 　　   　　this.c=30;<br>
-                　　   }).extends(Bcla).static({<br>
+                　　   }).extends(bpackge.Bcla).static({<br>
                 　　   　　sc:"static:30"<br>
                 　　   }).prototype({<br>
                 　　   　　fc:function(){<br>
