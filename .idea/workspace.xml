@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc60537a-ce00-49bf-b763-f933f8a3d883" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Yeffect16_1214.min.js" afterPath="$PROJECT_DIR$/js/Yeffect16_1214.min.js" />
-    </list>
+    <list default="true" id="fc60537a-ce00-49bf-b763-f933f8a3d883" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -52,7 +50,7 @@
       <file leaf-file-name="Yeffect.js" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/Desktop/banner/Yeffect.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="849">
+            <state relative-caret-position="2112">
               <caret line="1" column="12220" lean-forward="false" selection-start-line="1" selection-start-column="12220" selection-end-line="1" selection-end-column="12220" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -168,12 +166,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510038096963</updated>
-      <workItem from="1510038098188" duration="1797000" />
+      <workItem from="1510038098188" duration="2387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1797000" />
+    <option name="totallyTimeSpent" value="2387000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
@@ -236,7 +234,7 @@
     </entry>
     <entry file="file://$USER_HOME$/Desktop/banner/Yeffect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="849">
+        <state relative-caret-position="2112">
           <caret line="1" column="12220" lean-forward="false" selection-start-line="1" selection-start-column="12220" selection-end-line="1" selection-end-column="12220" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
