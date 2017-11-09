@@ -23,7 +23,23 @@
     .html li{ }
 </style>
 
+<div id="htmltl">
+    abcsass${A}1111111${B}1111111111
+</div>
+===============================================
+<div id="html5"></div>
+
 <script>
+
+    var A="拼接内容";
+    var datatL={A:'|||||||||||||||||||||||',B:'***************************'};
+    e6t(document.getElementById("htmltl"),datatL);
+    document.getElementById("html5").innerHTML=document.getElementById("htmltl").innerHTML;
+    setTimeout(function () {
+      datatL.B="--------------------";
+    },5000)
+
+
     function e6t(template,data,fn,splitString){
         var re=/\$\{(.)[^\$\{\}]*\}/g,htmlString="",templatedb="",setintTime,elment,newdata=data;
         splitString=splitString||"${}";
