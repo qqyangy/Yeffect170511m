@@ -197,6 +197,8 @@
     <dd>start</dd>
     <dt>面向对象</dt>
     <dd>class</dd>
+    <dt>js模块化</dt>
+    <dd>require</dd>
 </dl>
 <script>
     $(function(){
@@ -4230,6 +4232,58 @@
             </p>
         </div>
     </div>
+
+    <div class="titleContent"><b>JS模块化引入与编程 <font>Yeffect.require()</font></b>
+        <p>Yeffect.require();
+        </p>
+    </div>
+    <div class="detailContent">
+        功能说明：
+        <p>
+            适用非打包模式下但希望实现模块化js时。<br>
+            方便引入js和逻辑设置防止全局变量过多;
+        </p>
+        参数说明：
+        <p>
+            1.为所有需要require的js提供一个基本路劲,字符串类型如传入了此参数且部位''时必须以'/'结束，不传此参数时默认为''；如 <span>'js/'</span><br>
+            2.是否为debug默认，一般在调试时传true，上线项目不传或传false,默认flase。（具体请查看debug说明）
+        </p>
+        初始化方法说明：
+        <p>
+           调用Yeffect.require方法按需求传入参数，该方法会返回一个函数，请使用一个全局变量保存此方法用于包装需要暴露的js。(注：此函数也作为入口函数使用)；如：<br>
+            <img src="images/require1.png">
+        </p>
+        需要载入js的包装说明：
+        <p>
+            调用Yeffect.require返回的函数传入回调函数，并在回调函数中写入自己的代码：如：<br>
+            <img src="images/require2.png">
+        </p>
+        被载入js数据暴露说明：
+        <p>
+            1,直接return 一个object；<br>
+            <img src="images/require4.png"><br>
+            2，exports.需要暴露的属性；<br>
+            <img src="images/require3.png"><br>
+            3，exports=需要暴露的对象；如：<br>
+            <img src="images/require5.png"><br>
+
+        </p>
+        require载入说明：
+        <p>
+            在Yeffect.require返回的函数中直接调用require函数获取该js数据；如：<br>
+            <img src="images/require6.png">
+        </p>
+        debug说明：
+        <p>
+            如果初始化require时为第二个参数传入了true；则有：<br>
+            1.在控制台打印载入js的结构树；如：<br>
+            <img src="images/require7.png"><br>
+            2.会在载入js错误时提示错误；如：<br>
+            <img src="images/require8.png"><br>
+           <br>
+        </p>
+    </div>
+
 
 
 </div>
