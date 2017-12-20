@@ -4255,8 +4255,12 @@
         </p>
         需要载入js的包装说明：
         <p>
-            调用Yeffect.require返回的函数传入回调函数，并在回调函数中写入自己的代码：如：<br>
-            <img src="images/require2.png">
+            调用Yeffect.require返回的函数如：define<br>
+            1、传入回调函数，并在回调函数中写入自己的代码：如：<br>
+            <img src="images/require2.png"><br>
+            2、如果需要暂时数据而不需要逻辑代码这可以传入非函数形式的其他数据类型；如：<br>
+            <img src="images/require9.png"><br>
+            <img src="images/require10.png"><br>
         </p>
         被载入js数据暴露说明：
         <p>
@@ -4266,12 +4270,16 @@
             <img src="images/require3.png"><br>
             3，exports=需要暴露的对象；如：<br>
             <img src="images/require5.png"><br>
-
+            4,如果包装时不传入函数类型，则直接暴露传入的数据；如：<br>
+            <img src="images/require10.png"><br>
         </p>
         require载入说明：
         <p>
             在Yeffect.require返回的函数中直接调用require函数获取该js数据；如：<br>
-            <img src="images/require6.png">
+            1.传入2个参数时，代表要引入的文件。文件后缀可省略，默认为.js；如：<br>
+            <img src="images/require6.png"><br>
+            2.传入2个参数时，第一个参数代表要引入的文件(不能带后缀),第二个参数代表被载入文件的格式（不用加.）支持的文本格式为所有文本类文件格式；如：<br>
+            <img src="images/require11.png"><br>
         </p>
         debug说明：
         <p>
