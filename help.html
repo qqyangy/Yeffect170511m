@@ -90,6 +90,8 @@
     .navdl dt{display:block; height:25px; line-height:25px; font-size:12px; background:#0081B7; padding-left:5px; color:#fff; font-weight:bold;}
     .navdl dd{display:block; height:25px; line-height:25px; border-bottom:1px solid #ddd; margin:0px; font-size:13px; padding-left:5px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; color:#333;}
     .navdl dd.current{color:#7C0103; background:#f5f5f5;}
+    .jqICON{margin-bottom: -3px; margin-right: 3px;}
+    .jiagou{margin-bottom: -7px; border-radius: 3px; height: 30px; margin-right: 3px;}
 </style>
 <script>
     function tanchuanghide(){
@@ -237,9 +239,16 @@
 <!--左侧导航***-->
 
 <div class="bodyA">
-    js引入说明：<img src="images/script.png"><br><br>
+    js引入说明：<br>
+    1.如选配带有<img class="jqICON" src="images/timg.png">标志的代码,是基于jquery开发，则需要先引入jquery。<br>
+    2.载入一个空的js文件作为本库代码存放文件，然后在 <a href="config.html" style="color: #31f; text-decoration: underline;">config.html</a> 进行选配代码粘入到此文件中并保存。<br><br>
+
+    类型说明：<br>
+    1.依赖jquery会以<img class="jqICON" src="images/timg.png">标志作为标识。<br>
+    2.架构类或工具类会以<img class="jiagou" src="images/jiagou.png">标志作为标识。<br><br>
+
     <div class="titleContent">
-        <b>手指按下/鼠标按下<font>Yeffect.event.start();</font></b>
+        <b><img class="jqICON" src="images/timg.png">手指按下/鼠标按下（事件）<font>Yeffect.event.start();</font></b>
         <p>调用方式：Yeffect.event.start("需要注册事件的元素名称指向",回调函数);</p>
     </div>
     <div class="detailContent">
@@ -304,7 +313,7 @@
 
 
     <div class="titleContent">
-        <b>手指滑动/鼠标移动<font>Yeffect.event.move();</font></b>
+        <b><img class="jqICON" src="images/timg.png">手指滑动/鼠标移动（事件）<font>Yeffect.event.move();</font></b>
         <p>调用方式：Yeffect.event.move("需要注册事件的元素名称指向",回调函数);</p>
     </div>
     <div class="detailContent">
@@ -382,7 +391,7 @@
 
 
     <div class="titleContent">
-        <b>手指离开/鼠标抬起<font>Yeffect.event.end();</font></b>
+        <b><img class="jqICON" src="images/timg.png">手指离开/鼠标抬起（事件）<font>Yeffect.event.end();</font></b>
         <p>调用方式：Yeffect.event.end("需要注册事件的元素名称指向",回调函数);</p>
     </div>
     <div class="detailContent">
@@ -486,7 +495,7 @@
 
 
     <div class="titleContent">
-        <b>Tab选项卡（支持同页面多组）<font>Yeffect.clickTabs();</font></b>
+        <b><img class="jqICON" src="images/timg.png">Tab选项卡（支持同页面多组）<font>Yeffect.clickTabs();</font></b>
         <p>调用方式：Yeffect.clickTabs("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");</p>
     </div>
     <div class="detailContent">
@@ -594,7 +603,7 @@
         </script>
     </div>
 
-    <div class="titleContent"><b>悬停式Tab选项卡（支持同页面多组）<font>Yeffect.hoverTabs()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">悬停式Tab选项卡（支持同页面多组）<font>Yeffect.hoverTabs()</font></b>
         <p>调用方式：Yeffect.hoverTabs("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");</p>
     </div>
     <div class="detailContent">
@@ -702,13 +711,13 @@
         </script>
     </div>
 
-    <div class="titleContent"><b>悬停式Tab选项卡<font>Yeffect.hoverTab()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">悬停式Tab选项卡<font>Yeffect.hoverTab()</font></b>
         <p>Yeffect.hoverTab("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");<br>
             使用方式同 <span style="color:#00ac8f;">Yeffect.hoverTabs</span>一致; 唯一区别：该效果调用一次不支持同页面同名称的多个效果;
         </p>
     </div>
 
-    <div class="titleContent"><b>悬停式Tab选项卡（一处tab导航 两处tab内容切换区域）<font>Yeffect.hoverTab2()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">悬停式Tab选项卡（一处tab导航 两处tab内容切换区域）<font>Yeffect.hoverTab2()</font></b>
         <p>Yeffect.hoverTab2("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向1","被控制的显示状态元素的名称指向2","当前样式的名称");</p>
     </div>
     <div class="detailContent">
@@ -778,20 +787,20 @@
         </script>
     </div>
 
-    <div class="titleContent"><b>Tab选项卡<font>Yeffect.clickTab();</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">Tab选项卡<font>Yeffect.clickTab();</font></b>
         <p>调用方式：Yeffect.clickTab("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向","当前样式的名称");<br>
             使用方式同 <span style="color:#00ac8f;">Yeffect.clickTabs</span> 唯一区别：该效果调用一次不支持同页面通名称的多个效果;
         </p>
     </div>
 
-    <div class="titleContent"><b>Tab选项卡（一处tab导航 两处tab内容切换区域）<font>Yeffect.clickTab2()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">Tab选项卡（一处tab导航 两处tab内容切换区域）<font>Yeffect.clickTab2()</font></b>
         <p>调用方式：Yeffect.clickTab2("鼠标控制的元素的名称指向","被控制的显示状态元素的名称指向1","被控制的显示状态元素的名称指向2","当前样式的名称");<br>
             使用方式同 <span style="color:#00ac8f;">Yeffect.hoverTab2</span> 唯一区别：促发的事件不同;
         </p>
     </div>
 
 
-    <div class="titleContent"><b>产品主图切换效果（纵向缩略图）<font>Yeffect.vProductPictures()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">产品主图切换效果（纵向缩略图）<font>Yeffect.vProductPictures()</font></b>
         <p>调用方式：Yeffect.vProductPictures("缩略图列表的父级容器名称指向","缩略图列表元素名称指向","缩略图能同时完整显示的数量","缩略图列表单项实际占用高度度减去height的值","大图的容器","缩略图的当前样式","向上箭头名称指向","向下箭头名称指向",<i onClick="TnacShow()">缓动函数名</i>);
         </p>
     </div>
@@ -908,7 +917,7 @@
     </div>
 
 
-    <div class="titleContent"><b>产品主图切换效果（横向缩略图）<font>Yeffect.hProductPictures()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">产品主图切换效果（横向缩略图）<font>Yeffect.hProductPictures()</font></b>
         <p>调用方式：Yeffect.hProductPictures("缩略图列表的父级容器名称指向","缩略图列表元素名称指向","缩略图能同时完整显示的数量","缩略图列表单项实际占用宽度减去width的值","大图的容器","缩略图的当前样式","向左箭头名称指向","向右箭头名称指向",<i onClick="TnacShow()">缓动函数名</i>);
         </p>
     </div>
@@ -1025,7 +1034,7 @@
     </div>
 
 
-    <div class="titleContent"><b>商品主图放大镜效果<font>Yeffect.magnifier()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">商品主图放大镜效果<font>Yeffect.magnifier()</font></b>
         <p>Yeffect.magnifier("用于指示当前划入位置的半透明区域块名称指向","响应鼠标划入图的容器名称指向","大图容器名称指向");
         </p>
     </div>
@@ -1091,7 +1100,7 @@
     </div>
 
 
-    <div class="titleContent"><b>鼠标划入展示大图<font>Yeffect.largerImg()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">鼠标划入展示大图<font>Yeffect.largerImg()</font></b>
         <p>Yeffect.largerImg("要滑入的图片名称指向","放大后的图片宽度","放大后的图片高度");</p>
     </div>
     <div class="detailContent">
@@ -1144,7 +1153,7 @@
 
 
     <div class="titleContent">
-        <b>无缝跑马灯滚动效果<font>Yeffect.marqueeEffect();</font></b>
+        <b><img class="jqICON" src="images/timg.png">无缝跑马灯滚动效果<font>Yeffect.marqueeEffect();</font></b>
         <p>调用方式：Yeffect.marqueeEffect("移动的元素名称指向","容器内的单位元素名称指向","单位时间","单位像素","鼠标划入是否暂停");</p>
     </div>
     <div class="detailContent">
@@ -1216,7 +1225,7 @@
     </div>
 
 
-    <div class="titleContent"><b>alert弹窗效果<font>Yeffect.alertShow()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">alert弹窗效果<font>Yeffect.alertShow()</font></b>
         <p>调用方式：Yeffect.alertShow("提示文本信息","title信息","title背景颜色","是否是confirm","确定按钮的回调函数","确定按钮文本","取消按钮文本");</p>
     </div>
     <div class="detailContent">
@@ -1284,7 +1293,7 @@
         </script>
     </div>
 
-    <div class="titleContent"><b>手机版alert方法<font>Yeffect.mAlert()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">手机版alert方法<font>Yeffect.mAlert()</font></b>
         <p>Yeffect.mAlert("弹出的文本内容","自动关闭时间","是否允许滑动");
         </p>
     </div>
@@ -1338,7 +1347,7 @@
 
 
 
-    <div class="titleContent"><b>伪列表异步加载（只能实现列表内图片的真实异步加载 和 实现列表的伪加载效果）<font>Yeffect.asyncloadingList()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">伪列表异步加载（只能实现列表内图片的真实异步加载 和 实现列表的伪加载效果）<font>Yeffect.asyncloadingList()</font></b>
         <p>调用方式：Yeffect.asyncloadingList("列表的容器对象","列表项","初始加载数","每次加载数","加载提示信息的元素","加载时间动效时间");
         </p>
     </div>
@@ -1414,7 +1423,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>滑动到页面底部事件（用于滑动到页面底部加载更多数据）<font>Yeffect.adddragupEvent()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">滑动到页面底部事件（用于滑动到页面底部加载更多数据）<font>Yeffect.adddragupEvent()</font></b>
         <p>调用方式：Yeffect.adddragupEvent("触发时的回调函数","距离底部多少像素促发");
         </p>
     </div>
@@ -1485,7 +1494,7 @@
 
 
 
-    <div class="titleContent"><b>折叠菜单<font>Yeffect.foldMenu()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">折叠菜单<font>Yeffect.foldMenu()</font></b>
         <p>调用方式：Yeffect.foldMenu("接受点击的dom元素名称指向","控制展开父级的样式名称","是否可同时展开多个","同时容纳点击项与展开内容的父容器名称");</p>
     </div>
     <div class="detailContent">
@@ -1586,7 +1595,7 @@
 
 
 
-    <div class="titleContent"><b>全屏左右滚动banner（适用作为通栏banner）<font>Yeffect.fullAnimatbanner()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">全屏左右滚动banner（适用作为通栏banner）<font>Yeffect.fullAnimatbanner()</font></b>
         <p>Yeffect.fullAnimatbanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","缓动过程时间选填默认300","鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
     </div>
     <div class="detailContent">
@@ -1692,7 +1701,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>渐隐切换banner<font>Yeffect.fadeBanner()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">渐隐切换banner<font>Yeffect.fadeBanner()</font></b>
         <p>Yeffect.fadeBanner("banner单位元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","缓动过程时间选填默认300","是否支持鼠标划入暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
         </p>
     </div>
@@ -1785,7 +1794,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>横向循环滚动banner<font>Yeffect.hBannerLoop()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">横向循环滚动banner<font>Yeffect.hBannerLoop()</font></b>
         <p>Yeffect.hBannerLoop("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的宽度减去单张banner的width值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
     </div>
     <div class="detailContent">
@@ -1916,7 +1925,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>纵向循环滚动banner<font>Yeffect.vBannerLoop()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">纵向循环滚动banner<font>Yeffect.vBannerLoop()</font></b>
         <p>Yeffect.hBannerLoop("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的高度度减去单张banner的height值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
         </p>
     </div>
@@ -2048,7 +2057,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>横向滚动banner（不循环）<font>Yeffect.hBanner()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">横向滚动banner（不循环）<font>Yeffect.hBanner()</font></b>
         <p>Yeffect.hBanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的宽度减去单张banner的width值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
         </p>
     </div>
@@ -2073,7 +2082,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>纵向滚动banner（不循环）<font>Yeffect.vBanner()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">纵向滚动banner（不循环）<font>Yeffect.vBanner()</font></b>
         <p>Yeffect.vBanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","单张banner所占用的高度度减去单张banner的height值",缓动过程时间选填默认300,"鼠标悬停时是否暂停",<i onClick="TnacShow()">缓动函数名选填</i>);
         </p>
     </div>
@@ -2098,7 +2107,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>手机版横向滚动banner<font>Yeffect.mobileBanner()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">手机版横向滚动banner<font>Yeffect.mobileBanner()</font></b>
         <p>Yeffect.mobileBanner("banner集合容器元素名称指向","单张元素名称指向","显示状态的小点名称指向","左按钮名称指向","右按钮名称指向","小点上的当前样式名称","自动切换的间隔时间","缓动过程时间选填默认300",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
     </div>
     <div class="detailContent">
@@ -2197,7 +2206,7 @@
     </div>
 
 
-    <div class="titleContent"><b>点击控制横向列表单次左右移动（适用于横向时间轴切换）<font>Yeffect.controlSlide()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">点击控制横向列表单次左右移动（适用于横向时间轴切换）<font>Yeffect.controlSlide()</font></b>
         <p>Yeffect.controlSlide("列表项容器名称指向","列表项名称指向","左按钮名称指向","右按钮名称指向","同时能显示的数量","单项列表所占用的宽度减去单项的width值","移动过程的时间",<i onClick="TnacShow()">缓动函数名选填</i>);</p>
     </div>
     <div class="detailContent">
@@ -2316,7 +2325,7 @@
     </div>
 
 
-    <div class="titleContent"><b>原生滚动条外观控制（竖向）<font>Yeffect.scrollStyleV()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">原生滚动条外观控制（竖向）<font>Yeffect.scrollStyleV()</font></b>
         <p>Yeffect.scrollStyleV("外层容器名称指向","内层容器名称指向","滚动条滑道名称指向","滚动条滑块名称指向");</p>
     </div>
     <div class="detailContent">
@@ -2397,7 +2406,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>原生滚动条外观控制（横向）<font>Yeffect.scrollStyleH()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">原生滚动条外观控制（横向）<font>Yeffect.scrollStyleH()</font></b>
         <p>Yeffect.scrollStyleH("外层容器名称指向","内层容器名称指向","滚动条滑道名称指向","滚动条滑块名称指向");</p>
     </div>
     <div class="detailContent">
@@ -2479,7 +2488,7 @@
     </div>
 
 
-    <div class="titleContent"><b>模拟app滚动条 ‘上拉加载更多’ '下拉刷新'<font>Yeffect.addMobscroll()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">模拟app滚动条 ‘上拉加载更多’ '下拉刷新'<font>Yeffect.addMobscroll()</font></b>
         <p>Yeffect.addMobscroll("外容器对象名称指向","内容器对象名称指向"，"是否隐藏滚动条"，"是否解除全局的默认禁止拖动"，"回调函数"“通过参数返回拖动位置与拖动状态用于加载更多与刷新”);
         </p>
     </div>
@@ -2581,7 +2590,7 @@
     </div>
 
 
-    <div class="titleContent"><b>启用与禁用手指拖动和滚动条<font>Yeffect.endscroll(),Yeffect.starscroll()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">启用与禁用手指拖动和滚动条<font>Yeffect.endscroll(),Yeffect.starscroll()</font></b>
         <p>Yeffect.endscroll();无参数<br>
             Yeffect.starscroll();无参数
         </p>
@@ -2654,7 +2663,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>正常比例展示图片<font>Yeffect.imgGeomeScale()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">正常比例展示图片<font>Yeffect.imgGeomeScale()</font></b>
         <p>Yeffect.imgGeomeScale("图片元素名称指向","是否取消图片居中");</p>
     </div>
     <div class="detailContent">
@@ -2720,7 +2729,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>高度等比例适应宽度(以引用为参数 优点效率高)<font>Yeffect.resizeHtW()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">高度等比例适应宽度(以引用为参数 优点效率高)<font>Yeffect.resizeHtW()</font></b>
         <p>Yeffect.resizeHtW("产考宽度元素的引用","设置高度元素对象的引用","原始宽度","原始高度");</p>
     </div>
     <div class="detailContent">
@@ -2778,7 +2787,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>高度等比例适应宽度（以字名称参数 优点适应数据变换）<font>Yeffect.resizeHtWstr()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">高度等比例适应宽度（以字名称参数 优点适应数据变换）<font>Yeffect.resizeHtWstr()</font></b>
         <p>Yeffect.resizeHtWstr("产考宽度元素名称指向","设置高度元素对象名称指向","原始宽度","原始高度");</p>
     </div>
     <div class="detailContent">
@@ -2856,7 +2865,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>返回顶部<font>Yeffect.goTop()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">返回顶部<font>Yeffect.goTop()</font></b>
         <p>调用方式：Yeffect.goTop("接受点击事件的dom元素的名称指向","回到顶部后是否隐藏该按钮",<i onClick="TnacShow()">缓动函数名选填</i>,"距离顶部的偏移量");</p>
     </div>
     <div class="detailContent">
@@ -2904,7 +2913,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>漂浮窗<font>Yeffect.pFloating()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">漂浮窗<font>Yeffect.pFloating()</font></b>
         <p>Yeffect.pFloating("漂浮元素名称指向","关闭按钮名称指向","是否相对于当前文档","移动的单位距离","移动的单位时间");</p>
     </div>
     <div class="detailContent">
@@ -2968,7 +2977,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>html5头像上传预览单个<font>Yeffect.Html5FileReader()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">html5头像上传预览单个<font>Yeffect.Html5FileReader()</font></b>
         <p>Yeffect.Html5FileReader("文件域名称指向","图片名称","是否禁用对低版本浏览器的不支持提示");</p>
     </div>
     <div class="detailContent">
@@ -3029,7 +3038,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>html5头像上传预览多个<font>Yeffect.Html5FileReaders()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">html5头像上传预览多个<font>Yeffect.Html5FileReaders()</font></b>
         <p>Yeffect.Html5FileReaders("文件域名称指向","文件域与图片共有的父级元素名称指向(文件域往上访问)","图片元素名称指向（父级往下访问）","是否禁用对低版本浏览器的不支持提示");</p>
     </div>
     <div class="detailContent">
@@ -3117,7 +3126,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>html5图片上传预览（支持压缩与数量设置与批量添加）<font>Yeffect.uploadFileAppend()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">html5图片上传预览（支持压缩与数量设置与批量添加）<font>Yeffect.uploadFileAppend()</font></b>
         <p>Yeffect.uploadFileAppend("file的容器元素名称指向","容器下的图片元素名称指向","容器下的关闭按钮名称指向","选择图片完成或删除图片完成时的回调函数","设置最大宽度或高度","如果选择的不是图片文件的提示语句","最多能选择的数量"，"存储格式默认png","是否为头像图片如果是即为单张可修改");</p>
     </div>
     <div class="detailContent">
@@ -3201,7 +3210,7 @@
 
 
 
-    <div class="titleContent"><b>html5图片裁剪上传预览（支持压缩与数量设置裁剪设置）<font>Yeffect.ImageClipping()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">html5图片裁剪上传预览（支持压缩与数量设置裁剪设置）<font>Yeffect.ImageClipping()</font></b>
         <p>Yeffect.ImageClipping("file的容器元素名称指向","容器下的图片元素名称指向","容器下的关闭按钮名称指向","选择图片完成或删除图片完成时的回调函数","设置最大宽度或高度","如果选择的不是图片文件的提示语句","最多能选择的数量"，"存储格式默认png","是否为头像图片如果是即为单张可修改"，"需要裁剪成的宽度","需要裁剪成的高度");</p>
     </div>
     <div class="detailContent">
@@ -3290,7 +3299,7 @@
 
 
 
-    <div class="titleContent"><b>图集展示5个<font>Yeffect.imglist5()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">图集展示5个<font>Yeffect.imglist5()</font></b>
         <p>Yeffect.imglist5("列表项容器名称指向","左按钮名称指向","右按钮名称指向","列表项标签名","数据数组","初始向后移动的张数","显示文本的标签名","储存文本的标签名","缓动过程时长",<i onClick="TnacShow()">缓动函数名选填</i>);
         </p>
     </div>
@@ -3394,7 +3403,7 @@
     </div>
 
 
-    <div class="titleContent"><b>滚屏效果支持移动设备与响应<font>Yeffect.pageScroll()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">滚屏效果支持移动设备与响应<font>Yeffect.pageScroll()</font></b>
         <p>Yeffect.pageScroll("每一屏的容器对象","支持整屏幕滚动的最小宽度","top值偏移量","缓动系数默认为5数值越大时间越久","缓动类型ABCD","鼠标滚轮禁用时间默认200毫秒","向下按钮名称指向",“帧频函数返回当前拼的索引与比分比值","头部函数需返回一个布尔值","底部函数需返回一个布尔值","参考高度的dom元素名称指向");</p>
     </div>
     <div class="detailContent">
@@ -3462,7 +3471,7 @@
     </div>
 
 
-    <div class="titleContent"><b>表单验证<font>Yeffect.Validform()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">表单验证<font>Yeffect.Validform()</font></b>
         <p>Yeffect.Validform("是否验证空字符","是否启用输入时及时验证"，"是否启用输入限制","回调函数返回验证时的对象元素","获得焦点时的class名称","验证不通过的class名称","验证通过的class名称","用户名验证时的最低长度","密码验证时的最低长度");
         </p>
     </div>
@@ -3541,7 +3550,7 @@
     </div>
 
 
-    <div class="titleContent"><b>添加滑动事件（支持手指滑动与鼠标滑动）<font>Yeffect.addTouchEevent()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">添加滑动事件（支持手指滑动与鼠标滑动）<font>Yeffect.addTouchEevent()</font></b>
         <p>Yeffect.addTouchEevent("需同时监测方向","事件绑定对象的名称指向","回调函数","触发时是否禁用其他方向的拖动");
         </p>
     </div>
@@ -3621,7 +3630,7 @@
     </div>
 
 
-    <div class="titleContent"><b>复选框全选与取消全选<font>Yeffect.allChecked()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">复选框全选与取消全选<font>Yeffect.allChecked()</font></b>
         <p>Yeffect.allChecked("全选input名称指向","单选input的名称指向");
         </p>
     </div>
@@ -3682,7 +3691,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>同页面内容拖动（移动或删除）<font>Yeffect.adddragDom()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">同页面内容拖动（移动或删除）<font>Yeffect.adddragDom()</font></b>
         <p>Yeffect.adddragDom("开始拖动的元素名称指向","拖动到的目标元素名称指向","临时容器名称指向","针对拖动元素的文本关系表达式","针对拖动元素的id表达式","目标元素的放置表达式","准确投放到目标的回调函数","投放大非拖动元素非目标元素的回调函数");
         </p>
     </div>
@@ -3807,7 +3816,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>普通dom编辑表单元素取值<font>Yeffect.elementInput()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">普通dom编辑表单元素取值<font>Yeffect.elementInput()</font></b>
         <p>Yeffect.elementInput("dom元素名称指向","dom元素内的表单元素");
         </p>
     </div>
@@ -3860,7 +3869,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>简化版重复定时器<font>Yeffect.t15() , Yeffect.t30() , Yeffect.t50() , Yeffect.t100() , Yeffect.t200()</font></b>
+    <div class="titleContent"><b><img class="jiagou" src="images/jiagou.png">简化版重复定时器<font>Yeffect.t15() , Yeffect.t30() , Yeffect.t50() , Yeffect.t100() , Yeffect.t200()</font></b>
         <p>Yeffect.t15("回调函数");
         </p>
     </div>
@@ -3937,7 +3946,7 @@
     </div>
 
 
-    <div class="titleContent"><b>修复底部fixed定位在软键盘弹出时的BUG <font>Yeffect.footFixedInput()</font></b>
+    <div class="titleContent"><b><img class="jqICON" src="images/timg.png">修复底部fixed定位在软键盘弹出时的BUG <font>Yeffect.footFixedInput()</font></b>
         <p>Yeffect.footFixedInput([{el:"底部容器名称",tp:"上下偏移数"}],"触发软键盘弹出的表单元素","底部容器元素向上的偏移量:默认0","是否每次都进行精准计算:默认false","样式计算的延迟时间");
         </p>
     </div>
@@ -3995,7 +4004,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>异步流程控制 <font>Yeffect.start()</font></b>
+    <div class="titleContent"><b><img class="jiagou" src="images/jiagou.png">异步流程控制 <font>Yeffect.start()</font></b>
         <p>Yeffect.start();
         </p>
     </div>
@@ -4074,7 +4083,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>面向对象之创建类与继承类 <font>Yeffect.class()</font></b>
+    <div class="titleContent"><b><img class="jiagou" src="images/jiagou.png">面向对象之创建类与继承类 <font>Yeffect.class()</font></b>
         <p>Yeffect.class();
         </p>
     </div>
@@ -4234,7 +4243,7 @@
         </div>
     </div>
 
-    <div class="titleContent"><b>JS模块化引入与编程 <font>Yeffect.require()</font></b>
+    <div class="titleContent"><b><img class="jiagou" src="images/jiagou.png">JS模块化引入与编程 <font>Yeffect.require()</font></b>
         <p>Yeffect.require();
         </p>
     </div>
