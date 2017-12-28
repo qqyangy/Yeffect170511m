@@ -1,0 +1,31 @@
+define(function(){/*-ComBasStr-*})
+
+  <template>
+    <div class="fmdiv" scope>
+      <div></div>
+      <fm1 aaa="1111" bbb="ass" cccc="3621" ddds="33669" :b="a" :ppx="bs"></fm1>
+      <fm1></fm1>
+      <fm1></fm1>
+      <fm1></fm1>
+    </div>
+  </template>
+
+  <style>
+    .fmdiv[scope]{width: 100px; height: 100px; background: #f00; transition:all 0.3s linear;}
+  </style>
+
+  <script>
+    var fm1=require('fm1','html');
+    var a=300;
+    var bs=500;
+    setTimeout(function () {
+      _document.style.width='50px';
+      _document.style.height='50px';
+      _document.style.borderRadius='100px';
+      _document.style.background='#ff0';
+      _document.style.marginLeft='100px';
+    },2000);
+    components({fm1:fm1});
+  </script>
+
+({*-ComBasEnd-*/});

@@ -1,0 +1,24 @@
+define(function(){/*-ComBasStr-*})
+
+  <template>
+    <div class="fmdiv" scope>
+      aaaaaaaa
+    </div>
+  </template>
+
+  <style>
+    .fmdiv[scope]{width: 300px; height: 30px;  border: 1px solid #f00; margin-bottom: 3px;}
+  </style>
+
+  <script props="[aaa,bbb,cccc,ddd,ppx]">
+    console.log(aaa,bbb,cccc);
+    setTimeout(function () {
+      _document.innerHTML='文本内容已经更换';
+    },1000)
+    setTimeout(function () {
+      _document.innerHTML='5秒更换为参数'+aaa+'---'+bbb+'---'+cccc+'--'+ppx;
+    },5000);
+  </script>
+
+
+({*-ComBasEnd-*/});
