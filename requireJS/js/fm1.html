@@ -2,7 +2,8 @@ define(function(){/*-ComBasStr-*})
 
   <template>
     <div class="fmdiv" scope>
-      aaaaaaaa
+      <div class="text">aaaaaaaa</div>
+      <b>sAAAA</b>
     </div>
   </template>
 
@@ -13,10 +14,13 @@ define(function(){/*-ComBasStr-*})
   <script props="[aaa,bbb,cccc,ddd,ppx]">
     console.log(aaa,bbb,cccc);
     setTimeout(function () {
-      _document.innerHTML='文本内容已经更换';
+      _document.getElementsByClassName('text')[0].innerHTML='文本内容已经更换';
+      $(_document).css({border:'1px solid #ff0'})
+      this.$('.text').html('ssss222');
+      this.$('b').text(aaa);
     },1000)
     setTimeout(function () {
-      _document.innerHTML='5秒更换为参数'+aaa+'---'+bbb+'---'+cccc+'--'+ppx;
+      _document.getElementsByClassName('text')[0].innerHTML='5秒更换为参数'+aaa+'---'+bbb+'---'+cccc+'--'+ppx;
     },5000);
   </script>
 

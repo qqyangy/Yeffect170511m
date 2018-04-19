@@ -200,7 +200,13 @@
         Aprops=Aprops.substr(1,Aprops.length-2);
         props=Aprops.split(",");
       }
-      script=script.innerHTML;
+      var script_=script.innerHTML;
+      /*****处理组件jq选择器******/
+      var jqreg1=/this\.\$\(\"/g;/***匹配jq选择器双引号****/
+      var jqreg2=/this\.\$\(\'/g;/***匹配jq选择器单英豪****/
+      script_=script_.replace(jqreg1,'$(_document).find("');
+      script_=script_.replace(jqreg2,"$(_document).find('");
+      script=script_;
     }else{
       script='';
     }
