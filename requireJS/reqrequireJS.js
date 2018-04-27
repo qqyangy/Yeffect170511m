@@ -228,39 +228,42 @@
               f_document.removeAttribute('scope');
               _tagk.after(f_document);
               var pObj={};
-              var parT='';
+              var pObjjoin='';
+              var _tagProps=_tagk.attributes;
+              var attrskeys=[];
+              for(var v=0;v<_tagProps.length;v++){
+                var attr=_tagProps[v];
+                var attnm=attr.name;
+                var attval=attr.value;
+                if(attnm.substr(0,1)==':'){
+                  attrskeys.push(attnm);
+                  attnm=attnm.substr(1,attnm.length-1);
+                  attval=data[attnm];
+                };
+                if(o.props.indexOf(attnm)==-1){
+                  f_document.setAttribute(attnm,attval);
+                }
+              };
               for(var j=0;j<o.props.length;j++){
                 var _key=o.props[j];
-                parT+=','
                 var s_key=_key;
                 var s_val='';
-                if(s_key.substr(0,1)==':'){
-                  s_key=s_key.substr(1,_key.length-1);
-                  s_val=data[s_key];
+                if(attrskeys.indexOf(':'+s_key)!=-1){
+                  s_val=_tagk.getAttribute(':'+_key);
+                  if(pObjjoin!='')pObjjoin+=',';
+                  pObjjoin+=s_key+':'+'data["'+s_key+'"]';
                 }else{
                   s_val=_tagk.getAttribute(_key);
+                  pObj[s_key]=s_val;
                 }
-                pObj[s_key]=s_val;
-                parT+='pObj["'+_key+'"]';
               };
-              var _tagProps=_tagk.attributes;
-              for(var v=0;v<_tagProps.length;v++){
-                  var attr=_tagProps[v];
-                  var attnm=attr.name;
-                  var attval=attr.value;
-                  if(attnm.substr(0,1)==':'){
-                    attnm=attnm.substr(1,attnm.length-1);
-                    attval=data[attnm];
-                  };
-                  console.log(pObj[attnm])
-                  if(!pObj[attnm]){
-                    f_document.setAttribute(attnm,attval);
-                  }
-              };
-              console.log(pObj,'---**',parT);
               var Nstyle=document.createElement('style');
               Nstyle.innerHTML=o.css.replace(/\[scope\]/g,'['+scope+']');
-              eval('o.script(f_document'+parT+',Nstyle)');
+             var pObjstr=JSON.stringify(pObj);
+              pObjstr=pObjstr.substr(0,pObjstr.length-1);
+              if(pObjstr.length>2 && pObjjoin.length>0)pObjstr+=',';
+              pObjstr+=pObjjoin+'}';
+              eval('o.script('+pObjstr+',f_document,Nstyle)');
               _tagk.parentNode.removeChild(_tagk);
             };
           }
@@ -302,7 +305,11 @@
     };
     /******js代码中注入功能********/
     var aryf=''; if(props.length>0){aryf=',';};
-    var scriptS='function(_setdoc'+aryf+props.join(",")+',style1){style1=style1||stylecode__;document.head.appendChild(style1);var _document=_documentc;if(_setdoc){_document=_setdoc};'+script+'}';
+    var vars='';
+    for(var va=0;va<props.length;va++){if(vars!=''){vars+=',';}else{vars+='var ';};
+      vars+=props[va];vars+='=';vars+='dataobj["'+props[va]+'"]';if(va==props.length-1){vars+=';';};
+    }
+    var scriptS='function(dataobj,_setdoc,style1){dataobj=dataobj||{};'+vars+';style1=style1||stylecode__;document.head.appendChild(style1);var _document=_documentc;if(_setdoc){_document=_setdoc};'+script+'}';
     var script=eval('('+scriptS+')');
     requireurl(scriptS,treeParent);/****载入依赖******/
     return {temp:temp,_document:_documentc,style:stylecode__,css:css,script:script,props:props};
