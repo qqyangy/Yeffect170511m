@@ -2,8 +2,7 @@ define(function(){/*-ComBasStr-*})
 
   <template>
     <div class="fmdiv" scope>
-      <div></div>
-      <fm1 aaa="1111" bbb="ass" cccc="3621" ddds="33669" :b="a" :ppx="bs" :fn2="fn2"></fm1>
+      <fm1 aaa="1111" style="background: #f00" bbb="ass" cccc="3621" ddd="123" ddds="33669" :b="a" :ppx="bs" :fn2="fn2" :numbers="123"></fm1>
       <fm1></fm1>
       <fm1></fm1>
       <fm1></fm1>
@@ -17,7 +16,6 @@ define(function(){/*-ComBasStr-*})
 
   <script>
     var fm1=require('fm1','html');
-    var fm2=require('fm1','html');
     var a=300;
     var bs=500;
     var fn2=function () {
@@ -30,7 +28,7 @@ define(function(){/*-ComBasStr-*})
       _document.style.background='#ff0';
       _document.style.marginLeft='100px';
     },2000);
-    components({fm1:fm1,fm2:fm2});
+    components({fm1:fm1});
   </script>
 
 ({*-ComBasEnd-*/});

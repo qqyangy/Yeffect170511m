@@ -218,17 +218,7 @@
         for(var i =tagk.length-1;i>-1;i--){
           var _tagk=tagk[i];
           if(o.temp){
-            var div=document.createElement('div');
-            div.innerHTML=o.temp;
-            var f_document=null;
-            if(div.children.length>0){
-              f_document=div.children[0];
-              var scope='scope_'+(1000000000+Math.floor(Math.random()*99999999999));
-              f_document.setAttribute(scope,'');
-              f_document.removeAttribute('scope');
-              _tagk.after(f_document);
               var pObj={};
-              var pObjjoin='';
               var _tagProps=_tagk.attributes;
               var attrskeys=[];
               for(var v=0;v<_tagProps.length;v++){
@@ -238,37 +228,32 @@
                 if(attnm.substr(0,1)==':'){
                   attrskeys.push(attnm);
                   attnm=attnm.substr(1,attnm.length-1);
-                  attval=data[attnm];
+                  var attrnum=parseFloat(attnm);
+                  if(attrnum+''==attnm) {
+                    attval=attrnum;
+                  }else {
+                    attval=data[attnm]
+                  }
                 };
-                if(o.props.indexOf(attnm)==-1){
-                  f_document.setAttribute(attnm,attval);
-                }
+                pObj[attnm]=attval;
               };
               for(var j=0;j<o.props.length;j++){
                 var _key=o.props[j];
                 var s_key=_key;
                 var s_val='';
-                if(attrskeys.indexOf(':'+s_key)!=-1){
-                  s_val=_tagk.getAttribute(':'+_key);
-                  if(pObjjoin!='')pObjjoin+=',';
-                  pObjjoin+=s_key+':'+'data["'+s_key+'"]';
-                }else{
-                  s_val=_tagk.getAttribute(_key);
-                  pObj[s_key]=s_val;
+                if(attrskeys.indexOf(':'+s_key)==-1){
+                  if(!pObj[s_key]) {
+                    s_val=_tagk.getAttribute(_key);
+                    pObj[s_key]=s_val;
+                  }
                 }
               };
-              var Nstyle=document.createElement('style');
-              Nstyle.innerHTML=o.css.replace(/\[scope\]/g,'['+scope+']');
-             var pObjstr=JSON.stringify(pObj);
-              pObjstr=pObjstr.substr(0,pObjstr.length-1);
-              if(pObjstr.length>2 && pObjjoin.length>0)pObjstr+=',';
-              pObjstr+=pObjjoin+'}';
-              eval('o.script('+pObjstr+',f_document,Nstyle)');
+              var documetss=o.init(pObj);
+              _tagk.after(documetss);
               _tagk.parentNode.removeChild(_tagk);
             };
           }
         }
-      }
     };
     /**********组件引用参数处理************/
     var pReg=/\bcomponents\b\(\{.*\}/;
@@ -309,10 +294,32 @@
     for(var va=0;va<props.length;va++){if(vars!=''){vars+=',';}else{vars+='var ';};
       vars+=props[va];vars+='=';vars+='dataobj["'+props[va]+'"]';if(va==props.length-1){vars+=';';};
     }
-    var scriptS='function(dataobj,_setdoc,style1){dataobj=dataobj||{};'+vars+';style1=style1||stylecode__;document.head.appendChild(style1);var _document=_documentc;if(_setdoc){_document=_setdoc};'+script+'}';
+    var scriptS='function(dataobj,_setdoc,style1){isinit=this.isinit||false;this.isinit=false;dataobj=dataobj||{};'+vars+';style1=style1||stylecode__;if(isinit || style1.getAttribute("scope")){document.head.appendChild(style1)};var _document=_documentc;if(_setdoc){_document=_setdoc};(function () {for(var k in dataobj){if(props.indexOf(k)==-1){_document.setAttribute(k,dataobj[k]);}}})();'+script+'}';
     var script=eval('('+scriptS+')');
     requireurl(scriptS,treeParent);/****载入依赖******/
-    return {temp:temp,_document:_documentc,style:stylecode__,css:css,script:script,props:props};
+    return {temp:temp,_document:_documentc,style:stylecode__,css:css,script:script,props:props,isinit:true,init:function (propsdata) {
+      propsdata=propsdata||{};
+      var temp=this.temp;
+      if(this.isinit){this.script(propsdata,this._documentc,this.style); return this._document;};
+      if(temp){
+        var div=document.createElement('div');
+        div.innerHTML=temp;
+        var f_document=null;
+        if(div.children.length>0){
+          f_document=div.children[0];
+          var scope='scope_'+(1000000000+Math.floor(Math.random()*99999999999));
+          f_document.setAttribute(scope,'');
+          f_document.removeAttribute('scope');
+          var Nstyle=document.createElement('style');
+          var ocssrep=this.css.replace(/\[scope\]/g,'['+scope+']');
+          Nstyle.innerHTML=ocssrep;
+          if(ocssrep!=this.css){Nstyle.setAttribute('scope','true');}
+          this.script(propsdata,f_document,Nstyle);
+          return f_document;
+        };
+      }
+      return '';
+    }};
   };
   /*****被载入模块的包装函数*****/
   function define(fn) {
