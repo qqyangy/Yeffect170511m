@@ -248,8 +248,8 @@
                   }
                 }
               };
-              var documetss=o.init(pObj);
-              _tagk.after(documetss);
+              var documetObJ=o.init(pObj);
+              _tagk.after(documetObJ._document);
               _tagk.parentNode.removeChild(_tagk);
             };
           }
@@ -294,31 +294,44 @@
     for(var va=0;va<props.length;va++){if(vars!=''){vars+=',';}else{vars+='var ';};
       vars+=props[va];vars+='=';vars+='dataobj["'+props[va]+'"]';if(va==props.length-1){vars+=';';};
     }
-    var scriptS='function(dataobj,_setdoc,style1){isinit=this.isinit||false;this.isinit=false;dataobj=dataobj||{};'+vars+';style1=style1||stylecode__;if(isinit || style1.getAttribute("scope")){document.head.appendChild(style1)};var _document=_documentc;if(_setdoc){_document=_setdoc};(function () {for(var k in dataobj){if(props.indexOf(k)==-1){_document.setAttribute(k,dataobj[k]);}}})();'+script+'}';
+    var scriptS='function(dataobj,_setdoc,style1){var initcount=this.initcount||false;this.initcount++;dataobj=dataobj||{};'+vars+';var style1getfind=style1||stylecode__;if(initcount==0 || style1getfind.getAttribute("scope")){document.head.appendChild(style1getfind)};var _document=_documentc;if(_setdoc){_document=_setdoc};(function () {for(var k in dataobj){if(props.indexOf(k)==-1){_document.setAttribute(k,dataobj[k]);}}})();'+script+';return style1getfind.getAttribute("scope")?style1getfind:false;}';
     var script=eval('('+scriptS+')');
     requireurl(scriptS,treeParent);/****载入依赖******/
-    return {temp:temp,_document:_documentc,style:stylecode__,css:css,script:script,props:props,isinit:true,init:function (propsdata) {
+    return {temp:temp,_document:_documentc,style:stylecode__,css:css,script:script,props:props,initcount:0,init:function (propsdata) {
       propsdata=propsdata||{};
       var temp=this.temp;
-      if(this.isinit){this.script(propsdata,this._documentc,this.style); return this._document;};
-      if(temp){
-        var div=document.createElement('div');
-        div.innerHTML=temp;
-        var f_document=null;
-        if(div.children.length>0){
-          f_document=div.children[0];
-          var scope='scope_'+(1000000000+Math.floor(Math.random()*99999999999));
-          f_document.setAttribute(scope,'');
-          f_document.removeAttribute('scope');
-          var Nstyle=document.createElement('style');
-          var ocssrep=this.css.replace(/\[scope\]/g,'['+scope+']');
-          Nstyle.innerHTML=ocssrep;
-          if(ocssrep!=this.css){Nstyle.setAttribute('scope','true');}
-          this.script(propsdata,f_document,Nstyle);
-          return f_document;
-        };
+      var retdocument=this._document;
+      var retstyle=this.style;
+      if(this.initcount==0){this.script(propsdata,this._document,this.style);}else{
+        if(temp){
+          var div=document.createElement('div');
+          div.innerHTML=temp;
+          var f_document=null;
+          if(div.children.length>0){
+            f_document=div.children[0];
+            var scope='scope_'+(1000000000+Math.floor(Math.random()*99999999999));
+            f_document.setAttribute(scope,'');
+            f_document.removeAttribute('scope');
+            var Nstyle=document.createElement('style');
+            var ocssrep=this.css.replace(/\[scope\]/g,'['+scope+']');
+            Nstyle.innerHTML=ocssrep;
+            if(ocssrep!=this.css){Nstyle.setAttribute('scope','true');}
+            var restyle1=this.script(propsdata,f_document,Nstyle);
+            retdocument=f_document;
+            retstyle=restyle1;
+          };
+        }
       }
-      return '';
+      var _this=this;
+      return {_document:retdocument,remove:function () {
+        var parnd=retdocument.parentNode;
+        if(parnd){parnd.removeChild(retdocument)};
+        if(_this.initcount!=0 && retstyle){
+          var sparnd=retstyle.parentNode;
+          if(sparnd){sparnd.removeChild(retstyle);}
+        }
+        _this.initcount--;
+      }};
     }};
   };
   /*****被载入模块的包装函数*****/

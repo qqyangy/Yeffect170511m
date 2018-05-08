@@ -28,9 +28,9 @@
 define(function () {
     var text=require('content','txt');
       var html=require('fm','html');
+      var htmlinit=html.init();
       var app=document.getElementsByClassName('app')[0];
-      app.appendChild(html._document);
-      html.script();
+      app.appendChild(htmlinit._document);
 
 
       /*var html2=require('fm1','html');
