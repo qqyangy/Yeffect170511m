@@ -186,6 +186,15 @@
     if(stylecode__.length>0){
       stylecode__=stylecode__[0];
       css=stylecode__.innerHTML;
+      var __replace=stylecode__.getAttribute('replace');
+      if(__replace){
+        __replace=__replace.split('|,|');
+        var __replace1=__replace[0];
+        var __replace2=__replace[1]||'';
+        css=css.split(__replace1);
+        css=css.join(__replace2);
+        stylecode__.removeAttribute('replace');
+      }
       stylecode__.innerHTML=css.replace(/\[scope\]/g,'['+scope+']');
     }else{
       stylecode__=null;
